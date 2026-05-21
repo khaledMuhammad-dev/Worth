@@ -1,38 +1,50 @@
-import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
-import "./globals.css";
-import I18nProvider from "@/components/providers/I18nProvider";
+import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans, Inter, IBM_Plex_Sans_Arabic } from 'next/font/google';
+import './globals.css';
+import I18nProvider from '@/components/providers/I18nProvider';
+import GSAPProvider from '@/components/providers/GSAPProvider';
+import Loader from '@/components/Loader';
+import CustomCursor from '@/components/CustomCursor';
+import PageTransition from '@/components/PageTransition';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  display: 'swap',
 });
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-ibm-arabic",
-  display: "swap",
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-ibm-arabic',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Worth Agency — Every brand has a story. We make it valuable.",
+  title: 'Worth Agency — Every brand has a story. We make it valuable.',
   description:
-    "Full-service digital agency offering marketing, media buying, brand identity, motion graphics, and web development.",
+    'Full-service digital agency offering marketing, media buying, brand identity, motion graphics, and web development.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className={`${plusJakartaSans.variable} ${inter.variable} ${ibmPlexSansArabic.variable}`}>
-        <I18nProvider>{children}</I18nProvider>
+        <I18nProvider>
+          <GSAPProvider>
+            <Loader />
+            <CustomCursor />
+            <ScrollProgressBar />
+            <PageTransition>{children}</PageTransition>
+          </GSAPProvider>
+        </I18nProvider>
       </body>
     </html>
   );

@@ -1,10 +1,13 @@
 'use client';
+
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Globe, Send, Hash, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Footer() {
   const { t } = useTranslation();
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const companyLinks = [
     { href: '/about', label: t('footer.links.about') },
@@ -41,53 +44,43 @@ export function Footer() {
 
   return (
     <footer className="bg-[#F97316]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main grid — logo/tagline col + 3 link cols */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Brand column */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            {/* Logo always reads LTR */}
-            <Link href="/" className="inline-flex items-baseline gap-0.5 mb-5" dir="ltr">
-              <span
-                className="text-2xl font-bold text-white"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="footer-col sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="footer-logo mb-5 inline-flex items-baseline gap-0.5" dir="ltr">
+              <span className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
                 Worth
               </span>
               <span className="text-2xl font-bold text-white/50" style={{ fontFamily: 'var(--font-heading)' }}>
                 .
               </span>
             </Link>
-            <p className="text-white/75 leading-relaxed text-sm mb-6 max-w-xs">
-              {t('footer.tagline')}
-            </p>
-            {/* Social icons */}
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/75">{t('footer.tagline')}</p>
             <div className="flex items-center gap-3">
               {socials.map(({ Icon, href, label }) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors duration-200"
+                  whileHover={prefersReduced ? undefined : { scale: 1.2, rotate: 8 }}
+                  whileTap={prefersReduced ? undefined : { scale: 0.9 }}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white transition-colors duration-200 hover:bg-white/30"
                 >
                   <Icon className="h-4 w-4" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
 
-          {/* Link columns */}
           {linkColumns.map(({ title, links }) => (
-            <div key={title}>
-              <h4 className="text-white font-bold mb-4 text-xs uppercase tracking-widest">
-                {title}
-              </h4>
+            <div key={title} className="footer-col">
+              <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-white">{title}</h4>
               <ul className="flex flex-col gap-2.5">
                 {links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white text-sm transition-colors duration-150 hover:underline underline-offset-2"
+                      className="text-sm text-white/70 underline-offset-2 transition-colors duration-150 hover:text-white hover:underline"
                     >
                       {link.label}
                     </Link>
@@ -99,15 +92,14 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/15">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/60 text-sm">{t('footer.copyright')}</p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
+          <p className="text-sm text-white/60">{t('footer.copyright')}</p>
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="text-white/60 hover:text-white text-sm transition-colors">
+            <Link href="/privacy" className="text-sm text-white/60 transition-colors hover:text-white">
               {t('footer.links.privacy')}
             </Link>
-            <Link href="/terms" className="text-white/60 hover:text-white text-sm transition-colors">
+            <Link href="/terms" className="text-sm text-white/60 transition-colors hover:text-white">
               {t('footer.links.terms')}
             </Link>
           </div>
