@@ -1,0 +1,250 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "work": "Work",
+    "insights": "Insights",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "tagline": "Every brand has a story.",
+    "taglineAccent": "We make it valuable.",
+    "subtitle": "Full-service digital agency transforming ambitious businesses into market leaders through data-driven marketing and bold creative.",
+    "cta1": "Get Started",
+    "cta2": "See Our Work"
+  },
+  "services": {
+    "title": "Our",
+    "titleAccent": "Services",
+    "subtitle": "From strategy to execution, we deliver results that matter.",
+    "marketing": {
+      "title": "Marketing & Media Buying",
+      "description": "Data-driven campaigns that maximize ROI and reach your ideal audience across every channel."
+    },
+    "brand": {
+      "title": "Brand Identity",
+      "description": "Crafting distinctive brand identities that resonate, inspire trust, and stand out in competitive markets."
+    },
+    "motion": {
+      "title": "Motion Graphics",
+      "description": "Captivating animations and motion content that bring your brand story to life visually."
+    },
+    "web": {
+      "title": "Web Development",
+      "description": "High-performance websites and digital experiences engineered for conversions and growth."
+    },
+    "learnMore": "Learn More"
+  },
+  "process": {
+    "title": "How We",
+    "titleAccent": "Work",
+    "subtitle": "A proven process that delivers consistent results for every client.",
+    "step1": { "title": "Discovery", "description": "We dive deep into your business, audience, and goals to build a solid strategic foundation." },
+    "step2": { "title": "Strategy", "description": "We craft a tailored roadmap with clear milestones, KPIs, and creative direction." },
+    "step3": { "title": "Execution", "description": "Our team executes with precision — designing, building, and launching every element." },
+    "step4": { "title": "Optimize", "description": "We measure, analyze, and continuously improve to maximize your results over time." }
+  },
+  "about": {
+    "title": "We Are",
+    "titleAccent": "Worth",
+    "body": "Worth is a full-service digital agency transforming ambitious businesses into market leaders. We combine data-driven strategy with bold creative to deliver measurable impact.",
+    "readMore": "Read More About Us",
+    "whoWeAre": "Who We Are",
+    "whoBody1": "Worth is a full-service digital agency built for ambitious brands. We believe every business has a story worth telling — and we have the expertise to tell it in the most impactful way possible.",
+    "whoBody2": "From startups making their mark to established companies ready to scale, we partner with brands at every stage of growth. Our team of strategists, creatives, and technologists work in lockstep to deliver results that matter.",
+    "philosophy": "Our Philosophy",
+    "philosophyBody": "We believe great work happens at the intersection of strategy and creativity. Every decision we make is rooted in data, guided by insight, and executed with craft.",
+    "values": {
+      "title": "Our",
+      "titleAccent": "Values",
+      "bold": { "title": "Bold Thinking", "description": "We challenge conventions and push creative boundaries to find solutions that truly differentiate." },
+      "data": { "title": "Data-Driven", "description": "Every strategy is backed by research and every decision informed by measurable insights." },
+      "partnership": { "title": "True Partnership", "description": "We work as an extension of your team, deeply invested in your success and growth." },
+      "craft": { "title": "Relentless Craft", "description": "We obsess over every detail, from pixel-perfect design to flawless code and copy." }
+    },
+    "team": {
+      "title": "Meet the",
+      "titleAccent": "Team",
+      "subtitle": "The talented people behind Worth's exceptional work."
+    },
+    "milestones": {
+      "title": "Our",
+      "titleAccent": "Journey",
+      "2020": { "year": "2020", "title": "Founded", "description": "Worth was founded with a mission to help ambitious brands grow." },
+      "2021": { "year": "2021", "title": "First 50 Clients", "description": "We hit our first major milestone, serving 50+ clients across industries." },
+      "2022": { "year": "2022", "title": "Regional Expansion", "description": "Expanded operations across Egypt, KSA, and UAE markets." },
+      "2023": { "year": "2023", "title": "Award-Winning Work", "description": "Recognized for excellence with multiple industry awards." },
+      "2024": { "year": "2024", "title": "200+ Projects", "description": "Delivered over 200 successful projects with measurable ROI." }
+    },
+    "clients": {
+      "title": "Trusted by",
+      "titleAccent": "Leading Brands"
+    }
+  },
+  "testimonials": {
+    "title": "What Clients",
+    "titleAccent": "Say",
+    "subtitle": "Real results, real relationships.",
+    "t1": {
+      "name": "Ahmed Al-Rashid",
+      "role": "CEO, TechVentures",
+      "quote": "Worth transformed our digital presence completely. Their strategic approach and creative execution exceeded every expectation. We saw a 3x increase in qualified leads within 6 months."
+    },
+    "t2": {
+      "name": "Sara Ibrahim",
+      "role": "Marketing Director, Bloom Retail",
+      "quote": "The team at Worth is exceptional. They understood our brand vision immediately and delivered a campaign that resonated deeply with our audience. Outstanding results."
+    },
+    "t3": {
+      "name": "Khalid Mohammed",
+      "role": "Founder, NovaBuild",
+      "quote": "From brand identity to web development, Worth handled everything flawlessly. They're not just an agency — they're a true growth partner."
+    }
+  },
+  "cta": {
+    "title": "Ready to build something",
+    "titleAccent": "worth sharing?",
+    "button": "Contact Us",
+    "subtitle": "Let's talk about how we can help your brand grow."
+  },
+  "footer": {
+    "tagline": "Every brand has a story. We make it valuable.",
+    "company": "Company",
+    "services": "Services",
+    "resources": "Resources",
+    "links": {
+      "about": "About Us",
+      "work": "Our Work",
+      "team": "Our Team",
+      "careers": "Careers",
+      "marketing": "Marketing & Media",
+      "brand": "Brand Identity",
+      "motion": "Motion Graphics",
+      "web": "Web Development",
+      "blog": "Blog",
+      "caseStudies": "Case Studies",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "© 2024 Worth Agency. All rights reserved."
+  },
+  "pricing": {
+    "title": "Transparent",
+    "titleAccent": "Pricing",
+    "subtitle": "Choose the package that fits your ambition.",
+    "currency": "Currency",
+    "egp": "EGP",
+    "usd": "USD",
+    "sar": "SAR",
+    "popular": "Most Popular",
+    "launch": {
+      "name": "Launch",
+      "description": "Perfect for startups and small businesses ready to establish their digital presence.",
+      "badge": "Starter",
+      "cta": "Get Started"
+    },
+    "growth": {
+      "name": "Growth",
+      "description": "For growing businesses ready to scale their marketing and amplify their brand.",
+      "badge": "Popular",
+      "cta": "Get Started"
+    },
+    "authority": {
+      "name": "Authority",
+      "description": "For established brands seeking comprehensive digital dominance and market leadership.",
+      "badge": "Premium",
+      "cta": "Get Started"
+    },
+    "partner": {
+      "name": "Partner",
+      "description": "Ongoing retainer for brands that want a dedicated growth partner month after month.",
+      "badge": "Retainer",
+      "cta": "Get Started",
+      "perMonth": "/month"
+    },
+    "faq": {
+      "title": "Frequently Asked",
+      "titleAccent": "Questions",
+      "q1": { "question": "What's included in each package?", "answer": "Each package includes a curated set of services tailored to your business stage. Launch covers brand fundamentals, Growth adds performance marketing, Authority is fully comprehensive, and Partner is a flexible monthly retainer." },
+      "q2": { "question": "Can I customize a package?", "answer": "Absolutely. We can mix and match services to create a custom scope. Book a discovery call and we'll build a proposal tailored to your specific needs." },
+      "q3": { "question": "How long does a project take?", "answer": "Timelines vary by scope. Launch projects typically take 4–6 weeks, Growth 6–10 weeks, and Authority 10–16 weeks. Partner retainers are ongoing." },
+      "q4": { "question": "Do you work with businesses outside Egypt?", "answer": "Yes! We work with clients across the MENA region including KSA, UAE, and beyond. We're a remote-first team built for global collaboration." },
+      "q5": { "question": "What's your payment structure?", "answer": "We typically split project fees 50% upfront and 50% upon delivery. Retainers are billed monthly in advance." }
+    }
+  },
+  "work": {
+    "title": "Our",
+    "titleAccent": "Work",
+    "subtitle": "Projects that moved the needle for our clients.",
+    "all": "All",
+    "byService": "By Service",
+    "byIndustry": "By Industry",
+    "viewCaseStudy": "View Case Study",
+    "challenge": "The Challenge",
+    "solution": "Our Solution",
+    "results": "The Results",
+    "nextProject": "Next Project"
+  },
+  "insights": {
+    "title": "Insights &",
+    "titleAccent": "Ideas",
+    "subtitle": "Thoughts on marketing, branding, and digital growth.",
+    "readMore": "Read Article",
+    "newsletter": {
+      "title": "Stay in the loop",
+      "subtitle": "Get our latest insights delivered to your inbox.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "featured": "Featured"
+  },
+  "contact": {
+    "title": "Let's",
+    "titleAccent": "Connect",
+    "subtitle": "Tell us about your project and we'll get back to you within 24 hours.",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "service": "Service of Interest",
+      "message": "Tell us about your project",
+      "submit": "Send Message",
+      "success": "Message sent! We'll be in touch soon."
+    },
+    "info": {
+      "title": "Get in Touch",
+      "email": "hello@worth.agency",
+      "phone": "+20 100 000 0000",
+      "address": "Cairo, Egypt"
+    },
+    "bookCall": "Book a Discovery Call"
+  },
+  "pageHero": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "pricing": "Pricing",
+    "work": "Our Work",
+    "insights": "Insights",
+    "contact": "Contact"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "subtitle": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "button": "Back to Home"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 1, 2024"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: January 1, 2024"
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "lastUpdated": "Last updated: January 1, 2024"
+  }
+}
