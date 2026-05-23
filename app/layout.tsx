@@ -7,6 +7,7 @@ import Loader from '@/components/Loader';
 import CustomCursor from '@/components/CustomCursor';
 import PageTransition from '@/components/PageTransition';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
+import PublicLayout from '@/components/PublicLayout';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -42,7 +43,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Loader />
             <CustomCursor />
             <ScrollProgressBar />
-            <PageTransition>{children}</PageTransition>
+            <PageTransition>
+              <PublicLayout>{children}</PublicLayout>
+            </PageTransition>
           </GSAPProvider>
         </I18nProvider>
       </body>

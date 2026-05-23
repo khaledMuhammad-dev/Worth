@@ -1,0 +1,100 @@
+{
+  "hero": {
+    "headingEN": "Worth Services",
+    "headingAR": "خدمات وورث",
+    "accentWordEN": "Services",
+    "accentWordAR": "وورث",
+    "subheadingEN": "Integrated strategy, creative, and execution for ambitious brands in MENA.",
+    "subheadingAR": "استراتيجية وإبداع وتنفيذ متكامل للعلامات الطموحة في منطقة MENA."
+  },
+  "items": [
+    {
+      "id": "marketing",
+      "slug": "marketing-media-buying",
+      "iconColor": "#FEF3C7",
+      "titleEN": "Marketing & Media Buying",
+      "titleAR": "التسويق وشراء الوسائط",
+      "descriptionEN": "We plan, launch, and optimise campaigns across Meta, Google, TikTok, and more to maximise measurable growth.",
+      "descriptionAR": "نخطط ونطلق ونحسن الحملات عبر ميتا وجوجل وتيك توك وغيرها لتحقيق نمو قابل للقياس.",
+      "href": "/services/marketing-media-buying",
+      "featuresEN": [
+        "Audience research and segmentation",
+        "Paid media strategy",
+        "Creative testing framework",
+        "Weekly reporting and optimisation"
+      ],
+      "featuresAR": [
+        "بحث وتقسيم الجمهور",
+        "استراتيجية إعلانات مدفوعة",
+        "إطار لاختبار الإبداع",
+        "تقارير وتحسين أسبوعي"
+      ]
+    },
+    {
+      "id": "brand",
+      "slug": "brand-identity",
+      "iconColor": "#FCE7F3",
+      "titleEN": "Brand Identity",
+      "titleAR": "الهوية البصرية",
+      "descriptionEN": "From naming and positioning to logos and guidelines, we shape memorable brands that feel premium and distinct.",
+      "descriptionAR": "من التسمية والتموضع إلى الشعارات وأدلة الهوية، نصنع علامات مميزة تبدو احترافية وفريدة.",
+      "href": "/services/brand-identity",
+      "featuresEN": [
+        "Brand strategy workshops",
+        "Logo and visual system design",
+        "Typography and colour direction",
+        "Brand guideline creation"
+      ],
+      "featuresAR": [
+        "ورش استراتيجية العلامة",
+        "تصميم الشعار والنظام البصري",
+        "توجيه الخطوط والألوان",
+        "إعداد دليل الهوية"
+      ]
+    },
+    {
+      "id": "motion",
+      "slug": "motion-graphics",
+      "iconColor": "#EDE9FE",
+      "titleEN": "Motion Graphics",
+      "titleAR": "الموشن جرافيك",
+      "descriptionEN": "Short-form and campaign-ready animation that helps brands explain, persuade, and stop the scroll.",
+      "descriptionAR": "رسوم متحركة قصيرة وجاهزة للحملات تساعد العلامات على الشرح والإقناع وخطف الانتباه.",
+      "href": "/services/motion-graphics",
+      "featuresEN": [
+        "Storyboard and concept development",
+        "Explainer and social animation",
+        "Campaign cutdowns and variants",
+        "Sound design and export packaging"
+      ],
+      "featuresAR": [
+        "إعداد الفكرة والستوري بورد",
+        "موشن توضيحي واجتماعي",
+        "نسخ متعددة للحملات",
+        "تصميم صوتي وتجهيز ملفات التسليم"
+      ]
+    },
+    {
+      "id": "web",
+      "slug": "web-development",
+      "iconColor": "#DCFCE7",
+      "titleEN": "Web Development",
+      "titleAR": "تطوير المواقع",
+      "descriptionEN": "High-performance websites and landing pages built for speed, clarity, and conversion.",
+      "descriptionAR": "مواقع وصفحات هبوط عالية الأداء مبنية للسرعة والوضوح والتحويل.",
+      "href": "/services/web-development",
+      "featuresEN": [
+        "UX planning and wireframes",
+        "Responsive UI implementation",
+        "Next.js development",
+        "CMS-ready, SEO-aware builds"
+      ],
+      "featuresAR": [
+        "تخطيط تجربة المستخدم والوايرفريم",
+        "تنفيذ واجهات متجاوبة",
+        "تطوير باستخدام Next.js",
+        "بناء جاهز لإدارة المحتوى ومحسن لمحركات البحث"
+      ]
+    }
+  ]
+}

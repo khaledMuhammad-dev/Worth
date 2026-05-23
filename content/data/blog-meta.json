@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "example-post",
+    "titleEN": "How Data-Driven Marketing Transforms Brands",
+    "titleAR": "كيف يحول التسويق القائم على البيانات العلامات التجارية",
+    "excerptEN": "A deep dive into how we use analytics to drive measurable results for our clients.",
+    "excerptAR": "نظرة معمقة على كيفية استخدامنا للتحليلات لتحقيق نتائج قابلة للقياس لعملائنا.",
+    "author": "Worth Team",
+    "coverUrl": "https://res.cloudinary.com/worth/image/upload/example-cover.jpg",
+    "tags": [
+      "marketing",
+      "data",
+      "strategy"
+    ],
+    "status": "published",
+    "publishedAt": "2025-05-01",
+    "updatedAt": "2025-05-01"
+  }
+]

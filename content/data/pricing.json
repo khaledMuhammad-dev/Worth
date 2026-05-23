@@ -1,0 +1,179 @@
+{
+  "packages": [
+    {
+      "id": "launch",
+      "nameEN": "Launch",
+      "nameAR": "إطلاق",
+      "descriptionEN": "A foundation package for businesses launching a brand or landing page.",
+      "descriptionAR": "باقة تأسيسية للشركات التي تطلق علامة أو صفحة هبوط.",
+      "badgeEN": "Best for Starters",
+      "badgeAR": "مناسبة للبداية",
+      "priceEGP": "18000",
+      "priceUSD": "380",
+      "priceSAR": "1425",
+      "periodEN": "one-time",
+      "periodAR": "مرة واحدة",
+      "featured": false,
+      "ctaEN": "Choose Launch",
+      "ctaAR": "اختر إطلاق",
+      "featuresEN": [
+        "Brand strategy",
+        "Logo design",
+        "Business card design",
+        "Social media kit",
+        "Landing page"
+      ],
+      "featuresAR": [
+        "استراتيجية العلامة",
+        "تصميم شعار",
+        "تصميم بطاقة عمل",
+        "عدة السوشيال ميديا",
+        "صفحة هبوط"
+      ]
+    },
+    {
+      "id": "growth",
+      "nameEN": "Growth",
+      "nameAR": "نمو",
+      "descriptionEN": "A complete branding and growth package for scaling businesses.",
+      "descriptionAR": "باقة متكاملة للهوية والنمو للشركات التي تستعد للتوسع.",
+      "badgeEN": "Most Popular",
+      "badgeAR": "الأكثر طلباً",
+      "priceEGP": "42000",
+      "priceUSD": "880",
+      "priceSAR": "3300",
+      "periodEN": "one-time",
+      "periodAR": "مرة واحدة",
+      "featured": true,
+      "ctaEN": "Choose Growth",
+      "ctaAR": "اختر نمو",
+      "featuresEN": [
+        "Everything in Launch",
+        "Full brand guidelines",
+        "3-month marketing campaign",
+        "5 ad creatives",
+        "Full website"
+      ],
+      "featuresAR": [
+        "كل ما في إطلاق",
+        "دليل هوية كامل",
+        "حملة تسويقية 3 أشهر",
+        "5 تصميمات إعلانية",
+        "موقع كامل"
+      ]
+    },
+    {
+      "id": "authority",
+      "nameEN": "Authority",
+      "nameAR": "هيمنة",
+      "descriptionEN": "A full-scale package for market leaders who need strategy, content, and execution.",
+      "descriptionAR": "باقة شاملة لقادة السوق الذين يحتاجون إلى استراتيجية ومحتوى وتنفيذ.",
+      "badgeEN": "Scale Faster",
+      "badgeAR": "وسع أسرع",
+      "priceEGP": "85000",
+      "priceUSD": "1780",
+      "priceSAR": "6675",
+      "periodEN": "one-time",
+      "periodAR": "مرة واحدة",
+      "featured": false,
+      "ctaEN": "Choose Authority",
+      "ctaAR": "اختر هيمنة",
+      "featuresEN": [
+        "Everything in Growth",
+        "Motion graphics package",
+        "Video production",
+        "Advanced SEO",
+        "6-month campaign management"
+      ],
+      "featuresAR": [
+        "كل ما في نمو",
+        "باقة موشن جرافيك",
+        "إنتاج فيديو",
+        "تحسين SEO متقدم",
+        "إدارة حملات لمدة 6 أشهر"
+      ]
+    },
+    {
+      "id": "partner",
+      "nameEN": "Partner",
+      "nameAR": "شريك",
+      "descriptionEN": "An ongoing monthly retainer for brands that need continuous creative and growth support.",
+      "descriptionAR": "عقد شهري مستمر للعلامات التي تحتاج دعماً مستمراً في الإبداع والنمو.",
+      "badgeEN": "Monthly Retainer",
+      "badgeAR": "اشتراك شهري",
+      "priceEGP": "12000",
+      "priceUSD": "250",
+      "priceSAR": "938",
+      "periodEN": "per month",
+      "periodAR": "شهرياً",
+      "featured": false,
+      "ctaEN": "Become a Partner",
+      "ctaAR": "كن شريكاً",
+      "featuresEN": [
+        "Monthly ad management",
+        "Weekly content creation",
+        "Performance reporting",
+        "Strategy calls",
+        "Priority support"
+      ],
+      "featuresAR": [
+        "إدارة إعلانات شهرية",
+        "صناعة محتوى أسبوعية",
+        "تقارير أداء",
+        "اجتماعات استراتيجية",
+        "دعم أولوية"
+      ]
+    }
+  ],
+  "currencies": [
+    {
+      "code": "EGP",
+      "label": "Egyptian Pound",
+      "symbol": "EGP"
+    },
+    {
+      "code": "USD",
+      "label": "US Dollar",
+      "symbol": "USD"
+    },
+    {
+      "code": "SAR",
+      "label": "Saudi Riyal",
+      "symbol": "SAR"
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-1",
+      "questionEN": "Can packages be customised?",
+      "questionAR": "هل يمكن تخصيص الباقات؟",
+      "answerEN": "Yes. Every package can be tailored to your goals, channels, and timeline.",
+      "answerAR": "نعم، يمكن تخصيص كل باقة بما يناسب أهدافك وقنواتك والجدول الزمني."
+    },
+    {
+      "id": "faq-2",
+      "questionEN": "Do you offer payment plans?",
+      "questionAR": "هل توفرون خطط دفع؟",
+      "answerEN": "Yes, for selected scopes we offer milestone-based payments.",
+      "answerAR": "نعم، لبعض النطاقات نوفر دفعات مجدولة حسب المراحل."
+    },
+    {
+      "id": "faq-3",
+      "questionEN": "How long does delivery take?",
+      "questionAR": "كم يستغرق التسليم؟",
+      "answerEN": "Delivery depends on scope, but most packages start within one week and launch within 4–8 weeks.",
+      "answerAR": "يعتمد التسليم على النطاق، لكن معظم الباقات تبدأ خلال أسبوع وتُطلق خلال 4–8 أسابيع."
+    },
+    {
+      "id": "faq-4",
+      "questionEN": "Do you work outside Egypt?",
+      "questionAR": "هل تعملون خارج مصر؟",
+      "answerEN": "Yes, Worth works with clients across the GCC, Levant, and North Africa.",
+      "answerAR": "نعم، تعمل وورث مع عملاء عبر الخليج والشام وشمال أفريقيا."
+    }
+  ],
+  "note": {
+    "textEN": "All prices are starting points and may vary depending on scope, timelines, and production complexity.",
+    "textAR": "جميع الأسعار هي نقاط بداية وقد تختلف حسب النطاق والجداول الزمنية وتعقيد التنفيذ."
+  }
+}

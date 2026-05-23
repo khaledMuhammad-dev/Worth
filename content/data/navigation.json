@@ -1,0 +1,49 @@
+{
+  "links": [
+    {
+      "id": "home",
+      "labelEN": "Home",
+      "labelAR": "الرئيسية",
+      "href": "/"
+    },
+    {
+      "id": "about",
+      "labelEN": "About",
+      "labelAR": "من نحن",
+      "href": "/about"
+    },
+    {
+      "id": "services",
+      "labelEN": "Services",
+      "labelAR": "خدماتنا",
+      "href": "/services"
+    },
+    {
+      "id": "work",
+      "labelEN": "Work",
+      "labelAR": "أعمالنا",
+      "href": "/work"
+    },
+    {
+      "id": "insights",
+      "labelEN": "Insights",
+      "labelAR": "المدونة",
+      "href": "/insights"
+    },
+    {
+      "id": "pricing",
+      "labelEN": "Pricing",
+      "labelAR": "الأسعار",
+      "href": "/pricing"
+    },
+    {
+      "id": "contact",
+      "labelEN": "Contact",
+      "labelAR": "تواصل معنا",
+      "href": "/contact"
+    }
+  ],
+  "ctaEN": "Get Started",
+  "ctaAR": "ابدأ الآن",
+  "ctaHref": "/contact"
+}

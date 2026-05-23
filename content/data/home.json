@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "headingEN": "Every brand has a story.",
+    "headingAR": "لكل علامة تجارية قصة.",
+    "accentWordEN": "story",
+    "accentWordAR": "قصة",
+    "subheadingEN": "We turn ambitious businesses into market leaders through data-driven marketing and bold creative.",
+    "subheadingAR": "نحول الشركات الطموحة إلى قادة في السوق من خلال تسويق قائم على البيانات وإبداع جريء.",
+    "primaryCtaEN": "Get Started",
+    "primaryCtaAR": "ابدأ الآن",
+    "primaryCtaHref": "/contact",
+    "secondaryCtaEN": "See Our Work",
+    "secondaryCtaAR": "استعرض أعمالنا",
+    "secondaryCtaHref": "/work",
+    "stats": [
+      {
+        "value": "200",
+        "suffix": "+",
+        "labelEN": "Projects Launched",
+        "labelAR": "مشروع منجز"
+      },
+      {
+        "value": "18",
+        "suffix": "",
+        "labelEN": "Specialists",
+        "labelAR": "متخصص"
+      },
+      {
+        "value": "MENA",
+        "suffix": "",
+        "labelEN": "Regional Expertise",
+        "labelAR": "خبرة إقليمية"
+      }
+    ]
+  },
+  "services": {
+    "headingEN": "Worth Services",
+    "headingAR": "خدمات وورث",
+    "accentWordEN": "Services",
+    "accentWordAR": "وورث",
+    "items": [
+      {
+        "id": "marketing",
+        "iconColor": "#FEF3C7",
+        "titleEN": "Marketing & Media Buying",
+        "titleAR": "التسويق وشراء الوسائط",
+        "descriptionEN": "Data-driven campaigns that reach the right audience on the right platform.",
+        "descriptionAR": "حملات مبنية على البيانات تصل إلى الجمهور المناسب عبر المنصة الصحيحة.",
+        "href": "/services/marketing-media-buying"
+      },
+      {
+        "id": "brand",
+        "iconColor": "#FCE7F3",
+        "titleEN": "Brand Identity",
+        "titleAR": "الهوية البصرية",
+        "descriptionEN": "Logos, guidelines, and visual systems that make your brand unforgettable.",
+        "descriptionAR": "شعارات وأدلة هوية وأنظمة بصرية تجعل علامتك لا تُنسى.",
+        "href": "/services/brand-identity"
+      },
+      {
+        "id": "motion",
+        "iconColor": "#EDE9FE",
+        "titleEN": "Motion Graphics",
+        "titleAR": "الموشن جرافيك",
+        "descriptionEN": "Animated content that captures attention and communicates your message.",
+        "descriptionAR": "محتوى متحرك يجذب الانتباه ويوصل رسالتك بفاعلية.",
+        "href": "/services/motion-graphics"
+      },
+      {
+        "id": "web",
+        "iconColor": "#DCFCE7",
+        "titleEN": "Web Development",
+        "titleAR": "تطوير المواقع",
+        "descriptionEN": "Fast, responsive, and conversion-optimized websites built to perform.",
+        "descriptionAR": "مواقع سريعة ومتجاوبة ومُحسَّنة للتحويل ومبنية للأداء.",
+        "href": "/services/web-development"
+      }
+    ]
+  },
+  "process": {
+    "headingEN": "How We Work",
+    "headingAR": "كيف نعمل",
+    "accentWordEN": "Work",
+    "accentWordAR": "نعمل",
+    "steps": [
+      {
+        "number": "01",
+        "titleEN": "Discovery",
+        "titleAR": "الاكتشاف",
+        "descriptionEN": "We dive deep into your business, audience, and goals to build a solid foundation.",
+        "descriptionAR": "نتعمق في فهم تجارتك وجمهورك وأهدافك لبناء أساس متين."
+      },
+      {
+        "number": "02",
+        "titleEN": "Strategy",
+        "titleAR": "الاستراتيجية",
+        "descriptionEN": "We design a tailored roadmap covering positioning, messaging, and channels.",
+        "descriptionAR": "نصمم خارطة طريق مخصصة تشمل التموضع والرسائل والقنوات."
+      },
+      {
+        "number": "03",
+        "titleEN": "Execution",
+        "titleAR": "التنفيذ",
+        "descriptionEN": "Our team executes with precision — from design to development to launch.",
+        "descriptionAR": "ينفذ فريقنا بدقة عالية من التصميم إلى التطوير حتى الإطلاق."
+      },
+      {
+        "number": "04",
+        "titleEN": "Optimisation",
+        "titleAR": "التحسين",
+        "descriptionEN": "We measure, analyse, and continuously improve for long-term growth.",
+        "descriptionAR": "نقيس ونحلل ونحسن باستمرار من أجل نمو طويل الأمد."
+      }
+    ]
+  },
+  "testimonials": {
+    "headingEN": "What Our Clients Say",
+    "headingAR": "ماذا يقول عملاؤنا",
+    "accentWordEN": "Clients",
+    "accentWordAR": "عملاؤنا",
+    "items": [
+      {
+        "id": "t1",
+        "nameEN": "Ahmed Al Rashid",
+        "nameAR": "أحمد الراشد",
+        "roleEN": "CEO, Tik Publisher",
+        "roleAR": "الرئيس التنفيذي، تيك فانشر",
+        "quoteEN": "Worth completely transformed our digital strategy. They delivered a full brand overhaul and tripled our qualified leads in 6 months.",
+        "quoteAR": "غيّرت وورث حضورنا الرقمي بالكامل. حققوا تحولاً شاملاً في علامتنا وضاعفوا عملاءنا ثلاث مرات خلال 6 أشهر.",
+        "stars": 5,
+        "avatarUrl": ""
+      },
+      {
+        "id": "t2",
+        "nameEN": "Sara Ibrahim",
+        "nameAR": "سارة إبراهيم",
+        "roleEN": "Marketing Director, Blow Retail",
+        "roleAR": "مديرة التسويق، بلو ريتيل",
+        "quoteEN": "Worth found the words. They reframed our brand so clearly that our audience finally got it — and conversion followed immediately.",
+        "quoteAR": "وجد فريق وورث الكلمة المناسبة. أعادوا تأطير علامتنا بوضوح تام فأدركه جمهورنا فوراً وتبعه التحويل مباشرةً.",
+        "stars": 5,
+        "avatarUrl": ""
+      },
+      {
+        "id": "t3",
+        "nameEN": "Khaled Mohamed",
+        "nameAR": "خالد محمد",
+        "roleEN": "Founder, Tawafuq",
+        "roleAR": "المؤسس، توافيق",
+        "quoteEN": "From brand identity to website development, Worth managed everything perfectly. They are not just an agency — they are a growth partner.",
+        "quoteAR": "من الهوية البصرية إلى تطوير الموقع، أدارت وورث كل شيء ببراعة. إنهم ليسوا مجرد وكالة — بل شريك نمو حقيقي.",
+        "stars": 5,
+        "avatarUrl": ""
+      }
+    ]
+  },
+  "cta": {
+    "headingEN": "Ready to build something worth sharing?",
+    "headingAR": "هل أنت مستعد لبناء شيء يستحق أن يُروى؟",
+    "buttonEN": "Contact Us",
+    "buttonAR": "تواصل معنا",
+    "buttonHref": "/contact"
+  }
+}

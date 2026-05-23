@@ -1,0 +1,96 @@
+{
+  "hero": {
+    "headingEN": "Who We Are",
+    "headingAR": "من نحن",
+    "accentWordEN": "We",
+    "accentWordAR": "نحن",
+    "subheadingEN": "A full-service digital agency built for the MENA region.",
+    "subheadingAR": "وكالة رقمية متكاملة مبنية لمنطقة الشرق الأوسط وشمال أفريقيا."
+  },
+  "story": {
+    "headingEN": "Our Story",
+    "headingAR": "قصتنا",
+    "bodyEN": "Worth was founded on a simple belief: every business deserves a brand that truly reflects its value. We combine strategic thinking, bold creative, and precise execution to help brands grow.",
+    "bodyAR": "تأسست وورث على قناعة بسيطة: كل شركة تستحق علامة تجارية تعكس قيمتها الحقيقية. نجمع التفكير الاستراتيجي والإبداع الجريء والتنفيذ الدقيق لمساعدة العلامات على النمو."
+  },
+  "values": [
+    {
+      "id": "v1",
+      "icon": "target",
+      "titleEN": "Impact First",
+      "titleAR": "الأثر أولاً",
+      "descriptionEN": "Every decision is measured by the value it creates for your business.",
+      "descriptionAR": "كل قرار يُقاس بالقيمة التي يخلقها لأعمالك."
+    },
+    {
+      "id": "v2",
+      "icon": "lightbulb",
+      "titleEN": "Bold Thinking",
+      "titleAR": "التفكير الجريء",
+      "descriptionEN": "We challenge conventions to find ideas that truly stand out.",
+      "descriptionAR": "نتحدى المألوف للوصول إلى أفكار تبرز حقاً."
+    },
+    {
+      "id": "v3",
+      "icon": "shield",
+      "titleEN": "Uncompromising Quality",
+      "titleAR": "جودة بلا تنازل",
+      "descriptionEN": "From the first pixel to the final line of code, we set the bar high.",
+      "descriptionAR": "من أول بكسل حتى آخر سطر كود، نضع المعيار عالياً."
+    },
+    {
+      "id": "v4",
+      "icon": "handshake",
+      "titleEN": "Partnership Mentality",
+      "titleAR": "عقلية الشراكة",
+      "descriptionEN": "We treat your business as our own and your goals as our goals.",
+      "descriptionAR": "نتعامل مع أعمالك كأنها أعمالنا وأهدافك كأنها أهدافنا."
+    }
+  ],
+  "team": [
+    {
+      "id": "tm1",
+      "name": "Worth Team Member",
+      "roleEN": "Founder & Creative Director",
+      "roleAR": "المؤسس والمدير الإبداعي",
+      "photoUrl": "",
+      "bioEN": "Leads the agency's creative vision and client strategy.",
+      "bioAR": "يقود الرؤية الإبداعية للوكالة واستراتيجية العملاء."
+    }
+  ],
+  "milestones": [
+    {
+      "year": "2020",
+      "titleEN": "Founded",
+      "titleAR": "التأسيس",
+      "descriptionEN": "Worth was established with a vision to redefine digital marketing in MENA.",
+      "descriptionAR": "تأسست وورث برؤية لإعادة تعريف التسويق الرقمي في منطقة MENA."
+    },
+    {
+      "year": "2022",
+      "titleEN": "100 Projects",
+      "titleAR": "100 مشروع",
+      "descriptionEN": "Crossed the milestone of 100 successfully delivered projects.",
+      "descriptionAR": "تجاوزنا حاجز 100 مشروع منجز بنجاح."
+    },
+    {
+      "year": "2024",
+      "titleEN": "MENA Expansion",
+      "titleAR": "التوسع في MENA",
+      "descriptionEN": "Expanded operations across the Gulf, Levant, and North Africa.",
+      "descriptionAR": "وسّعنا عملياتنا عبر الخليج والشام وشمال أفريقيا."
+    }
+  ],
+  "clients": [
+    {
+      "id": "c1",
+      "name": "Client One",
+      "logoUrl": ""
+    },
+    {
+      "id": "c2",
+      "name": "Client Two",
+      "logoUrl": ""
+    }
+  ]
+}

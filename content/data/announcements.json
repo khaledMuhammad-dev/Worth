@@ -1,0 +1,18 @@
+[
+  {
+    "id": "eid-2025",
+    "active": true,
+    "priority": 1,
+    "messageEN": "Special Eid offer — 20% off all packages this week!",
+    "messageAR": "عرض خاص بمناسبة العيد — خصم 20% على جميع الباقات هذا الأسبوع!",
+    "ctaLabelEN": "Claim Offer",
+    "ctaLabelAR": "احصل على العرض",
+    "ctaHref": "/pricing",
+    "bgColor": "#F97316",
+    "textColor": "#ffffff",
+    "emoji": "🎉",
+    "startDate": "2025-03-28",
+    "expiryDate": "2025-04-05",
+    "dismissible": true
+  }
+]

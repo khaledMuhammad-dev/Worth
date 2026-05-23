@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "headingEN": "Let’s Build Something Valuable",
+    "headingAR": "لنبنِ شيئاً قيّماً",
+    "subheadingEN": "Tell us where you are now, where you want to go, and we’ll map the next step.",
+    "subheadingAR": "أخبرنا أين تقف الآن وإلى أين تريد الوصول وسنرسم الخطوة التالية."
+  },
+  "info": {
+    "email": "hello@worth.agency",
+    "phone": "+20 100 000 0000",
+    "addressEN": "Cairo, Egypt — serving clients across MENA",
+    "addressAR": "القاهرة، مصر — نخدم عملاءنا عبر منطقة MENA",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.875",
+    "bookingUrl": "mailto:hello@worth.agency"
+  },
+  "socials": [
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/worthagency"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com/company/worthagency"
+    },
+    {
+      "platform": "twitter",
+      "url": "https://x.com/worthagency"
+    },
+    {
+      "platform": "behance",
+      "url": "https://behance.net/worthagency"
+    }
+  ],
+  "formFields": [
+    {
+      "id": "name",
+      "labelEN": "Name",
+      "labelAR": "الاسم",
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "email",
+      "labelEN": "Email",
+      "labelAR": "البريد الإلكتروني",
+      "type": "email",
+      "required": true
+    },
+    {
+      "id": "service",
+      "labelEN": "Service Needed",
+      "labelAR": "الخدمة المطلوبة",
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "message",
+      "labelEN": "Project Details",
+      "labelAR": "تفاصيل المشروع",
+      "type": "textarea",
+      "required": true
+    }
+  ]
+}

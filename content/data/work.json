@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "id": "proj-1",
+      "slug": "nova-build-rebrand",
+      "titleEN": "NovaBuild Rebrand & Demand Generation",
+      "titleAR": "إعادة بناء هوية نوفابيلد وتوليد الطلب",
+      "coverUrl": "https://res.cloudinary.com/worth/image/upload/nova-build-cover.jpg",
+      "tags": [
+        "Brand Identity",
+        "Paid Media",
+        "Website"
+      ],
+      "industryEN": "Construction Technology",
+      "industryAR": "تقنيات البناء",
+      "year": "2024",
+      "featured": true,
+      "summaryEN": "Repositioning a fast-growing construction technology brand for regional expansion.",
+      "summaryAR": "إعادة تموضع علامة تقنية بناء سريعة النمو استعداداً للتوسع الإقليمي.",
+      "challengeEN": "NovaBuild had a strong product but an unclear brand story and fragmented demand generation channels.",
+      "challengeAR": "كان لدى نوفابيلد منتج قوي لكن قصتها غير واضحة وقنوات توليد الطلب متفرقة.",
+      "solutionEN": "Worth rebuilt the brand identity, launched a new website, and deployed a full-funnel paid media strategy.",
+      "solutionAR": "أعادت وورث بناء الهوية البصرية وأطلقت موقعاً جديداً ونفذت استراتيجية وسائط مدفوعة عبر كامل القمع.",
+      "resultsEN": [
+        "3.4x increase in qualified leads in 5 months",
+        "41% lower cost per lead after launch",
+        "New brand system rolled out across 3 regional markets"
+      ],
+      "resultsAR": [
+        "زيادة 3.4 مرات في العملاء المحتملين المؤهلين خلال 5 أشهر",
+        "انخفاض تكلفة العميل المحتمل 41% بعد الإطلاق",
+        "تطبيق نظام العلامة الجديد عبر 3 أسواق إقليمية"
+      ],
+      "galleryUrls": [
+        "https://res.cloudinary.com/worth/image/upload/nova-build-1.jpg",
+        "https://res.cloudinary.com/worth/image/upload/nova-build-2.jpg"
+      ]
+    }
+  ]
+}
