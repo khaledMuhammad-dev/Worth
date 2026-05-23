@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 interface BlogMeta {
   slug: string
@@ -27,6 +28,8 @@ export async function DELETE(request: NextRequest) {
   const existing: BlogMeta[] = JSON.parse(fs.readFileSync(metaPath, 'utf8'))
   const updated = existing.filter((entry) => entry.slug !== slug)
   fs.writeFileSync(metaPath, JSON.stringify(updated, null, 2), 'utf8')
+  revalidatePath('/insights')
+  revalidatePath(`/insights/${slug}`)
 
   return NextResponse.json({ success: true })
 }

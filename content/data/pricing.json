@@ -9,7 +9,7 @@
       "badgeEN": "Best for Starters",
       "badgeAR": "مناسبة للبداية",
       "priceEGP": "18000",
-      "priceUSD": "380",
+      "priceUSD": "10",
       "priceSAR": "1425",
       "periodEN": "one-time",
       "periodAR": "مرة واحدة",
@@ -175,5 +175,13 @@
   "note": {
     "textEN": "All prices are starting points and may vary depending on scope, timelines, and production complexity.",
     "textAR": "جميع الأسعار هي نقاط بداية وقد تختلف حسب النطاق والجداول الزمنية وتعقيد التنفيذ."
+  },
+  "hero": {
+    "headingEN": "Pricing Built for Growth",
+    "headingAR": "أسعار مصممة للنمو",
+    "accentWordEN": "Growth",
+    "accentWordAR": "النمو",
+    "subheadingEN": "Transparent packages for brands launching, scaling, and retaining momentum.",
+    "subheadingAR": "باقات واضحة للعلامات التي تستعد للإطلاق أو التوسع أو الحفاظ على الزخم."
   }
 }

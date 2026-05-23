@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { BarChart3, Brush, Clapperboard, Globe, ArrowRight, TrendingUp, Users, MapPin } from 'lucide-react';
@@ -14,9 +14,33 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ServiceCard } from '@/components/shared/ServiceCard';
 import { TestimonialCard } from '@/components/shared/TestimonialCard';
 import { CTABanner } from '@/components/shared/CTABanner';
+import type { HomeData } from '@/lib/types/content';
 
-export default function HomePageClient() {
-  const { t } = useTranslation();
+interface Props {
+  homeData: HomeData;
+}
+
+const serviceConfigs = {
+  marketing: { Icon: BarChart3, iconBg: 'bg-[#FEF3C7]', iconClass: 'text-[#A16207]' },
+  brand: { Icon: Brush, iconBg: 'bg-[#F3E8FF]', iconClass: 'text-[#7E22CE]' },
+  motion: { Icon: Clapperboard, iconBg: 'bg-[#DCFCE7]', iconClass: 'text-[#15803D]' },
+  web: { Icon: Globe, iconBg: 'bg-[#DBEAFE]', iconClass: 'text-[#1D4ED8]' },
+} as const;
+
+function splitHeading(heading: string, accent: string) {
+  if (!accent || !heading.includes(accent)) {
+    return { base: heading, accent };
+  }
+
+  return {
+    base: heading.split(accent)[0].trim(),
+    accent,
+  };
+}
+
+export default function HomePageClient({ homeData }: Props) {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -283,61 +307,62 @@ export default function HomePageClient() {
     };
   }, [prefersReduced]);
 
-  const services = [
-    {
-      icon: <BarChart3 className="h-6 w-6 text-[#A16207]" />,
-      iconBg: 'bg-[#FEF3C7]',
-      title: t('services.marketing.title'),
-      description: t('services.marketing.description'),
-      href: '/services/marketing-media-buying',
-    },
-    {
-      icon: <Brush className="h-6 w-6 text-[#7E22CE]" />,
-      iconBg: 'bg-[#F3E8FF]',
-      title: t('services.brand.title'),
-      description: t('services.brand.description'),
-      href: '/services/brand-identity',
-    },
-    {
-      icon: <Clapperboard className="h-6 w-6 text-[#15803D]" />,
-      iconBg: 'bg-[#DCFCE7]',
-      title: t('services.motion.title'),
-      description: t('services.motion.description'),
-      href: '/services/motion-graphics',
-    },
-    {
-      icon: <Globe className="h-6 w-6 text-[#1D4ED8]" />,
-      iconBg: 'bg-[#DBEAFE]',
-      title: t('services.web.title'),
-      description: t('services.web.description'),
-      href: '/services/web-development',
-    },
-  ];
+  const services = useMemo(
+    () =>
+      homeData.services.items.map((service) => {
+        const config = serviceConfigs[service.id as keyof typeof serviceConfigs] ?? serviceConfigs.web;
+        return {
+          icon: <config.Icon className={`h-6 w-6 ${config.iconClass}`} />,
+          iconBg: config.iconBg,
+          title: isArabic ? service.titleAR : service.titleEN,
+          description: isArabic ? service.descriptionAR : service.descriptionEN,
+          href: service.href,
+        };
+      }),
+    [homeData.services.items, isArabic]
+  );
 
-  const steps = [
-    { number: '01', title: t('process.step1.title'), description: t('process.step1.description') },
-    { number: '02', title: t('process.step2.title'), description: t('process.step2.description') },
-    { number: '03', title: t('process.step3.title'), description: t('process.step3.description') },
-    { number: '04', title: t('process.step4.title'), description: t('process.step4.description') },
-  ];
+  const steps = useMemo(
+    () =>
+      homeData.process.steps.map((step) => ({
+        number: step.number,
+        title: isArabic ? step.titleAR : step.titleEN,
+        description: isArabic ? step.descriptionAR : step.descriptionEN,
+      })),
+    [homeData.process.steps, isArabic]
+  );
 
-  const stats = [
-    { value: '200', suffix: '+', label: 'Projects', Icon: TrendingUp },
-    { value: '18', suffix: '', label: 'Specialists', Icon: Users },
-    { value: 'MENA', suffix: '', label: 'Region', Icon: MapPin },
-  ];
+  const stats = useMemo(() => {
+    const icons = [TrendingUp, Users, MapPin] as const;
+    return homeData.hero.stats.map((stat, index) => ({
+      value: stat.value,
+      suffix: stat.suffix,
+      label: isArabic ? stat.labelAR : stat.labelEN,
+      Icon: icons[index] ?? TrendingUp,
+    }));
+  }, [homeData.hero.stats, isArabic]);
 
-  const testimonials = ['t1', 't2', 't3'] as const;
+  const testimonials = useMemo(
+    () =>
+      homeData.testimonials.items.map((item) => ({
+        id: item.id,
+        name: isArabic ? item.nameAR : item.nameEN,
+        role: isArabic ? item.roleAR : item.roleEN,
+        quote: isArabic ? item.quoteAR : item.quoteEN,
+        avatar: item.avatarUrl,
+      })),
+    [homeData.testimonials.items, isArabic]
+  );
 
-  const testimonialVariants = {
-    hidden: (index: number) => ({ opacity: 0, y: 50, rotate: index % 2 === 0 ? -3 : 3 }),
-    visible: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      rotate: 0,
-      transition: { delay: index * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-    }),
-  };
+  const heroHeading = splitHeading(
+    isArabic ? homeData.hero.headingAR : homeData.hero.headingEN,
+    isArabic ? homeData.hero.accentWordAR : homeData.hero.accentWordEN
+  );
+
+  const servicesHeading = splitHeading(
+    isArabic ? homeData.services.headingAR : homeData.services.headingEN,
+    isArabic ? homeData.services.accentWordAR : homeData.services.accentWordEN
+  );
 
   return (
     <div ref={heroRef}>
@@ -366,29 +391,31 @@ export default function HomePageClient() {
                 className="hero-heading heading-xl font-bold text-[#1A1A2E]"
                 style={{ fontFamily: 'var(--font-heading)', perspective: '600px' }}
               >
-                {t('hero.tagline')}{' '}
-                <span className="accent-word text-[#F97316]">{t('hero.taglineAccent')}</span>
+                {heroHeading.base}{' '}
+                {heroHeading.accent ? <span className="accent-word text-[#F97316]">{heroHeading.accent}</span> : null}
               </h1>
 
-              <p className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280]">{t('hero.subtitle')}</p>
+              <p className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280]">
+                {isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
+              </p>
 
               <div className="hero-ctas mt-8 flex flex-col gap-3 sm:flex-row">
                 <motion.div whileHover={prefersReduced ? undefined : { scale: 1.04 }} whileTap={prefersReduced ? undefined : { scale: 0.97 }}>
                   <Link
-                    href="/contact"
+                    href={homeData.hero.primaryCtaHref}
                     className="inline-flex items-center justify-center rounded-lg bg-[#F97316] px-7 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#EA6C00]"
                     data-cursor="hover"
                   >
-                    {t('hero.cta1')}
+                    {isArabic ? homeData.hero.primaryCtaAR : homeData.hero.primaryCtaEN}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={prefersReduced ? undefined : { scale: 1.04 }} whileTap={prefersReduced ? undefined : { scale: 0.97 }}>
                   <Link
-                    href="/work"
+                    href={homeData.hero.secondaryCtaHref}
                     className="inline-flex items-center justify-center rounded-lg border border-[#F97316] px-7 py-3.5 text-base font-semibold text-[#F97316] transition-colors duration-200 hover:bg-[#FFF4EE]"
                     data-cursor="hover"
                   >
-                    {t('hero.cta2')}
+                    {isArabic ? homeData.hero.secondaryCtaAR : homeData.hero.secondaryCtaEN}
                   </Link>
                 </motion.div>
               </div>
@@ -465,9 +492,11 @@ export default function HomePageClient() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="services-heading heading-l font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>
-                {t('services.title')} <span className="text-[#F97316]">{t('services.titleAccent')}</span>
+                {servicesHeading.base} <span className="text-[#F97316]">{servicesHeading.accent}</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[#6B7280]">{t('services.subtitle')}</p>
+              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[#6B7280]">
+                {isArabic ? homeData.services.headingAR : homeData.services.headingEN}
+              </p>
             </div>
             <div className="services-grid grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service) => (
@@ -481,7 +510,11 @@ export default function HomePageClient() {
 
         <section ref={sectionRef} className="process-section bg-white py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={t('process.title')} accent={t('process.titleAccent')} subtitle={t('process.subtitle')} />
+            <SectionHeading
+              title={isArabic ? homeData.process.headingAR : homeData.process.headingEN}
+              accent={isArabic ? homeData.process.accentWordAR : homeData.process.accentWordEN}
+              subtitle={isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
+            />
 
             <div className="relative mb-[-20px] hidden lg:block" aria-hidden>
               <svg
@@ -602,11 +635,15 @@ export default function HomePageClient() {
 
         <section className="testimonials-section bg-[#F9FAFB] py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={t('testimonials.title')} accent={t('testimonials.titleAccent')} subtitle={t('testimonials.subtitle')} />
+            <SectionHeading
+              title={isArabic ? homeData.testimonials.headingAR : homeData.testimonials.headingEN}
+              accent={isArabic ? homeData.testimonials.accentWordAR : homeData.testimonials.accentWordEN}
+              subtitle={isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
+            />
             <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
-              {testimonials.map((key, index) => (
+              {testimonials.map((item, index) => (
                 <motion.div
-                  key={key}
+                  key={item.id}
                   custom={index}
                   initial={prefersReduced ? false : 'hidden'}
                   whileInView={prefersReduced ? undefined : 'visible'}
@@ -616,9 +653,10 @@ export default function HomePageClient() {
                   style={{ willChange: 'transform' }}
                 >
                   <TestimonialCard
-                    name={t(`testimonials.${key}.name`)}
-                    role={t(`testimonials.${key}.role`)}
-                    quote={t(`testimonials.${key}.quote`)}
+                    name={item.name}
+                    role={item.role}
+                    quote={item.quote}
+                    avatar={item.avatar}
                   />
                 </motion.div>
               ))}
@@ -626,9 +664,24 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner
+          title={isArabic ? homeData.cta.headingAR : homeData.cta.headingEN}
+          accent=""
+          buttonLabel={isArabic ? homeData.cta.buttonAR : homeData.cta.buttonEN}
+          buttonHref={homeData.cta.buttonHref}
+        />
       </main>
       <Footer />
     </div>
   );
 }
+
+const testimonialVariants = {
+  hidden: (index: number) => ({ opacity: 0, y: 50, rotate: index % 2 === 0 ? -3 : 3 }),
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: { delay: index * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  }),
+};

@@ -95,6 +95,28 @@
         "تطوير باستخدام Next.js",
         "بناء جاهز لإدارة المحتوى ومحسن لمحركات البحث"
       ]
+    },
+    {
+      "id": "creative",
+      "slug": "creative-production",
+      "iconColor": "#DBEAFE",
+      "titleEN": "Creative Production",
+      "titleAR": "الإنتاج الإبداعي",
+      "descriptionEN": "Campaign concepts, ad systems, and creative toolkits that help brands move faster with consistency.",
+      "descriptionAR": "مفاهيم حملات وأنظمة إعلانات وأدوات إبداعية تساعد العلامات على التحرك بسرعة واتساق.",
+      "href": "/services/creative-production",
+      "featuresEN": [
+        "Campaign concepting and key visuals",
+        "Social content systems and templates",
+        "Ad creative batches and iteration cycles",
+        "Launch decks and internal asset guides"
+      ],
+      "featuresAR": [
+        "تصور الحملات والمشاهد الرئيسية",
+        "أنظمة قوالب ومحتوى اجتماعي",
+        "دفعات تصميمات إعلانية ودورات تطوير",
+        "عروض إطلاق وأدلة أصول داخلية"
+      ]
     }
   ]
 }

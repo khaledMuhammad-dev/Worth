@@ -1,50 +1,76 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { PageHero } from '@/components/shared/PageHero';
-import type { ArticleDetail } from '@/lib/site-data';
+import MDXRenderer from '@/components/blog/MDXRenderer';
+import type { BlogMeta } from '@/lib/content';
 
-export default function ArticlePageClient({ article }: { article: ArticleDetail }) {
+interface Props {
+  meta: BlogMeta;
+  mdxSource: MDXRemoteSerializeResult;
+  related: BlogMeta[];
+}
+
+export default function ArticlePageClient({ meta, mdxSource, related }: Props) {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+  const title = isArabic ? meta.titleAR : meta.titleEN;
+  const excerpt = isArabic ? meta.excerptAR : meta.excerptEN;
+
   return (
     <>
       <Navbar />
       <main>
         <PageHero
-          title={article.title}
-          subtitle={article.excerpt}
+          title={title}
+          subtitle={excerpt}
           breadcrumb={[
             { label: 'Home', href: '/' },
             { label: 'Insights', href: '/insights' },
-            { label: article.title },
+            { label: title },
           ]}
         />
 
         <article className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 rounded-[2rem] bg-gradient-to-br from-[#1A1A2E] to-[#F97316] min-h-[320px]" />
+            <div
+              className="mb-10 rounded-[2rem] bg-gradient-to-br from-[#1A1A2E] to-[#F97316] min-h-[320px]"
+              style={{ backgroundImage: meta.coverUrl ? `url(${meta.coverUrl})` : undefined, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            />
             <div className="flex flex-wrap items-center gap-3 text-sm text-[#6B7280] mb-10">
-              <span className="rounded-full bg-[#FFF4EE] px-3 py-1 font-semibold text-[#F97316]">{article.category}</span>
-              <span>{article.date}</span>
+              {(meta.tags.length ? meta.tags : ['Insights']).map((tag) => (
+                <span key={tag} className="rounded-full bg-[#FFF4EE] px-3 py-1 font-semibold text-[#F97316]">{tag}</span>
+              ))}
+              <span>{meta.publishedAt}</span>
               <span>•</span>
-              <span>{article.readTime}</span>
-              <span>•</span>
-              <span>{article.author} — {article.role}</span>
+              <span>{meta.author}</span>
             </div>
             <div className="space-y-12">
-              {article.sections.map((section) => (
-                <section key={section.heading}>
-                  <h2 className="text-3xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{section.heading}</h2>
-                  <div className="mt-5 space-y-5 text-lg leading-8 text-[#6B7280]">
-                    {section.body.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
-                </section>
-              ))}
+              <MDXRenderer source={mdxSource} />
             </div>
           </div>
         </article>
+
+        {related.length > 0 ? (
+          <section className="py-20 bg-[#F9FAFB]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>Related Articles</h2>
+              <div className="mt-8 grid md:grid-cols-3 gap-6">
+                {related.map((item) => (
+                  <Link key={item.slug} href={`/insights/${item.slug}`} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-sm font-semibold text-[#F97316]">{item.tags[0] ?? 'Insights'}</div>
+                    <h3 className="mt-3 text-xl font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>{isArabic ? item.titleAR : item.titleEN}</h3>
+                    <p className="mt-3 text-[#6B7280] leading-7">{isArabic ? item.excerptAR : item.excerptEN}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
       </main>
       <Footer />
     </>

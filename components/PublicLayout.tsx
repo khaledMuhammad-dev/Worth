@@ -2,8 +2,14 @@
 
 import { usePathname } from 'next/navigation'
 import AnnouncementBar from './AnnouncementBar'
+import type { Announcement } from '@/lib/types/content'
 
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode
+  announcements: Announcement[]
+}
+
+export default function PublicLayout({ children, announcements }: Props) {
   const pathname = usePathname()
 
   if (pathname?.startsWith('/admin')) {
@@ -12,7 +18,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
-      <AnnouncementBar />
+      <AnnouncementBar announcements={announcements} />
       {children}
     </>
   )

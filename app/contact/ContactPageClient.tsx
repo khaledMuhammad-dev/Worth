@@ -7,9 +7,15 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { PageHero } from '@/components/shared/PageHero';
 import { Button } from '@/components/ui/button';
+import type { ContactData } from '@/lib/types/content';
 
-export default function ContactPageClient() {
-  const { t } = useTranslation();
+interface Props {
+  contactData: ContactData;
+}
+
+export default function ContactPageClient({ contactData }: Props) {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const [form, setForm] = useState({ name: '', email: '', service: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -18,8 +24,8 @@ export default function ContactPageClient() {
       <Navbar />
       <main>
         <PageHero
-          title={t('pageHero.contact')}
-          subtitle={t('contact.subtitle')}
+          title={isArabic ? contactData.hero.headingAR : contactData.hero.headingEN}
+          subtitle={isArabic ? contactData.hero.subheadingAR : contactData.hero.subheadingEN}
           breadcrumb={[{ label: t('pageHero.home'), href: '/' }, { label: t('pageHero.contact') }]}
         />
 
@@ -27,7 +33,7 @@ export default function ContactPageClient() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
             <div className="rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-8 md:p-10 shadow-sm">
               <h2 className="text-3xl font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>{t('contact.title')} <span className="text-[#F97316]">{t('contact.titleAccent')}</span></h2>
-              <p className="mt-4 text-[#6B7280] leading-8">Tell us what you are building, where you are feeling stuck, and what success looks like for your brand.</p>
+              <p className="mt-4 text-[#6B7280] leading-8">{isArabic ? contactData.hero.subheadingAR : contactData.hero.subheadingEN}</p>
               <form
                 className="mt-8 space-y-5"
                 onSubmit={(event) => {
@@ -41,7 +47,7 @@ export default function ContactPageClient() {
                     required
                     value={form.name}
                     onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-                    placeholder={t('contact.form.name')}
+                    placeholder={isArabic ? contactData.formFields.nameAR : contactData.formFields.nameEN}
                     className="h-14 rounded-xl border border-[#F0F0F0] bg-white px-4 text-[#1A1A2E] focus:border-[#F97316] focus:outline-none"
                   />
                   <input
@@ -49,7 +55,7 @@ export default function ContactPageClient() {
                     type="email"
                     value={form.email}
                     onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-                    placeholder={t('contact.form.email')}
+                    placeholder={isArabic ? contactData.formFields.emailAR : contactData.formFields.emailEN}
                     className="h-14 rounded-xl border border-[#F0F0F0] bg-white px-4 text-[#1A1A2E] focus:border-[#F97316] focus:outline-none"
                   />
                 </div>
@@ -57,30 +63,30 @@ export default function ContactPageClient() {
                   required
                   value={form.service}
                   onChange={(event) => setForm((current) => ({ ...current, service: event.target.value }))}
-                  placeholder={t('contact.form.service')}
+                  placeholder={isArabic ? contactData.formFields.serviceAR : contactData.formFields.serviceEN}
                   className="h-14 w-full rounded-xl border border-[#F0F0F0] bg-white px-4 text-[#1A1A2E] focus:border-[#F97316] focus:outline-none"
                 />
                 <textarea
                   required
                   value={form.message}
                   onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-                  placeholder={t('contact.form.message')}
+                  placeholder={isArabic ? contactData.formFields.messageAR : contactData.formFields.messageEN}
                   rows={6}
                   className="w-full rounded-2xl border border-[#F0F0F0] bg-white px-4 py-4 text-[#1A1A2E] focus:border-[#F97316] focus:outline-none"
                 />
-                <Button type="submit" size="lg">{t('contact.form.submit')}</Button>
+                <Button type="submit" size="lg">{isArabic ? contactData.formFields.submitAR : contactData.formFields.submitEN}</Button>
                 {submitted && <p className="text-sm font-medium text-[#F97316]">{t('contact.form.success')}</p>}
               </form>
             </div>
 
             <div className="rounded-[2rem] bg-[#1A1A2E] p-8 md:p-10 text-white">
               <h3 className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{t('contact.info.title')}</h3>
-              <p className="mt-4 text-white/70 leading-8">We usually reply within one business day with next steps, timing, and a recommended scope.</p>
+              <p className="mt-4 text-white/70 leading-8">{isArabic ? contactData.info.addressAR : contactData.info.addressEN}</p>
               <div className="mt-8 space-y-5">
                 {[
-                  { icon: Mail, label: t('contact.info.email') },
-                  { icon: Phone, label: t('contact.info.phone') },
-                  { icon: MapPin, label: t('contact.info.address') },
+                  { icon: Mail, label: isArabic ? contactData.info.emailAR : contactData.info.emailEN },
+                  { icon: Phone, label: contactData.info.phone },
+                  { icon: MapPin, label: isArabic ? contactData.info.addressAR : contactData.info.addressEN },
                 ].map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
                     <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F97316]/20">
@@ -91,7 +97,7 @@ export default function ContactPageClient() {
                 ))}
               </div>
               <Button asChild size="lg" className="mt-8 w-full sm:w-auto">
-                <a href="mailto:hello@worth.agency">
+                <a href={contactData.info.bookingUrl}>
                   <CalendarDays className="mr-2 h-4 w-4" />
                   {t('contact.bookCall')}
                 </a>

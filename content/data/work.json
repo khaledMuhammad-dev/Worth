@@ -1,7 +1,6 @@
 {
   "projects": [
     {
-      "id": "proj-1",
       "slug": "nova-build-rebrand",
       "titleEN": "NovaBuild Rebrand & Demand Generation",
       "titleAR": "إعادة بناء هوية نوفابيلد وتوليد الطلب",
@@ -34,7 +33,181 @@
       "galleryUrls": [
         "https://res.cloudinary.com/worth/image/upload/nova-build-1.jpg",
         "https://res.cloudinary.com/worth/image/upload/nova-build-2.jpg"
-      ]
+      ],
+      "id": "proj-1"
+    },
+    {
+      "slug": "bloom-retail-growth",
+      "titleEN": "Bloom Retail Performance Launch",
+      "titleAR": "إطلاق أداء بلوم ريتيل",
+      "coverUrl": "",
+      "tags": [
+        "Media Buying",
+        "Creative",
+        "Analytics"
+      ],
+      "industryEN": "Retail",
+      "industryAR": "التجزئة",
+      "year": "2024",
+      "featured": true,
+      "summaryEN": "Scaling a lifestyle retail brand with a stronger paid social engine and sharper creative.",
+      "summaryAR": "توسيع علامة تجزئة بأسلوب حياة عبر محرك اجتماعي مدفوع أقوى وإبداع أكثر حدة.",
+      "challengeEN": "Bloom had strong product-market fit but inconsistent paid performance.",
+      "challengeAR": "امتلكت بلوم ملاءمة قوية مع السوق لكن الأداء المدفوع كان غير متسق.",
+      "solutionEN": "We rebuilt the account structure and introduced a disciplined creative testing system.",
+      "solutionAR": "أعدنا بناء هيكل الحساب وقدمنا نظاماً منضبطاً لاختبار الإبداع.",
+      "resultsEN": [
+        "218% increase in revenue from paid social",
+        "26% improvement in returning customer rate",
+        "7-day creative testing cycle implemented"
+      ],
+      "resultsAR": [
+        "زيادة 218% في الإيرادات من السوشيال المدفوع",
+        "تحسن 26% في معدل عودة العملاء",
+        "تطبيق دورة اختبار إبداعي كل 7 أيام"
+      ],
+      "galleryUrls": [],
+      "id": "proj-2"
+    },
+    {
+      "slug": "aurora-finance-platform",
+      "titleEN": "Aurora Finance Product Experience",
+      "titleAR": "تجربة منصة أورورا فايننس",
+      "coverUrl": "",
+      "tags": [
+        "Web Development",
+        "UX",
+        "SEO"
+      ],
+      "industryEN": "Fintech",
+      "industryAR": "التقنية المالية",
+      "year": "2024",
+      "featured": false,
+      "summaryEN": "A premium web platform for a fintech brand ready to look as sophisticated as its service.",
+      "summaryAR": "منصة ويب راقية لعلامة تقنية مالية جاهزة لتبدو بمستوى خدماتها.",
+      "challengeEN": "Aurora’s previous website failed to reflect the sophistication of its advisory offering.",
+      "challengeAR": "فشل موقع أورورا السابق في عكس رقي خدماتها الاستشارية.",
+      "solutionEN": "We redesigned the experience around decision-stage journeys and a premium interface.",
+      "solutionAR": "أعدنا تصميم التجربة حول رحلات اتخاذ القرار وواجهة راقية.",
+      "resultsEN": [
+        "52% increase in demo requests",
+        "Page speed score improved to 95",
+        "Bounce rate reduced by 31%"
+      ],
+      "resultsAR": [
+        "زيادة 52% في طلبات العروض",
+        "تحسن سرعة الصفحة إلى 95",
+        "انخفاض معدل الارتداد 31%"
+      ],
+      "galleryUrls": [],
+      "id": "proj-3"
+    },
+    {
+      "slug": "pulse-health-campaign",
+      "titleEN": "Pulse Health Motion Campaign",
+      "titleAR": "حملة الموشن لبالس هيلث",
+      "coverUrl": "",
+      "tags": [
+        "Motion Graphics",
+        "Campaign Creative",
+        "Social"
+      ],
+      "industryEN": "Healthcare",
+      "industryAR": "الرعاية الصحية",
+      "year": "2024",
+      "featured": false,
+      "summaryEN": "Explainer-led motion content that made a complex health offering easier to understand and trust.",
+      "summaryAR": "محتوى موشن تفسيري جعل عرضاً صحياً معقداً أسهل في الفهم وأكثر موثوقية.",
+      "challengeEN": "Pulse Health needed to explain a multi-layered subscription model to a broad audience.",
+      "challengeAR": "احتاجت بالس هيلث إلى شرح نموذج اشتراك متعدد الطبقات لجمهور واسع.",
+      "solutionEN": "We developed a motion-led campaign system with educational explainers and short ads.",
+      "solutionAR": "طورنا نظام حملة يقوده الموشن مع شروحات تعليمية وإعلانات قصيرة.",
+      "resultsEN": [
+        "63% lift in video completion rate",
+        "29% higher landing page conversion from video traffic",
+        "12 reusable motion assets for future campaigns"
+      ],
+      "resultsAR": [
+        "زيادة 63% في معدل إكمال الفيديو",
+        "تحسن 29% في تحويل صفحة الهبوط من زيارات الفيديو",
+        "12 أصل موشن قابل لإعادة الاستخدام"
+      ],
+      "galleryUrls": [],
+      "id": "proj-4"
+    },
+    {
+      "slug": "citadel-properties-launch",
+      "titleEN": "Citadel Properties Launch System",
+      "titleAR": "نظام إطلاق سيتادل العقارية",
+      "coverUrl": "",
+      "tags": [
+        "Launch Campaign",
+        "Brand Identity",
+        "Web"
+      ],
+      "industryEN": "Real Estate",
+      "industryAR": "العقارات",
+      "year": "2024",
+      "featured": false,
+      "summaryEN": "A real-estate launch identity and campaign ecosystem designed to attract premium buyers quickly.",
+      "summaryAR": "هوية إطلاق ونظام حملات عقارية صُمم لجذب المشترين المميزين بسرعة.",
+      "challengeEN": "Citadel lacked a unifying launch story, premium visuals, and a coherent digital journey.",
+      "challengeAR": "افتقرت سيتادل إلى قصة إطلاق موحدة ومرئيات راقية ورحلة رقمية متماسكة.",
+      "solutionEN": "Worth created the campaign concept, identity extensions, landing pages, and ad creative.",
+      "solutionAR": "أنشأت وورث مفهوم الحملة وامتدادات الهوية وصفحات الهبوط والإبداع الإعلاني.",
+      "resultsEN": [
+        "Sold-out first release phase in 6 weeks",
+        "2.1x increase in qualified buyer inquiries",
+        "Unified launch system used across sales and marketing"
+      ],
+      "resultsAR": [
+        "نفاد المرحلة الأولى خلال 6 أسابيع",
+        "زيادة 2.1 مرة في استفسارات المشترين المؤهلين",
+        "استخدام نظام إطلاق موحد عبر المبيعات والتسويق"
+      ],
+      "galleryUrls": [],
+      "id": "proj-5"
+    },
+    {
+      "slug": "verve-ecommerce-scale",
+      "titleEN": "Verve E-commerce Scale Program",
+      "titleAR": "برنامج توسع فيرف للتجارة الإلكترونية",
+      "coverUrl": "",
+      "tags": [
+        "Creative Production",
+        "Paid Social",
+        "Retention"
+      ],
+      "industryEN": "Fashion",
+      "industryAR": "الأزياء",
+      "year": "2024",
+      "featured": false,
+      "summaryEN": "Creative production and performance marketing support for a fashion label entering aggressive growth mode.",
+      "summaryAR": "دعم للإنتاج الإبداعي والتسويق الأدائي لعلامة أزياء تدخل مرحلة نمو قوية.",
+      "challengeEN": "Verve’s product drops outpaced its marketing system and creative consistency.",
+      "challengeAR": "تجاوزت إصدارات منتجات فيرف قدرة نظامها التسويقي واتساقها الإبداعي.",
+      "solutionEN": "We set up a monthly production and campaign sprint model combining creative and paid execution.",
+      "solutionAR": "أنشأنا نموذج سباقات شهرية للإنتاج والحملات يجمع بين الإبداع والتنفيذ المدفوع.",
+      "resultsEN": [
+        "Monthly revenue doubled within two quarters",
+        "Creative output increased by 4x",
+        "Email and paid media worked as one unified growth system"
+      ],
+      "resultsAR": [
+        "تضاعفت الإيرادات الشهرية خلال ربعين",
+        "زاد الإنتاج الإبداعي 4 مرات",
+        "عمل البريد والإعلام المدفوع كنظام نمو موحد"
+      ],
+      "galleryUrls": [],
+      "id": "proj-6"
     }
-  ]
+  ],
+  "hero": {
+    "headingEN": "Worth Work",
+    "headingAR": "أعمال وورث",
+    "accentWordEN": "Work",
+    "accentWordAR": "وورث",
+    "subheadingEN": "Case studies that show how strategy, creative, and execution drive measurable growth.",
+    "subheadingAR": "دراسات حالة تُظهر كيف تدفع الاستراتيجية والإبداع والتنفيذ نحو نمو قابل للقياس."
+  }
 }

@@ -1,11 +1,16 @@
-import type { Metadata } from 'next';
-import WorkPageClient from './WorkPageClient';
+import type { Metadata } from 'next'
+import WorkPageClient from './WorkPageClient'
+import { getContentData } from '@/lib/content'
+import type { WorkData } from '@/lib/types/content'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Work | Worth Agency',
-  description: 'Explore case studies and portfolio highlights from Worth Agency across branding, marketing, web, and motion.',
-};
+  title: 'Our Work | Worth Agency',
+  description: 'Real results for real brands across the MENA region.',
+}
 
-export default function WorkPage() {
-  return <WorkPageClient />;
+export default async function WorkPage() {
+  const workData = getContentData<WorkData>('work')
+  return <WorkPageClient workData={workData} />
 }

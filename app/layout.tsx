@@ -8,6 +8,8 @@ import CustomCursor from '@/components/CustomCursor';
 import PageTransition from '@/components/PageTransition';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import PublicLayout from '@/components/PublicLayout';
+import { getContentData } from '@/lib/content';
+import type { Announcement } from '@/lib/types/content';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -34,7 +36,9 @@ export const metadata: Metadata = {
     'Full-service digital agency offering marketing, media buying, brand identity, motion graphics, and web development.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const announcements = getContentData<Announcement[]>('announcements');
+
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className={`${plusJakartaSans.variable} ${inter.variable} ${ibmPlexSansArabic.variable}`}>
@@ -44,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CustomCursor />
             <ScrollProgressBar />
             <PageTransition>
-              <PublicLayout>{children}</PublicLayout>
+              <PublicLayout announcements={announcements}>{children}</PublicLayout>
             </PageTransition>
           </GSAPProvider>
         </I18nProvider>

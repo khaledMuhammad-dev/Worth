@@ -1,11 +1,17 @@
-import type { Metadata } from 'next';
-import InsightsPageClient from './InsightsPageClient';
+import type { Metadata } from 'next'
+import InsightsPageClient from './InsightsPageClient'
+import { getBlogMeta } from '@/lib/content'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Insights | Worth Agency',
-  description: 'Read Worth Agency articles on marketing, branding, web strategy, analytics, and growth across MENA.',
-};
+}
 
-export default function InsightsPage() {
-  return <InsightsPageClient />;
+export default async function InsightsPage() {
+  const allPosts = getBlogMeta()
+  const published = allPosts
+    .filter((p) => p.status === 'published')
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  return <InsightsPageClient posts={published} />
 }

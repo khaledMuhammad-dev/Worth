@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 interface BlogMeta {
   slug: string
@@ -46,6 +47,8 @@ export async function POST(request: NextRequest) {
   }
 
   fs.writeFileSync(metaPath, JSON.stringify(existing, null, 2), 'utf8')
+  revalidatePath('/insights')
+  revalidatePath(`/insights/${slug}`)
 
   return NextResponse.json({ success: true, slug })
 }

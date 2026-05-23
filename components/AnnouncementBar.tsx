@@ -4,26 +4,13 @@ import { useMemo, useState, useSyncExternalStore } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { X } from 'lucide-react'
-import announcementsData from '@/content/data/announcements.json'
+import type { Announcement } from '@/lib/types/content'
 
-interface Announcement {
-  id: string
-  active: boolean
-  priority: number
-  messageEN: string
-  messageAR: string
-  ctaLabelEN: string
-  ctaLabelAR: string
-  ctaHref: string
-  bgColor: string
-  textColor: string
-  emoji: string
-  startDate: string
-  expiryDate: string
-  dismissible: boolean
+interface Props {
+  announcements: Announcement[]
 }
 
-export default function AnnouncementBar() {
+export default function AnnouncementBar({ announcements }: Props) {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -44,7 +31,7 @@ export default function AnnouncementBar() {
     const now = new Date()
 
     return (
-      (announcementsData as Announcement[])
+      announcements
         .filter(
           (item) =>
             item.active &&
@@ -54,7 +41,7 @@ export default function AnnouncementBar() {
         )
         .sort((a, b) => a.priority - b.priority)[0] ?? null
     )
-  }, [dismissed, mounted])
+  }, [announcements, dismissed, mounted])
 
   const handleDismiss = () => {
     if (!current) return

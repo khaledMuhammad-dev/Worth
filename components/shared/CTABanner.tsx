@@ -6,7 +6,15 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export function CTABanner() {
+interface CTABannerProps {
+  title?: string;
+  accent?: string;
+  subtitle?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+export function CTABanner({ title, accent, subtitle, buttonLabel, buttonHref = '/contact' }: CTABannerProps) {
   const { t } = useTranslation();
   const bannerRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLAnchorElement>(null);
@@ -48,26 +56,31 @@ export function CTABanner() {
     gsap.to(event.currentTarget, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
   };
 
+  const resolvedTitle = title ?? t('cta.title');
+  const resolvedAccent = accent ?? t('cta.titleAccent');
+  const resolvedSubtitle = subtitle ?? t('cta.subtitle');
+  const resolvedButton = buttonLabel ?? t('cta.button');
+
   return (
     <section ref={bannerRef} className="cta-banner cta-shimmer py-16">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 text-center sm:px-6 md:flex-row md:text-start lg:px-8">
         <div className="cta-heading max-w-xl">
           <h2 className="heading-m font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-            {t('cta.title')}{' '}
-            <span className="underline decoration-white/50 underline-offset-4">{t('cta.titleAccent')}</span>
+            {resolvedTitle}{' '}
+            {resolvedAccent ? <span className="underline decoration-white/50 underline-offset-4">{resolvedAccent}</span> : null}
           </h2>
-          <p className="mt-2 leading-relaxed text-white/80">{t('cta.subtitle')}</p>
+          <p className="mt-2 leading-relaxed text-white/80">{resolvedSubtitle}</p>
         </div>
         <Link
           ref={btnRef}
-          href="/contact"
+          href={buttonHref}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className="cta-btn inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-lg border-2 border-white px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-white hover:text-[#F97316]"
           data-cursor="hover"
           style={{ willChange: 'transform' }}
         >
-          {t('cta.button')}
+          {resolvedButton}
         </Link>
       </div>
     </section>

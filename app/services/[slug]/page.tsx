@@ -1,27 +1,19 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import ServicePageClient from './ServicePageClient';
-import { getServiceBySlug, services } from '@/lib/site-data';
+import { getContentData } from '@/lib/content'
+import type { ServicesData } from '@/lib/types/content'
+import ServicePageClient from './ServicePageClient'
+import { notFound } from 'next/navigation'
 
-export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+export const dynamic = 'force-dynamic'
+
+export async function generateStaticParams() {
+  const services = getContentData<ServicesData>('services')
+  return services.items.map((s) => ({ slug: s.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const service = getServiceBySlug(params.slug);
-  if (!service) {
-    return { title: 'Service Not Found | Worth Agency' };
-  }
-
-  return {
-    title: `${service.title} | Worth Agency`,
-    description: service.shortDescription,
-  };
-}
-
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = getServiceBySlug(params.slug);
-  if (!service) notFound();
-
-  return <ServicePageClient service={service} />;
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const services = getContentData<ServicesData>('services')
+  const service = services.items.find((s) => s.slug === slug)
+  if (!service) notFound()
+  return <ServicePageClient service={service} />
 }

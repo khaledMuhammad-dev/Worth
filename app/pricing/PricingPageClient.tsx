@@ -10,105 +10,51 @@ import { PricingCard } from '@/components/shared/PricingCard';
 import { CTABanner } from '@/components/shared/CTABanner';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
+import type { PricingData, PricingPackage } from '@/lib/types/content';
 
 type Currency = 'EGP' | 'USD' | 'SAR';
+type PackageWithPrices = PricingPackage & { prices?: Record<string, number> };
 
-const priceMap: Record<Currency, { launch: string; growth: string; authority: string; partner: string }> = {
-  EGP: { launch: '18,000', growth: '42,000', authority: '85,000', partner: '12,000' },
-  USD: { launch: '380', growth: '880', authority: '1,780', partner: '250' },
-  SAR: { launch: '1,425', growth: '3,300', authority: '6,675', partner: '938' },
-};
+interface Props {
+  pricingData: PricingData;
+}
 
-export default function PricingPageClient() {
-  const { t } = useTranslation();
+export default function PricingPageClient({ pricingData }: Props) {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const [currency, setCurrency] = useState<Currency>('EGP');
 
   const plans = useMemo(
-    () => [
-      {
-        name: t('pricing.launch.name'),
-        description: t('pricing.launch.description'),
-        price: `${currency} ${priceMap[currency].launch}`,
-        badge: t('pricing.launch.badge'),
+    () =>
+      (pricingData.packages as PackageWithPrices[]).map((plan) => ({
+        name: isArabic ? plan.nameAR : plan.nameEN,
+        description: isArabic ? plan.descriptionAR : plan.descriptionEN,
+        price: `${currency} ${(plan.prices?.[currency] ?? plan.basePrice).toLocaleString()}`,
+        period: isArabic ? plan.billingAR : plan.billingEN,
+        badge: isArabic ? plan.badgeAR : plan.badgeEN,
         cta: t('pricing.launch.cta'),
+        featured: plan.featured,
         features: [
-          'Brand strategy',
-          'Logo design',
-          'Business card design',
-          'Social media kit',
-          '1 landing page',
-          '3 months email support',
-          'Google Ads setup',
-        ].map((text, index) => ({ text, included: index < 6 })),
-      },
-      {
-        name: t('pricing.growth.name'),
-        description: t('pricing.growth.description'),
-        price: `${currency} ${priceMap[currency].growth}`,
-        badge: t('pricing.growth.badge'),
-        cta: t('pricing.growth.cta'),
-        featured: true,
-        features: [
-          'Everything in Launch',
-          'Full brand guidelines',
-          '3-month marketing campaign',
-          '5 ad creatives',
-          'Full website',
-          'Google Ads setup',
-          'Monthly reporting',
-        ].map((text) => ({ text, included: true })),
-      },
-      {
-        name: t('pricing.authority.name'),
-        description: t('pricing.authority.description'),
-        price: `${currency} ${priceMap[currency].authority}`,
-        badge: t('pricing.authority.badge'),
-        cta: t('pricing.authority.cta'),
-        features: [
-          'Everything in Growth',
-          'Motion graphics package',
-          'Video production (2 videos)',
-          'Advanced SEO',
-          '6-month campaign management',
-          'Dedicated account manager',
-          'Priority creative support',
-        ].map((text) => ({ text, included: true })),
-      },
-      {
-        name: t('pricing.partner.name'),
-        description: t('pricing.partner.description'),
-        price: `${currency} ${priceMap[currency].partner}`,
-        period: t('pricing.partner.perMonth'),
-        badge: t('pricing.partner.badge'),
-        cta: t('pricing.partner.cta'),
-        features: [
-          'Monthly ad management',
-          'Weekly content creation',
-          'Performance reporting',
-          'Strategy calls',
-          'Priority support',
-          'Quarterly brand refreshes',
-        ].map((text, index) => ({ text, included: index < 5 })),
-      },
-    ],
-    [currency, t]
+          ...(isArabic ? plan.featuresAR : plan.featuresEN).map((text) => ({ text, included: true })),
+          ...(isArabic ? plan.excludedAR : plan.excludedEN).map((text) => ({ text, included: false })),
+        ],
+      })),
+    [currency, isArabic, pricingData.packages, t]
   );
-
-  const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5'] as const;
 
   return (
     <>
       <Navbar />
       <main>
         <PageHero
-          title={t('pageHero.pricing')}
-          subtitle={t('pricing.subtitle')}
+          title={isArabic ? pricingData.hero.headingAR : pricingData.hero.headingEN}
+          subtitle={isArabic ? pricingData.hero.subheadingAR : pricingData.hero.subheadingEN}
           breadcrumb={[{ label: t('pageHero.home'), href: '/' }, { label: t('pageHero.pricing') }]}
         />
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={t('pricing.title')} accent={t('pricing.titleAccent')} subtitle={t('pricing.subtitle')} />
+            <SectionHeading title={isArabic ? pricingData.hero.headingAR : pricingData.hero.headingEN} accent={isArabic ? pricingData.hero.accentWordAR : pricingData.hero.accentWordEN} subtitle={isArabic ? pricingData.hero.subheadingAR : pricingData.hero.subheadingEN} />
             <div className="mb-10 flex flex-col items-center gap-4">
               <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6B7280]">{t('pricing.currency')}</span>
               <div className="inline-flex rounded-full border border-[#F0F0F0] bg-[#F9FAFB] p-1.5">
@@ -121,7 +67,7 @@ export default function PricingPageClient() {
                       currency === option ? 'bg-[#F97316] text-white' : 'text-[#6B7280] hover:text-[#1A1A2E]'
                     )}
                   >
-                    {t(`pricing.${option.toLowerCase()}`)}
+                    {option}
                   </button>
                 ))}
               </div>
@@ -131,6 +77,7 @@ export default function PricingPageClient() {
                 <PricingCard key={plan.name} {...plan} />
               ))}
             </div>
+            <p className="mt-8 text-center text-sm text-[#6B7280]">{isArabic ? pricingData.note.AR : pricingData.note.EN}</p>
           </div>
         </section>
 
@@ -139,10 +86,10 @@ export default function PricingPageClient() {
             <SectionHeading title={t('pricing.faq.title')} accent={t('pricing.faq.titleAccent')} />
             <div className="rounded-3xl border border-[#F0F0F0] bg-white px-6 md:px-8">
               <Accordion type="single" collapsible>
-                {faqKeys.map((key) => (
-                  <AccordionItem key={key} value={key}>
-                    <AccordionTrigger>{t(`pricing.faq.${key}.question`)}</AccordionTrigger>
-                    <AccordionContent>{t(`pricing.faq.${key}.answer`)}</AccordionContent>
+                {pricingData.faq.map((item) => (
+                  <AccordionItem key={item.id} value={item.id}>
+                    <AccordionTrigger>{isArabic ? item.questionAR : item.questionEN}</AccordionTrigger>
+                    <AccordionContent>{isArabic ? item.answerAR : item.answerEN}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, BarChart3, Brush, Clapperboard, Globe, Layers } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
@@ -9,7 +10,7 @@ import { PageHero } from '@/components/shared/PageHero';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { CTABanner } from '@/components/shared/CTABanner';
 import { Button } from '@/components/ui/button';
-import { services } from '@/lib/site-data';
+import type { ServicesData } from '@/lib/types/content';
 
 const iconMap = {
   'marketing-media-buying': BarChart3,
@@ -27,8 +28,13 @@ const bgMap = {
   'creative-production': 'bg-[#FCE7F3] text-[#BE185D]',
 } as const;
 
-export default function ServicesPageClient() {
-  const { t } = useTranslation();
+interface Props {
+  servicesData: ServicesData;
+}
+
+export default function ServicesPageClient({ servicesData }: Props) {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
 
   const steps = [
     { number: '01', title: t('process.step1.title'), description: t('process.step1.description') },
@@ -37,31 +43,33 @@ export default function ServicesPageClient() {
     { number: '04', title: t('process.step4.title'), description: t('process.step4.description') },
   ];
 
+  const services = useMemo(() => servicesData.items, [servicesData.items]);
+
   return (
     <>
       <Navbar />
       <main>
         <PageHero
-          title={t('pageHero.services')}
-          subtitle={t('services.subtitle')}
+          title={isArabic ? servicesData.hero.headingAR : servicesData.hero.headingEN}
+          subtitle={isArabic ? servicesData.hero.subheadingAR : servicesData.hero.subheadingEN}
           breadcrumb={[{ label: t('pageHero.home'), href: '/' }, { label: t('pageHero.services') }]}
         />
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={t('services.title')} accent={t('services.titleAccent')} subtitle="A full suite of brand, creative, and growth capabilities designed to help ambitious businesses scale with clarity." />
+            <SectionHeading title={isArabic ? servicesData.hero.headingAR : servicesData.hero.headingEN} accent={isArabic ? servicesData.hero.accentWordAR : servicesData.hero.accentWordEN} subtitle={isArabic ? servicesData.hero.subheadingAR : servicesData.hero.subheadingEN} />
             <div className="grid lg:grid-cols-2 gap-6">
               {services.map((service) => {
-                const Icon = iconMap[service.slug as keyof typeof iconMap];
+                const Icon = iconMap[service.slug as keyof typeof iconMap] ?? Globe;
                 return (
                   <div key={service.slug} className="rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-8 shadow-sm hover:shadow-md transition-shadow">
-                    <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${bgMap[service.slug as keyof typeof bgMap]}`}>
+                    <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${bgMap[service.slug as keyof typeof bgMap] ?? 'bg-[#FFF4EE] text-[#F97316]'}`}>
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h2 className="text-2xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{service.title}</h2>
-                    <p className="mt-4 text-[#6B7280] leading-8">{service.shortDescription}</p>
+                    <h2 className="text-2xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{isArabic ? service.titleAR : service.titleEN}</h2>
+                    <p className="mt-4 text-[#6B7280] leading-8">{isArabic ? service.descriptionAR : service.descriptionEN}</p>
                     <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-[#1A1A2E]">
-                      {service.deliverables.slice(0, 4).map((item) => (
+                      {(isArabic ? service.featuresAR : service.featuresEN).slice(0, 4).map((item) => (
                         <li key={item} className="rounded-xl border border-[#F0F0F0] bg-white px-4 py-3">{item}</li>
                       ))}
                     </ul>

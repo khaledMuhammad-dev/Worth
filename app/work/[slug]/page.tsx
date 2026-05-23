@@ -1,28 +1,23 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import ProjectPageClient from './ProjectPageClient';
-import { getProjectBySlug, projects } from '@/lib/site-data';
+import { getContentData } from '@/lib/content'
+import type { WorkData } from '@/lib/types/content'
+import { notFound } from 'next/navigation'
+import ProjectPageClient from './ProjectPageClient'
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+export const dynamic = 'force-dynamic'
+
+export async function generateStaticParams() {
+  const work = getContentData<WorkData>('work')
+  return work.projects.map((project) => ({ slug: project.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = getProjectBySlug(params.slug);
-  if (!project) {
-    return { title: 'Project Not Found | Worth Agency' };
-  }
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const work = getContentData<WorkData>('work')
+  const currentIndex = work.projects.findIndex((project) => project.slug === slug)
+  if (currentIndex === -1) notFound()
 
-  return {
-    title: `${project.title} | Worth Agency`,
-    description: project.summary,
-  };
-}
+  const project = work.projects[currentIndex]
+  const nextProject = work.projects[(currentIndex + 1) % work.projects.length]
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
-  if (!project) notFound();
-  const nextProject = getProjectBySlug(project.nextSlug) ?? projects[0];
-
-  return <ProjectPageClient project={project} nextProject={nextProject} />;
+  return <ProjectPageClient project={project} nextProject={nextProject} />
 }
