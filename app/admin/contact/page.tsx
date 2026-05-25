@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
+import { Switch } from '@/components/ui/switch'
 import initialData from '@/content/data/contact.json'
 
 interface ContactData {
@@ -62,7 +63,10 @@ export default function AdminContactPage() {
               <div className="grid gap-3 md:grid-cols-3">
                 <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={field.id} onChange={(event) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, id: event.target.value } : entry) })} placeholder="Field id" />
                 <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={field.type} onChange={(event) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, type: event.target.value } : entry) })} placeholder="Field type" />
-                <label className="flex items-center gap-2 text-sm text-foreground"><input type="checkbox" checked={field.required} onChange={(event) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, required: event.target.checked } : entry) })} />Required</label>
+                <div className="flex items-center gap-2">
+                  <Switch checked={field.required} onCheckedChange={(checked) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, required: checked } : entry) })} id={`req-${index}`} />
+                  <label htmlFor={`req-${index}`} className="cursor-pointer text-sm text-foreground">Required</label>
+                </div>
               </div>
               <LocaleField labelEN="Label" labelAR="Label" valueEN={field.labelEN} valueAR={field.labelAR} onChangeEN={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelAR: value } : entry) })} />
             </div>

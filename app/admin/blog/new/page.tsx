@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
+import { Switch } from '@/components/ui/switch'
 
 const starterContent = `---
 slug: new-article
@@ -78,7 +79,10 @@ export default function AdminNewBlogPage() {
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={author} onChange={(event) => setAuthor(event.target.value)} placeholder="Author" />
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="Tags, comma separated" />
           <input type="date" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={publishedAt} onChange={(event) => setPublishedAt(event.target.value)} />
-          <label className="flex items-center gap-2 text-sm font-medium text-foreground"><input type="checkbox" checked={status === 'published'} onChange={(event) => setStatus(event.target.checked ? 'published' : 'draft')} />Published</label>
+          <div className="flex items-center gap-3">
+            <Switch checked={status === 'published'} onCheckedChange={(checked) => setStatus(checked ? 'published' : 'draft')} id="published-new" />
+            <label htmlFor="published-new" className="cursor-pointer text-sm font-medium text-foreground">Published</label>
+          </div>
         </div>
         <div className="rounded-xl border border-gray-100 bg-white p-6">
           <div className="mb-3 text-sm font-medium text-foreground">MDX Editor</div>

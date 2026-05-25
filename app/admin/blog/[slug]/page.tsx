@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
+import { Switch } from '@/components/ui/switch'
 
 interface BlogMeta {
   slug: string
@@ -75,7 +76,10 @@ export default function AdminEditBlogPage() {
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={meta.author} onChange={(event) => setMeta({ ...meta, author: event.target.value })} placeholder="Author" />
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={meta.tags.join(', ')} onChange={(event) => setMeta({ ...meta, tags: event.target.value.split(',').map((item) => item.trim()).filter(Boolean) })} placeholder="Tags" />
           <input type="date" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={meta.publishedAt} onChange={(event) => setMeta({ ...meta, publishedAt: event.target.value })} />
-          <label className="flex items-center gap-2 text-sm font-medium text-foreground"><input type="checkbox" checked={meta.status === 'published'} onChange={(event) => setMeta({ ...meta, status: event.target.checked ? 'published' : 'draft' })} />Published</label>
+          <div className="flex items-center gap-3">
+            <Switch checked={meta.status === 'published'} onCheckedChange={(checked) => setMeta({ ...meta, status: checked ? 'published' : 'draft' })} id="published-edit" />
+            <label htmlFor="published-edit" className="cursor-pointer text-sm font-medium text-foreground">Published</label>
+          </div>
         </div>
         <div className="rounded-xl border border-gray-100 bg-white p-6">
           <div className="mb-3 text-sm font-medium text-foreground">MDX Editor</div>
