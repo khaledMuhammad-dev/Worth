@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { Pencil, Trash2 } from 'lucide-react'
 import AdminHeader from '@/components/admin/AdminHeader'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/blog-meta.json'
 
 interface BlogMeta {
@@ -24,6 +25,7 @@ export default function AdminBlogPage() {
   const [items, setItems] = useState<BlogMeta[]>(() => JSON.parse(JSON.stringify(initialData)))
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all')
+  const [confirmSlug, setConfirmSlug] = useState<string | null>(null)
 
   const filtered = useMemo(() => {
     return items.filter((item) => {
@@ -71,27 +73,47 @@ export default function AdminBlogPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((item) => (
-                <tr key={item.slug} className="border-t border-gray-100">
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-foreground">{item.titleEN}</div>
-                    <div className="text-xs text-muted">/{item.slug}</div>
-                  </td>
-                  <td className="px-4 py-3 capitalize">{item.status}</td>
-                  <td className="px-4 py-3 text-muted">{item.author}</td>
-                  <td className="px-4 py-3 text-muted">{item.updatedAt}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex gap-3">
-                      <Link href={`/admin/blog/${item.slug}`} className="text-gray-400 hover:text-primary"><Pencil size={16} /></Link>
-                      <button type="button" onClick={() => remove(item.slug)} className="text-gray-400 hover:text-red-500"><Trash2 size={16} /></button>
-                    </div>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-4 py-16 text-center">
+                    <p className="text-sm font-medium text-foreground">No articles found</p>
+                    <p className="mt-1 text-xs text-muted">
+                      {query || filter !== 'all' ? 'Try adjusting your search or filter.' : 'Click "New Article" to write your first post.'}
+                    </p>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map((item) => (
+                  <tr key={item.slug} className="border-t border-gray-100">
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-foreground">{item.titleEN}</div>
+                      <div className="text-xs text-muted">/{item.slug}</div>
+                    </td>
+                    <td className="px-4 py-3 capitalize">{item.status}</td>
+                    <td className="px-4 py-3 text-muted">{item.author}</td>
+                    <td className="px-4 py-3 text-muted">{item.updatedAt}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex gap-3">
+                        <Link href={`/admin/blog/${item.slug}`} className="text-gray-400 hover:text-primary"><Pencil size={16} /></Link>
+                        <button type="button" onClick={() => setConfirmSlug(item.slug)} className="text-gray-400 hover:text-red-500"><Trash2 size={16} /></button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
+
+      <ConfirmDialog
+        open={confirmSlug !== null}
+        title="Delete Article"
+        description={`"${items.find((i) => i.slug === confirmSlug)?.titleEN ?? confirmSlug}" will be permanently deleted. This cannot be undone.`}
+        confirmLabel="Delete Article"
+        onConfirm={() => { if (confirmSlug) { void remove(confirmSlug); setConfirmSlug(null) } }}
+        onCancel={() => setConfirmSlug(null)}
+      />
     </div>
   )
 }

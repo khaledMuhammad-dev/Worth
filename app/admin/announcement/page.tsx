@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
 import AdminHeader from '@/components/admin/AdminHeader'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/announcements.json'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 
@@ -44,6 +45,7 @@ export default function AnnouncementPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
   const [saving, setSaving] = useState(false)
+  const [confirmId, setConfirmId] = useState<string | null>(null)
 
   const sortedItems = useMemo(() => [...items].sort((a, b) => a.priority - b.priority), [items])
 
@@ -127,7 +129,14 @@ export default function AnnouncementPage() {
         </div>
 
         <div className="space-y-3">
-          {sortedItems.map((item) => (
+          {sortedItems.length === 0 ? (
+            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 bg-white py-16 text-center">
+              <span className="mb-2 text-3xl">📢</span>
+              <p className="text-sm font-medium text-foreground">No announcements yet</p>
+              <p className="text-xs text-muted">Click "Add Announcement" to create your first one.</p>
+            </div>
+          ) : (
+            sortedItems.map((item) => (
             <div key={item.id} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4">
               <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-bold text-gray-500">#{item.priority}</span>
               <span className="text-xl">{item.emoji}</span>
@@ -140,9 +149,9 @@ export default function AnnouncementPage() {
               </span>
               <button type="button" onClick={() => toggleActive(item.id)} className="rounded border border-gray-200 px-2 py-1 text-xs transition hover:bg-gray-50">Toggle</button>
               <button type="button" onClick={() => openEdit(item)} className="text-gray-400 transition hover:text-primary"><Edit2 size={16} /></button>
-              <button type="button" onClick={() => removeItem(item.id)} className="text-gray-400 transition hover:text-red-500"><Trash2 size={16} /></button>
+              <button type="button" onClick={() => setConfirmId(item.id)} className="text-gray-400 transition hover:text-red-500"><Trash2 size={16} /></button>
             </div>
-          ))}
+          )))}
         </div>
       </div>
 
@@ -219,6 +228,15 @@ export default function AnnouncementPage() {
           </div>
         </SheetContent>
       </Sheet>
+
+      <ConfirmDialog
+        open={confirmId !== null}
+        title="Delete Announcement"
+        description="This announcement will be permanently removed. This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => { if (confirmId) { void removeItem(confirmId); setConfirmId(null) } }}
+        onCancel={() => setConfirmId(null)}
+      />
     </div>
   )
 }

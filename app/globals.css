@@ -94,12 +94,12 @@ img {
 }
 
 /* Touch-target minimum */
-button,
+/* button,
 [role="button"],
 a {
   min-height: 44px;
   min-width: 44px;
-}
+} */
 
 /* Accordion animation keyframes */
 @keyframes accordion-down {

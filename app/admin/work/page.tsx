@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
 import AdminHeader from '@/components/admin/AdminHeader'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/work.json'
@@ -35,6 +36,7 @@ export default function AdminWorkPage() {
   const [saving, setSaving] = useState(false)
   const [open, setOpen] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [confirmId, setConfirmId] = useState<string | null>(null)
   const [form, setForm] = useState<Project>({
     id: '',
     slug: '',
@@ -111,20 +113,29 @@ export default function AdminWorkPage() {
               </tr>
             </thead>
             <tbody>
-              {projects.map((project) => (
-                <tr key={project.id} className="border-t border-gray-100">
-                  <td className="px-4 py-3 font-medium text-foreground">{project.titleEN}</td>
-                  <td className="px-4 py-3 text-muted">{project.slug}</td>
-                  <td className="px-4 py-3 text-muted">{project.year}</td>
-                  <td className="px-4 py-3">{project.featured ? 'Yes' : 'No'}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex gap-3">
-                      <button type="button" onClick={() => openEdit(project)} className="text-gray-400 hover:text-primary"><Edit2 size={16} /></button>
-                      <button type="button" onClick={() => removeProject(project.id)} className="text-gray-400 hover:text-red-500"><Trash2 size={16} /></button>
-                    </div>
+              {projects.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-4 py-16 text-center">
+                    <p className="text-sm font-medium text-foreground">No projects yet</p>
+                    <p className="mt-1 text-xs text-muted">Click "Add Project" to create your first case study.</p>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                projects.map((project) => (
+                  <tr key={project.id} className="border-t border-gray-100">
+                    <td className="px-4 py-3 font-medium text-foreground">{project.titleEN}</td>
+                    <td className="px-4 py-3 text-muted">{project.slug}</td>
+                    <td className="px-4 py-3 text-muted">{project.year}</td>
+                    <td className="px-4 py-3">{project.featured ? 'Yes' : 'No'}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex gap-3">
+                        <button type="button" onClick={() => openEdit(project)} className="text-gray-400 hover:text-primary"><Edit2 size={16} /></button>
+                        <button type="button" onClick={() => setConfirmId(project.id)} className="text-gray-400 hover:text-red-500"><Trash2 size={16} /></button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -190,6 +201,15 @@ export default function AdminWorkPage() {
           </div>
         </SheetContent>
       </Sheet>
+
+      <ConfirmDialog
+        open={confirmId !== null}
+        title="Delete Project"
+        description={`"${projects.find((p) => p.id === confirmId)?.titleEN ?? 'This project'}" will be permanently deleted. This action cannot be undone.`}
+        confirmLabel="Delete Project"
+        onConfirm={() => { if (confirmId) { void removeProject(confirmId); setConfirmId(null) } }}
+        onCancel={() => setConfirmId(null)}
+      />
     </div>
   )
 }
