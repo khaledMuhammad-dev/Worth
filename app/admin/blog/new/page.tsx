@@ -7,6 +7,8 @@ import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
 import { Switch } from '@/components/ui/switch'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import MDXPreview from '@/components/blog/MDXPreview'
 
 const starterContent = `---
 slug: new-article
@@ -32,6 +34,7 @@ export default function AdminNewBlogPage() {
   const [status, setStatus] = useState<'draft' | 'published'>('draft')
   const [mdxContent, setMdxContent] = useState(starterContent)
   const [saving, setSaving] = useState(false)
+  const [activeTab, setActiveTab] = useState('editor')
 
   const save = async () => {
     const safeSlug = slug || slugify(titleEN || 'article', { lower: true, strict: true })
@@ -84,9 +87,34 @@ export default function AdminNewBlogPage() {
             <label htmlFor="published-new" className="cursor-pointer text-sm font-medium text-foreground">Published</label>
           </div>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-6">
-          <div className="mb-3 text-sm font-medium text-foreground">MDX Editor</div>
-          <textarea value={mdxContent} onChange={(event) => setMdxContent(event.target.value)} className="min-h-[700px] w-full rounded-xl border border-gray-200 p-4 font-mono text-sm focus:border-primary focus:outline-none" />
+
+        <div className="space-y-4">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <div className="flex items-center justify-between rounded-t-xl border border-b-0 border-gray-100 bg-white px-6 py-4">
+              <span className="text-sm font-medium text-foreground">Content</span>
+              <TabsList>
+                <TabsTrigger value="editor">MDX Editor</TabsTrigger>
+                <TabsTrigger value="preview">Preview</TabsTrigger>
+              </TabsList>
+            </div>
+
+            <TabsContent value="editor">
+              <div className="rounded-b-xl border border-gray-100 bg-white p-4">
+                <textarea
+                  value={mdxContent}
+                  onChange={(event) => setMdxContent(event.target.value)}
+                  className="min-h-[700px] w-full rounded-xl border border-gray-200 p-4 font-mono text-sm focus:border-primary focus:outline-none"
+                  placeholder="Write MDX content here…"
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="preview">
+              <div className="rounded-b-xl border border-gray-100 bg-gray-50 p-4">
+                <MDXPreview content={mdxContent} />
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
