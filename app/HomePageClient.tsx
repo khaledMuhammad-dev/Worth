@@ -15,6 +15,7 @@ import { ServiceCard } from '@/components/shared/ServiceCard';
 import { TestimonialCard } from '@/components/shared/TestimonialCard';
 import { CTABanner } from '@/components/shared/CTABanner';
 import { usePrefersReducedMotion } from '@/lib/motion';
+import { useLangReady } from '@/components/providers/I18nProvider';
 import type { HomeData } from '@/lib/types/content';
 
 interface Props {
@@ -42,12 +43,13 @@ function splitHeading(heading: string, accent: string) {
 export default function HomePageClient({ homeData }: Props) {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
+  const langReady = useLangReady();
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReduced) return;
+    if (!langReady || prefersReduced) return;
 
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -116,10 +118,10 @@ export default function HomePageClient({ homeData }: Props) {
       heroSplit?.revert();
       ctx.revert();
     };
-  }, [prefersReduced]);
+  }, [prefersReduced, langReady]);
 
   useEffect(() => {
-    if (prefersReduced) return;
+    if (!langReady || prefersReduced) return;
 
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -306,7 +308,7 @@ export default function HomePageClient({ homeData }: Props) {
       aboutSplit?.revert();
       ctx.revert();
     };
-  }, [prefersReduced]);
+  }, [prefersReduced, langReady]);
 
   const services = useMemo(
     () =>
