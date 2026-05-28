@@ -9,6 +9,7 @@ import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/work.json'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { Switch } from '@/components/ui/switch'
 
 interface Project {
   id: string
@@ -195,9 +196,7 @@ export default function AdminWorkPage() {
             </div>
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium">{t('admin.work.featured')}</label>
-              <button type="button" onClick={() => setForm({ ...form, featured: !form.featured })} className={`h-6 w-10 rounded-full transition ${form.featured ? 'bg-primary' : 'bg-gray-200'}`}>
-                <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.featured ? 'translate-x-4' : 'translate-x-0.5'}`} />
-              </button>
+              <Switch checked={form.featured} onCheckedChange={(checked) => setForm({ ...form, featured: checked })} />
             </div>
             <button type="button" onClick={saveProject} disabled={saving} className="w-full rounded-lg bg-primary py-2.5 font-medium text-white transition hover:bg-orange-600 disabled:opacity-60">{saving ? t('admin.work.savingProject') : t('admin.work.saveProject')}</button>
           </div>

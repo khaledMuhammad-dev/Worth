@@ -199,6 +199,16 @@ a {
 
 /* ========== DARK MODE — SHADES OF PURPLE ========== */
 
+/* Override CSS variables so text-foreground, bg-background, etc.
+   automatically resolve to accessible dark-mode values everywhere */
+.dark {
+  --color-foreground: #F8F8F2;
+  --color-muted: #B2A8D0;
+  --color-surface: #2D2B55;
+  --color-border-custom: #433E7C;
+  --color-background: #1E1E3F;
+}
+
 /* Dark body background */
 .dark body {
   background-color: #1E1E3F;
@@ -207,7 +217,8 @@ a {
 
 /* Navbar dark override (framer-motion inline style needs CSS override) */
 .dark .navbar-header {
-  background-color: rgba(37, 35, 71, 0.95) !important;
+  background-color: rgba(37, 35, 71, 0.85) !important;
+  backdrop-filter: blur(12px);
   border-bottom-color: #433E7C !important;
 }
 
@@ -321,4 +332,48 @@ a {
 }
 .dark [data-radix-dropdown-menu-item]:hover {
   background-color: #3A3772;
+}
+
+/* ====== ADMIN PANEL — global dark overrides ====== */
+/* Covers all bg-white cards, gray borders, and form inputs
+   across every admin page without editing each file */
+.dark .admin-layout .bg-white {
+  background-color: #2D2B55 !important;
+}
+.dark .admin-layout .bg-gray-50 {
+  background-color: #1E1E3F !important;
+}
+.dark .admin-layout .border-gray-100 {
+  border-color: #433E7C !important;
+}
+.dark .admin-layout .border-gray-200 {
+  border-color: #433E7C !important;
+}
+.dark .admin-layout .divide-gray-50 > :not([hidden]) ~ :not([hidden]),
+.dark .admin-layout .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #433E7C !important;
+}
+.dark .admin-layout .text-gray-400,
+.dark .admin-layout .text-gray-500,
+.dark .admin-layout .text-gray-600 {
+  color: #B2A8D0 !important;
+}
+.dark .admin-layout .text-gray-700,
+.dark .admin-layout .text-gray-800,
+.dark .admin-layout .text-gray-900 {
+  color: #F8F8F2 !important;
+}
+.dark .admin-layout input:not([type="checkbox"]):not([type="radio"]),
+.dark .admin-layout textarea,
+.dark .admin-layout select {
+  background-color: #1E1E3F !important;
+  border-color: #433E7C !important;
+  color: #F8F8F2 !important;
+}
+.dark .admin-layout input::placeholder,
+.dark .admin-layout textarea::placeholder {
+  color: #6B6494 !important;
+}
+.dark .admin-layout label {
+  color: #B2A8D0;
 }

@@ -95,9 +95,8 @@ export default function AdminSidebar() {
         ))}
       </nav>
       <div className="space-y-2 border-t border-gray-100 p-3 dark:border-sop-border">
-        <div className="px-2">
-          <AdminLangSwitcher />
-        </div>
+     
+     
         <button
           type="button"
           onClick={handleLogout}

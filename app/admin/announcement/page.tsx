@@ -7,6 +7,7 @@ import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/announcements.json'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { Switch } from '@/components/ui/switch'
 
 interface Announcement {
   id: string
@@ -214,15 +215,11 @@ export default function AnnouncementPage() {
             </div>
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium">{t('admin.announcements.activeLabel')}</label>
-              <button type="button" onClick={() => updateField('active', !form.active)} className={`h-6 w-10 rounded-full transition ${form.active ? 'bg-primary' : 'bg-gray-200'}`}>
-                <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.active ? 'translate-x-4' : 'translate-x-0.5'}`} />
-              </button>
+              <Switch checked={form.active} onCheckedChange={(checked) => updateField('active', checked)} />
             </div>
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium">{t('admin.announcements.dismissibleLabel')}</label>
-              <button type="button" onClick={() => updateField('dismissible', !form.dismissible)} className={`h-6 w-10 rounded-full transition ${form.dismissible ? 'bg-primary' : 'bg-gray-200'}`}>
-                <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.dismissible ? 'translate-x-4' : 'translate-x-0.5'}`} />
-              </button>
+              <Switch checked={form.dismissible} onCheckedChange={(checked) => updateField('dismissible', checked)} />
             </div>
             <button type="button" onClick={saveItem} disabled={saving} className="w-full rounded-lg bg-primary py-2.5 font-medium text-white transition hover:bg-orange-600 disabled:opacity-60">
               {saving ? t('admin.header.saving') : t('admin.announcements.saveAnnouncement')}

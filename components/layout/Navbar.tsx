@@ -19,7 +19,7 @@ export function Navbar() {
   const prefersReduced = usePrefersReducedMotion();
 
   const { scrollY } = useScroll();
-  const navBg = useTransform(scrollY, [0, 60], ['rgba(255,255,255,0.7)', 'rgba(255,255,255,1)']);
+  const navBg = useTransform(scrollY, [0, 60], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.85)']);
   const navShadow = useTransform(scrollY, [0, 60], ['0 0 0 rgba(0,0,0,0)', '0 2px 20px rgba(0,0,0,0.08)']);
 
   useEffect(() => {
@@ -52,10 +52,10 @@ export function Navbar() {
       animate={prefersReduced ? undefined : { y: 0, opacity: 1 }}
       transition={prefersReduced ? undefined : { duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       style={{
-        backgroundColor: hydrated && !prefersReduced ? navBg : 'rgba(255,255,255,1)',
+        backgroundColor: hydrated && !prefersReduced ? navBg : 'rgba(255,255,255,0.85)',
         boxShadow: hydrated && !prefersReduced ? navShadow : 'none',
       }}
-      className="navbar-header sticky top-0 z-50 border-b border-[#F0F0F0]/80 backdrop-blur-sm dark:border-sop-border"
+      className="navbar-header sticky top-0 z-50 border-b border-[#F0F0F0]/80 backdrop-blur-md dark:border-sop-border"
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-baseline gap-0.5" dir="ltr">

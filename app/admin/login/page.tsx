@@ -33,13 +33,13 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-foreground p-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#1A1A2E] p-4">
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
         <div className="mb-6 flex justify-end">
           <AdminLangSwitcher />
         </div>
         <div className="mb-8 text-center">
-          <span className="text-2xl font-bold text-foreground">
+          <span className="text-2xl font-bold text-[#1A1A2E]">
             Worth <span className="text-primary">CMS</span>
           </span>
           <p className="mt-1 text-sm text-muted">{t('admin.login.adminPanel')}</p>

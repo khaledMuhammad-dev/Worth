@@ -389,6 +389,7 @@ export default function HomePageClient({ homeData }: Props) {
               </motion.span>
 
               <h1
+                suppressHydrationWarning
                 className="hero-heading heading-xl font-bold text-[#1A1A2E] dark:text-sop-foreground"
                 style={{ fontFamily: 'var(--font-heading)', perspective: '600px' }}
               >
@@ -396,7 +397,7 @@ export default function HomePageClient({ homeData }: Props) {
                 {heroHeading.accent ? <span className="accent-word hero-accent text-[#F97316] dark:text-primary dark:drop-shadow-[0_0_20px_rgba(249,115,22,0.5)]">{heroHeading.accent}</span> : null}
               </h1>
 
-              <p className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280] dark:text-sop-muted">
+              <p suppressHydrationWarning className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280] dark:text-sop-muted">
                 {isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
               </p>
 

@@ -2,6 +2,7 @@
 
 import { useTranslation } from 'react-i18next'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import AdminLangSwitcher from './AdminLangSwitcher'
 
 interface AdminHeaderProps {
   title: string
@@ -19,9 +20,12 @@ export default function AdminHeader({ title, subtitle, onSave, saving }: AdminHe
         <h1 className="text-lg font-semibold text-foreground dark:text-sop-foreground">{title}</h1>
         {subtitle ? <p className="text-sm text-muted dark:text-sop-muted">{subtitle}</p> : null}
       </div>
-      {onSave ? (
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
+      <div className="flex items-center gap-3">
+        <ThemeToggle />
+        <div className="px-2">
+          <AdminLangSwitcher />
+        </div>
+        {onSave ? (
           <button
             type="button"
             onClick={onSave}
@@ -30,8 +34,8 @@ export default function AdminHeader({ title, subtitle, onSave, saving }: AdminHe
           >
             {saving ? t('admin.header.saving') : t('admin.header.saveChanges')}
           </button>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   )
 }

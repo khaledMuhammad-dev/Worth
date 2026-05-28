@@ -6,6 +6,7 @@ import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/pricing.json'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Switch } from '@/components/ui/switch'
 
 interface PackageItem {
   id: string
@@ -76,9 +77,7 @@ export default function AdminPricingPage() {
                 <LocaleField labelEN="Period" labelAR="الفترة" valueEN={pkg.periodEN} valueAR={pkg.periodAR} onChangeEN={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, periodEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, periodAR: value } : entry) })} />
                 <div className="flex items-center gap-3">
                   <label className="text-sm font-medium">{t('admin.pricing.featuredLabel')}</label>
-                  <button type="button" onClick={() => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, featured: !entry.featured } : entry) })} className={`h-6 w-10 rounded-full transition ${pkg.featured ? 'bg-primary' : 'bg-gray-200'}`}>
-                    <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${pkg.featured ? 'translate-x-4' : 'translate-x-0.5'}`} />
-                  </button>
+                  <Switch checked={pkg.featured} onCheckedChange={(checked) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, featured: checked } : entry) })} />
                 </div>
               </div>
             ))}
