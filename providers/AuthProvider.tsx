@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '@/lib/firebase/client'
+import { auth, getFirebaseAuth } from '@/lib/firebase/client'
 import { useAuthStore } from '@/stores/auth.store'
 import { authFetch } from '@/lib/auth/get-id-token'
 
@@ -10,7 +10,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { setUser, setIsLoading, logout } = useAuthStore()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const authInstance = getFirebaseAuth()
+    if (!authInstance) return  // Firebase not configured or running server-side
+
+    const unsubscribe = onAuthStateChanged(authInstance, async (firebaseUser) => {
       if (!firebaseUser) {
         logout()
         return
