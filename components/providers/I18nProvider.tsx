@@ -5,8 +5,8 @@ import i18n from '@/lib/i18n';
 
 export default function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Apply direction/lang attribute for the current language (already initialized
-    // from localStorage in lib/i18n.ts — no changeLanguage call needed here).
+    // Apply stored language after hydration to avoid server/client mismatch.
+    // i18n is initialized with 'en' on both server and client; we switch here.
     const applyLang = (lng: string) => {
       const tag = lng?.slice(0, 2) || 'en';
       document.documentElement.lang = tag;
@@ -14,7 +14,17 @@ export default function I18nProvider({ children }: { children: React.ReactNode }
       localStorage.setItem('i18nextLng', tag);
     };
 
-    applyLang(i18n.language);
+    try {
+      const stored = localStorage.getItem('i18nextLng') || 'en';
+      if (stored !== i18n.language) {
+        i18n.changeLanguage(stored);
+      } else {
+        applyLang(stored);
+      }
+    } catch {
+      applyLang('en');
+    }
+
     i18n.on('languageChanged', applyLang);
     return () => i18n.off('languageChanged', applyLang);
   }, []);
