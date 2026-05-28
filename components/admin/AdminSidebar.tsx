@@ -17,13 +17,18 @@ import {
   Phone,
   PlusCircle,
   Settings,
+  Shield,
+  Users,
+  X,
 } from 'lucide-react'
+import { useUIStore } from '@/stores/ui.store'
 import AdminLangSwitcher from './AdminLangSwitcher'
 
 export default function AdminSidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { t } = useTranslation()
+  const setMobileSidebarOpen = useUIStore((s) => s.setMobileSidebarOpen)
 
   const groups = [
     {
@@ -47,6 +52,13 @@ export default function AdminSidebar() {
       ],
     },
     {
+      key: 'accessGroup',
+      items: [
+        { key: 'users', href: '/admin/users', icon: Users },
+        { key: 'roles', href: '/admin/roles', icon: Shield },
+      ],
+    },
+    {
       key: 'settingsGroup',
       items: [
         { key: 'navigation', href: '/admin/navigation', icon: Navigation },
@@ -61,13 +73,22 @@ export default function AdminSidebar() {
   }
 
   return (
-    <aside className="flex min-h-screen w-60 flex-col border-e border-gray-100 bg-white dark:border-sop-border dark:bg-sop-overlay">
-      <div className="border-b border-gray-100 px-6 py-5 dark:border-sop-border">
+    <aside className="flex h-full min-h-screen w-64 flex-col border-e border-gray-100 bg-white dark:border-sop-border dark:bg-sop-overlay">
+      <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5 dark:border-sop-border">
         <span className="text-xl font-bold text-foreground dark:text-sop-foreground">
           Worth <span className="text-primary">CMS</span>
         </span>
+        {/* Close button – mobile only */}
+        <button
+          type="button"
+          onClick={() => setMobileSidebarOpen(false)}
+          className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:text-sop-subtle dark:hover:bg-sop-hover dark:hover:text-sop-foreground lg:hidden"
+          aria-label="Close sidebar"
+        >
+          <X size={18} />
+        </button>
       </div>
-      <nav className="max-h-[calc(100%-70px-179px)] overflow-y-auto px-3 py-4">
+      <nav className="flex-1 overflow-y-auto px-3 py-4">
         {groups.map((group) => (
           <div key={group.key} className="mb-6">
             <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-sop-subtle">
@@ -94,9 +115,7 @@ export default function AdminSidebar() {
           </div>
         ))}
       </nav>
-      <div className="space-y-2 border-t border-gray-100 p-3 dark:border-sop-border">
-     
-     
+      <div className="border-t border-gray-100 p-3 dark:border-sop-border">
         <button
           type="button"
           onClick={handleLogout}

@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 }
 
 export default async function AboutPage() {
-  const aboutData = getContentData<AboutData>('about')
+  const aboutData = await getContentData<AboutData>('about')
   return <AboutPageClient aboutData={aboutData} />
 }

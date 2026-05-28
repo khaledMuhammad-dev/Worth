@@ -18,12 +18,12 @@ export default function LocaleField({
   multiline,
 }: LocaleFieldProps) {
   const inputClass =
-    'w-full rounded-lg border border-gray-200 px-3 py-2 text-sm transition focus:border-primary focus:outline-none'
+    'w-full rounded-lg border border-gray-200 px-3 py-2 text-sm transition focus:border-primary focus:outline-none dark:bg-sop-bg dark:border-sop-border dark:text-sop-foreground dark:placeholder:text-sop-subtle dark:caret-sop-foreground'
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">{labelEN} (EN)</label>
+        <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-sop-muted">{labelEN} (EN)</label>
         {multiline ? (
           <textarea
             dir="ltr"
@@ -44,7 +44,7 @@ export default function LocaleField({
         )}
       </div>
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">{labelAR} (AR)</label>
+        <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-sop-muted">{labelAR} (AR)</label>
         {multiline ? (
           <textarea
             dir="rtl"

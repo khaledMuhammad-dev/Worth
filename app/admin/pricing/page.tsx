@@ -64,7 +64,7 @@ export default function AdminPricingPage() {
 
           <TabsContent value="packages" className="space-y-4">
             {data.packages.map((pkg, index) => (
-              <div key={pkg.id} className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+              <div key={pkg.id} className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
                 <LocaleField labelEN="Package Name" labelAR="اسم الباقة" valueEN={pkg.nameEN} valueAR={pkg.nameAR} onChangeEN={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, nameEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, nameAR: value } : entry) })} />
                 <LocaleField multiline labelEN="Description" labelAR="الوصف" valueEN={pkg.descriptionEN} valueAR={pkg.descriptionAR} onChangeEN={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionAR: value } : entry) })} />
                 <LocaleField labelEN="Badge" labelAR="الشارة" valueEN={pkg.badgeEN} valueAR={pkg.badgeAR} onChangeEN={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, badgeEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, badgeAR: value } : entry) })} />
@@ -83,7 +83,7 @@ export default function AdminPricingPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="currencies" className="space-y-3 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="currencies" className="space-y-3 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.currencies.map((currency, index) => (
               <div key={currency.code} className="grid gap-3 md:grid-cols-3">
                 <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.code} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, code: event.target.value } : entry) })} placeholder={t('admin.pricing.currencyCode')} />
@@ -93,7 +93,7 @@ export default function AdminPricingPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="faq" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="faq" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.faq.map((faq, index) => (
               <div key={faq.id} className="space-y-3 rounded-xl border border-gray-100 p-4">
                 <LocaleField labelEN="Question" labelAR="السؤال" valueEN={faq.questionEN} valueAR={faq.questionAR} onChangeEN={(value) => setData({ ...data, faq: data.faq.map((entry, itemIndex) => itemIndex === index ? { ...entry, questionEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, faq: data.faq.map((entry, itemIndex) => itemIndex === index ? { ...entry, questionAR: value } : entry) })} />
@@ -102,7 +102,7 @@ export default function AdminPricingPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="note" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="note" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField multiline labelEN="Note" labelAR="الملاحظة" valueEN={data.note.textEN} valueAR={data.note.textAR} onChangeEN={(value) => setData({ ...data, note: { ...data.note, textEN: value } })} onChangeAR={(value) => setData({ ...data, note: { ...data.note, textAR: value } })} />
           </TabsContent>
         </Tabs>

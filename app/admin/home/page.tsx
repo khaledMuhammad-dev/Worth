@@ -74,7 +74,7 @@ export default function AdminHomePage() {
             <TabsTrigger value="cta">{t('admin.home.tabCta')}</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="hero" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="hero" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
             <LocaleField labelEN="Accent Word" labelAR="الكلمة المميزة" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
             <LocaleField multiline labelEN="Subheading" labelAR="العنوان الفرعي" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
@@ -94,7 +94,7 @@ export default function AdminHomePage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="services" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="services" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.services.headingEN} valueAR={data.services.headingAR} onChangeEN={(value) => setData({ ...data, services: { ...data.services, headingEN: value } })} onChangeAR={(value) => setData({ ...data, services: { ...data.services, headingAR: value } })} />
             <LocaleField labelEN="Accent" labelAR="الكلمة المميزة" valueEN={data.services.accentWordEN} valueAR={data.services.accentWordAR} onChangeEN={(value) => setData({ ...data, services: { ...data.services, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, services: { ...data.services, accentWordAR: value } })} />
             {data.services.items.map((item, index) => (
@@ -112,7 +112,7 @@ export default function AdminHomePage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="process" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="process" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.process.headingEN} valueAR={data.process.headingAR} onChangeEN={(value) => setData({ ...data, process: { ...data.process, headingEN: value } })} onChangeAR={(value) => setData({ ...data, process: { ...data.process, headingAR: value } })} />
             <LocaleField labelEN="Accent" labelAR="الكلمة المميزة" valueEN={data.process.accentWordEN} valueAR={data.process.accentWordAR} onChangeEN={(value) => setData({ ...data, process: { ...data.process, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, process: { ...data.process, accentWordAR: value } })} />
             {data.process.steps.map((step, index) => (
@@ -124,7 +124,7 @@ export default function AdminHomePage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="testimonials" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="testimonials" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.testimonials.headingEN} valueAR={data.testimonials.headingAR} onChangeEN={(value) => setData({ ...data, testimonials: { ...data.testimonials, headingEN: value } })} onChangeAR={(value) => setData({ ...data, testimonials: { ...data.testimonials, headingAR: value } })} />
             <LocaleField labelEN="Accent" labelAR="الكلمة المميزة" valueEN={data.testimonials.accentWordEN} valueAR={data.testimonials.accentWordAR} onChangeEN={(value) => setData({ ...data, testimonials: { ...data.testimonials, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, testimonials: { ...data.testimonials, accentWordAR: value } })} />
             {data.testimonials.items.map((item, index) => (
@@ -136,7 +136,7 @@ export default function AdminHomePage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="cta" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="cta" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField multiline labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.cta.headingEN} valueAR={data.cta.headingAR} onChangeEN={(value) => setData({ ...data, cta: { ...data.cta, headingEN: value } })} onChangeAR={(value) => setData({ ...data, cta: { ...data.cta, headingAR: value } })} />
             <LocaleField labelEN="Button" labelAR="الزر" valueEN={data.cta.buttonEN} valueAR={data.cta.buttonAR} onChangeEN={(value) => setData({ ...data, cta: { ...data.cta, buttonEN: value } })} onChangeAR={(value) => setData({ ...data, cta: { ...data.cta, buttonAR: value } })} />
             <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.cta.buttonHref} onChange={(event) => setData({ ...data, cta: { ...data.cta, buttonHref: event.target.value } })} placeholder="Button href" />

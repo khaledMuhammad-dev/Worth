@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 }
 
 export default async function WorkPage() {
-  const workData = getContentData<WorkData>('work')
+  const workData = await getContentData<WorkData>('work')
   return <WorkPageClient workData={workData} />
 }

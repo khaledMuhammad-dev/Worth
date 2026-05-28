@@ -6,13 +6,13 @@ import ProjectPageClient from './ProjectPageClient'
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
-  const work = getContentData<WorkData>('work')
+  const work = await getContentData<WorkData>('work')
   return work.projects.map((project) => ({ slug: project.slug }))
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const work = getContentData<WorkData>('work')
+  const work = await getContentData<WorkData>('work')
   const currentIndex = work.projects.findIndex((project) => project.slug === slug)
   if (currentIndex === -1) notFound()
 

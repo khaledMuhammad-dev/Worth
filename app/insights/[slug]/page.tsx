@@ -10,17 +10,17 @@ import { notFound } from 'next/navigation'
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
-  const posts = getBlogMeta()
+  const posts = await getBlogMeta()
   return posts.filter((p) => p.status === 'published').map((p) => ({ slug: p.slug }))
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const allMeta = getBlogMeta()
+  const allMeta = await getBlogMeta()
   const meta = allMeta.find((p) => p.slug === slug)
   if (!meta || meta.status !== 'published') notFound()
 
-  const raw = getBlogPost(slug)
+  const raw = await getBlogPost(slug)
   const { content } = matter(raw)
   const mdxSource = await serialize(content, {
     mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeHighlight] },

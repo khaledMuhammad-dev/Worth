@@ -44,7 +44,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#F97316] dark:bg-sop-overlay">
+    <footer className="bg-[#F97316] dark:bg-sop-surface dark:border-t dark:border-sop-border">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="footer-col sm:col-span-2 lg:col-span-1">
@@ -93,7 +93,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/15 dark:border-sop-border">
+      <div className="border-t border-white/15 dark:border-sop-border dark:bg-sop-bg">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
           <p className="text-sm text-white/60 dark:text-sop-subtle">{t('footer.copyright')}</p>
           <div className="flex items-center gap-5">

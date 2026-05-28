@@ -104,7 +104,7 @@ export default function AdminWorkPage() {
         <div className="mb-4 flex justify-end">
           <button type="button" onClick={openCreate} className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-orange-600"><Plus size={16} />{t('admin.work.addProject')}</button>
         </div>
-        <div className="overflow-hidden rounded-xl border border-gray-100 bg-white">
+        <div className="overflow-hidden rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white">
           <table className="w-full text-left text-sm">
             <thead className="bg-surface text-muted">
               <tr>

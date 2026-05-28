@@ -45,7 +45,7 @@ export default function AdminAboutPage() {
             <TabsTrigger value="clients">{t('admin.about.tabClients')}</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="story" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="story" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             <LocaleField labelEN="Hero Heading" labelAR="عنوان الهيرو" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
             <LocaleField labelEN="Hero Accent" labelAR="الكلمة المميزة للهيرو" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
             <LocaleField multiline labelEN="Hero Subheading" labelAR="العنوان الفرعي للهيرو" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
@@ -53,7 +53,7 @@ export default function AdminAboutPage() {
             <LocaleField multiline labelEN="Story Body" labelAR="نص القصة" valueEN={data.story.bodyEN} valueAR={data.story.bodyAR} onChangeEN={(value) => setData({ ...data, story: { ...data.story, bodyEN: value } })} onChangeAR={(value) => setData({ ...data, story: { ...data.story, bodyAR: value } })} />
           </TabsContent>
 
-          <TabsContent value="values" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="values" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.values.map((value, index) => (
               <div key={value.id} className="space-y-3 rounded-xl border border-gray-100 p-4">
                 <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={value.icon} onChange={(event) => setData({ ...data, values: data.values.map((entry, itemIndex) => itemIndex === index ? { ...entry, icon: event.target.value } : entry) })} placeholder={t('admin.about.iconKey')} />
@@ -63,7 +63,7 @@ export default function AdminAboutPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="team" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="team" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.team.map((member, index) => (
               <div key={member.id} className="space-y-3 rounded-xl border border-gray-100 p-4">
                 <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={member.name} onChange={(event) => setData({ ...data, team: data.team.map((entry, itemIndex) => itemIndex === index ? { ...entry, name: event.target.value } : entry) })} placeholder={t('admin.about.memberName')} />
@@ -74,7 +74,7 @@ export default function AdminAboutPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="milestones" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="milestones" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.milestones.map((milestone, index) => (
               <div key={milestone.year} className="space-y-3 rounded-xl border border-gray-100 p-4">
                 <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={milestone.year} onChange={(event) => setData({ ...data, milestones: data.milestones.map((entry, itemIndex) => itemIndex === index ? { ...entry, year: event.target.value } : entry) })} placeholder={t('admin.about.milestoneYear')} />
@@ -84,7 +84,7 @@ export default function AdminAboutPage() {
             ))}
           </TabsContent>
 
-          <TabsContent value="clients" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+          <TabsContent value="clients" className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
             {data.clients.map((client, index) => (
               <div key={client.id} className="space-y-3 rounded-xl border border-gray-100 p-4">
                 <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={client.name} onChange={(event) => setData({ ...data, clients: data.clients.map((entry, itemIndex) => itemIndex === index ? { ...entry, name: event.target.value } : entry) })} placeholder={t('admin.about.clientName')} />

@@ -1,9 +1,9 @@
-import fs from 'fs'
-import path from 'path'
-import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
-import { getContentData } from '@/lib/content'
+import { verifyAdminSession } from '@/lib/auth/verify-session'
+import { checkPermission } from '@/lib/rbac/check-permission'
+import { adminDb } from '@/lib/firebase/admin'
+import { COLLECTIONS } from '@/lib/firebase/collections'
 import type { ServicesData, WorkData } from '@/lib/types/content'
 
 const ALLOWLIST = [
@@ -23,10 +23,8 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ page: string }> }
 ) {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('worth_admin_token')?.value
-
-  if (!token || token !== process.env.ADMIN_SECRET_TOKEN) {
+  const user = await verifyAdminSession(request)
+  if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -36,12 +34,23 @@ export async function POST(
     return NextResponse.json({ error: 'Invalid page' }, { status: 400 })
   }
 
-  const data = await request.json()
-  const filePath = path.join(process.cwd(), 'content/data', `${page}.json`)
-  const existing = fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, 'utf8')) : null
-  const nextData = Array.isArray(data) || Array.isArray(existing) ? data : { ...(existing ?? {}), ...data }
+  // Map page name to content permission
+  const contentPage = page === 'blog-meta' ? 'blog' : page
+  const hasPermission = await checkPermission(
+    user,
+    `content:${contentPage}:edit` as Parameters<typeof checkPermission>[1]
+  )
+  if (!hasPermission) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
 
-  fs.writeFileSync(filePath, JSON.stringify(nextData, null, 2), 'utf8')
+  const data = await request.json()
+
+  // Write to Firestore
+  await adminDb
+    .collection(COLLECTIONS.CONTENT)
+    .doc(page)
+    .set(data, { merge: !Array.isArray(data) })
 
   const revalidateMap: Record<string, string[]> = {
     announcements: ['/', '/about', '/services', '/pricing', '/work', '/contact', '/insights'],
@@ -61,18 +70,25 @@ export async function POST(
   }
 
   if (page === 'services') {
-    const services = getContentData<ServicesData>('services')
-    for (const s of services.items) {
-      revalidatePath(`/services/${s.slug}`)
+    const doc = await adminDb.collection(COLLECTIONS.CONTENT).doc('services').get()
+    const services = doc.data() as ServicesData | undefined
+    if (services?.items) {
+      for (const s of services.items) {
+        revalidatePath(`/services/${s.slug}`)
+      }
     }
   }
 
   if (page === 'work') {
-    const work = getContentData<WorkData>('work')
-    for (const p of work.projects) {
-      revalidatePath(`/work/${p.slug}`)
+    const doc = await adminDb.collection(COLLECTIONS.CONTENT).doc('work').get()
+    const work = doc.data() as WorkData | undefined
+    if (work?.projects) {
+      for (const p of work.projects) {
+        revalidatePath(`/work/${p.slug}`)
+      }
     }
   }
 
   return NextResponse.json({ success: true })
 }
+

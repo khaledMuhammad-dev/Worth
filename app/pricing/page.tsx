@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 }
 
 export default async function PricingPage() {
-  const raw = getContentData<RawPricingData>('pricing')
+  const raw = await getContentData<RawPricingData>('pricing')
   const pricingData = {
     hero: raw.hero,
     currencies: Object.fromEntries(raw.currencies.map((currency) => [currency.code, { symbol: currency.symbol, rate: 1 }])),

@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const homeData = getContentData<HomeData>('home')
+  const homeData = await getContentData<HomeData>('home')
   return <HomePageClient homeData={homeData} />
 }

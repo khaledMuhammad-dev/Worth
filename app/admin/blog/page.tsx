@@ -53,7 +53,7 @@ export default function AdminBlogPage() {
       <div className="space-y-4 p-6">
         <div className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 md:flex-row md:items-center md:justify-between">
           <input className="w-full max-w-md rounded-lg border border-gray-200 px-3 py-2 text-sm" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('admin.blog.searchPlaceholder')} />
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {(['all', 'published', 'draft'] as const).map((value) => (
               <button key={value} type="button" onClick={() => setFilter(value)} className={`rounded-full px-4 py-2 text-sm ${filter === value ? 'bg-primary text-white' : 'bg-surface text-muted'}`}>
                 {t(`admin.blog.${value}`)}
@@ -64,6 +64,7 @@ export default function AdminBlogPage() {
         </div>
 
         <div className="overflow-hidden rounded-xl border border-gray-100 bg-white">
+          <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-surface text-muted">
               <tr>
@@ -105,6 +106,7 @@ export default function AdminBlogPage() {
               )}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 

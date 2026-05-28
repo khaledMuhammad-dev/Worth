@@ -44,14 +44,14 @@ export default function AdminServicesPage() {
     <div>
       <AdminHeader title={t('admin.services.title')} subtitle={t('admin.services.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
-        <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+        <div className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
           <LocaleField labelEN="Accent" labelAR="الكلمة المميزة" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
           <LocaleField multiline labelEN="Subheading" labelAR="العنوان الفرعي" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
         </div>
 
         {data.items.map((item, index) => (
-          <details key={item.id} className="rounded-xl border border-gray-100 bg-white p-6" open>
+          <details key={item.id} className="rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6" open>
             <summary className="cursor-pointer list-none text-lg font-semibold text-foreground">{item.titleEN}</summary>
             <div className="mt-4 space-y-4">
               <div className="grid gap-3 md:grid-cols-3">

@@ -140,7 +140,7 @@ export default function AnnouncementPage() {
             </div>
           ) : (
             sortedItems.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4">
+            <div key={item.id} className="flex items-center gap-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-4">
               <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-bold text-gray-500">#{item.priority}</span>
               <span className="text-xl">{item.emoji}</span>
               <div className="min-w-0 flex-1">

@@ -35,7 +35,7 @@ export default function AdminSettingsPage() {
     <div>
       <AdminHeader title={t('admin.settings.title')} subtitle={t('admin.settings.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
-        <div className="grid gap-4 rounded-xl border border-gray-100 bg-white p-6 md:grid-cols-2">
+        <div className="grid gap-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6 md:grid-cols-2">
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.siteName} onChange={(event) => setData({ ...data, siteName: event.target.value })} placeholder={t('admin.settings.siteName')} />
           <select className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.defaultLocale} onChange={(event) => setData({ ...data, defaultLocale: event.target.value })}>
             <option value="en">{t('admin.settings.english')}</option>
@@ -43,10 +43,10 @@ export default function AdminSettingsPage() {
           </select>
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm md:col-span-2" value={data.googleAnalyticsId} onChange={(event) => setData({ ...data, googleAnalyticsId: event.target.value })} placeholder={t('admin.settings.googleAnalyticsId')} />
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-6">
+        <div className="rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <LocaleField multiline labelEN={t('admin.settings.metaDescription')} labelAR={t('admin.settings.metaDescription')} valueEN={data.metaDescriptionEN} valueAR={data.metaDescriptionAR} onChangeEN={(value) => setData({ ...data, metaDescriptionEN: value })} onChangeAR={(value) => setData({ ...data, metaDescriptionAR: value })} />
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-6">
+        <div className="rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <ImageField label={t('admin.settings.ogImageUrl')} value={data.ogImageUrl} onChange={(value) => setData({ ...data, ogImageUrl: value })} />
         </div>
       </div>

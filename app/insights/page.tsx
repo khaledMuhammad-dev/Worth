@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function InsightsPage() {
-  const allPosts = getBlogMeta()
+  const allPosts = await getBlogMeta()
   const published = allPosts
     .filter((p) => p.status === 'published')
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())

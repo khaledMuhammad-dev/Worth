@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ContactPage() {
-  const raw = getContentData<RawContactData>('contact')
+  const raw = await getContentData<RawContactData>('contact')
   const fieldMap = Object.fromEntries(raw.formFields.map((field) => [field.id, field]))
   const contactData: ContactData = {
     hero: {

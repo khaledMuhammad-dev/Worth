@@ -34,18 +34,18 @@ export default function AdminContactPage() {
     <div>
       <AdminHeader title={t('admin.contact.title')} subtitle={t('admin.contact.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
-        <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+        <div className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <LocaleField labelEN="Hero Heading" labelAR="عنوان الهيرو" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
           <LocaleField multiline labelEN="Hero Subheading" labelAR="العنوان الفرعي للهيرو" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
         </div>
-        <div className="grid gap-4 rounded-xl border border-gray-100 bg-white p-6 md:grid-cols-2">
+        <div className="grid gap-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6 md:grid-cols-2">
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.email} onChange={(event) => setData({ ...data, info: { ...data.info, email: event.target.value } })} placeholder={t('admin.contact.emailPlaceholder')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.phone} onChange={(event) => setData({ ...data, info: { ...data.info, phone: event.target.value } })} placeholder={t('admin.contact.phonePlaceholder')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.mapEmbedUrl} onChange={(event) => setData({ ...data, info: { ...data.info, mapEmbedUrl: event.target.value } })} placeholder={t('admin.contact.mapEmbedUrl')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.bookingUrl} onChange={(event) => setData({ ...data, info: { ...data.info, bookingUrl: event.target.value } })} placeholder={t('admin.contact.bookingUrl')} />
           <LocaleField multiline labelEN="Address" labelAR="العنوان" valueEN={data.info.addressEN} valueAR={data.info.addressAR} onChangeEN={(value) => setData({ ...data, info: { ...data.info, addressEN: value } })} onChangeAR={(value) => setData({ ...data, info: { ...data.info, addressAR: value } })} />
         </div>
-        <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+        <div className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-foreground">{t('admin.contact.socialsTitle')}</h2>
             <button type="button" onClick={() => setData({ ...data, socials: [...data.socials, { platform: '', url: '' }] })} className="flex items-center gap-1 text-sm text-primary"><Plus size={14} />{t('admin.contact.addSocial')}</button>
@@ -58,7 +58,7 @@ export default function AdminContactPage() {
             </div>
           ))}
         </div>
-        <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
+        <div className="space-y-4 rounded-xl border dark:border-sop-border dark:bg-sop-surface bg-white p-6">
           <h2 className="font-semibold text-foreground">{t('admin.contact.formFieldsTitle')}</h2>
           {data.formFields.map((field, index) => (
             <div key={field.id} className="space-y-3 rounded-xl border border-gray-100 p-4">

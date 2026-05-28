@@ -217,3 +217,17 @@ export interface ContactData {
   socials: { platform: string; url: string }[]
   formFields: { nameEN: string; nameAR: string; emailEN: string; emailAR: string; serviceEN: string; serviceAR: string; messageEN: string; messageAR: string; submitEN: string; submitAR: string }
 }
+
+export interface BlogMeta {
+  slug: string
+  titleEN: string
+  titleAR: string
+  excerptEN: string
+  excerptAR: string
+  author: string
+  coverUrl: string
+  tags: string[]
+  status: 'published' | 'draft'
+  publishedAt: string
+  updatedAt: string
+}

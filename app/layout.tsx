@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const announcements = getContentData<Announcement[]>('announcements');
+  const announcements = await getContentData<Announcement[]>('announcements');
 
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>

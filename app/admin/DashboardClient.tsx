@@ -49,7 +49,7 @@ export default function DashboardClient({
       <div className="space-y-8 p-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <div key={stat.labelKey} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-5 dark:border-sop-border dark:bg-sop-overlay dark:shadow-sop-card">
+            <div key={stat.labelKey} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white dark:bg-sop-surface p-5 dark:border-sop-border dark:bg-sop-overlay dark:shadow-sop-card">
               <div className={`rounded-xl p-3 ${stat.color}`}>
                 <stat.icon size={20} />
               </div>
@@ -68,7 +68,7 @@ export default function DashboardClient({
               <Link
                 key={action.href}
                 href={action.href}
-                className="group flex items-center justify-between rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm text-foreground transition hover:border-primary hover:text-primary dark:border-sop-border dark:bg-sop-overlay dark:text-sop-foreground dark:hover:border-sop-purple dark:hover:text-sop-purple"
+                className="group flex items-center justify-between rounded-xl border border-gray-100 bg-white dark:bg-sop-surface px-4 py-3 text-sm text-foreground transition hover:border-primary hover:text-primary dark:border-sop-border dark:bg-sop-overlay dark:text-sop-foreground dark:hover:border-sop-purple dark:hover:text-sop-purple"
               >
                 {t(`admin.dashboard.${action.labelKey}`)}
                 <ArrowRight size={14} className="opacity-0 transition group-hover:opacity-100" />
@@ -79,7 +79,7 @@ export default function DashboardClient({
 
         <div>
           <h2 className="mb-3 font-semibold text-foreground dark:text-sop-foreground">{t('admin.dashboard.contentFiles')}</h2>
-          <div className="divide-y divide-gray-50 rounded-xl border border-gray-100 bg-white dark:divide-sop-border dark:border-sop-border dark:bg-sop-overlay">
+          <div className="divide-y divide-gray-50 rounded-xl border border-gray-100 bg-white dark:bg-sop-surface dark:divide-sop-border dark:border-sop-border dark:bg-sop-overlay">
             {fileStats.map((file) => (
               <div key={file.name} className="flex items-center justify-between px-4 py-3 text-sm">
                 <span className="font-medium text-foreground dark:text-sop-foreground">{file.name}.json</span>
