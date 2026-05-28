@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/navigation.json'
@@ -15,6 +16,7 @@ interface NavigationData {
 export default function AdminNavigationPage() {
   const [data, setData] = useState<NavigationData>(() => JSON.parse(JSON.stringify(initialData)))
   const [saving, setSaving] = useState(false)
+  const { t } = useTranslation()
 
   const save = async () => {
     setSaving(true)
@@ -28,7 +30,7 @@ export default function AdminNavigationPage() {
 
   return (
     <div>
-      <AdminHeader title="Navigation" subtitle="Edit labels and links" onSave={save} saving={saving} />
+      <AdminHeader title={t('admin.navigation.title')} subtitle={t('admin.navigation.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
           {data.links.map((link, index) => (

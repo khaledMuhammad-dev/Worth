@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import ImageField from '@/components/admin/ImageField'
@@ -37,6 +38,7 @@ export default function AdminWorkPage() {
   const [open, setOpen] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [confirmId, setConfirmId] = useState<string | null>(null)
+  const { t } = useTranslation()
   const [form, setForm] = useState<Project>({
     id: '',
     slug: '',
@@ -96,28 +98,28 @@ export default function AdminWorkPage() {
 
   return (
     <div>
-      <AdminHeader title="Work / Portfolio" subtitle="Manage case studies and featured projects" />
+      <AdminHeader title={t('admin.work.title')} subtitle={t('admin.work.subtitle')} />
       <div className="p-6">
         <div className="mb-4 flex justify-end">
-          <button type="button" onClick={openCreate} className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-orange-600"><Plus size={16} />Add Project</button>
+          <button type="button" onClick={openCreate} className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-orange-600"><Plus size={16} />{t('admin.work.addProject')}</button>
         </div>
         <div className="overflow-hidden rounded-xl border border-gray-100 bg-white">
           <table className="w-full text-left text-sm">
             <thead className="bg-surface text-muted">
               <tr>
-                <th className="px-4 py-3">Title</th>
-                <th className="px-4 py-3">Slug</th>
-                <th className="px-4 py-3">Year</th>
-                <th className="px-4 py-3">Featured</th>
-                <th className="px-4 py-3">Actions</th>
+                <th className="px-4 py-3">{t('admin.work.tableTitle')}</th>
+                <th className="px-4 py-3">{t('admin.work.tableSlug')}</th>
+                <th className="px-4 py-3">{t('admin.work.tableYear')}</th>
+                <th className="px-4 py-3">{t('admin.work.tableFeatured')}</th>
+                <th className="px-4 py-3">{t('admin.work.tableActions')}</th>
               </tr>
             </thead>
             <tbody>
               {projects.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-4 py-16 text-center">
-                    <p className="text-sm font-medium text-foreground">No projects yet</p>
-                    <p className="mt-1 text-xs text-muted">Click "Add Project" to create your first case study.</p>
+                    <p className="text-sm font-medium text-foreground">{t('admin.work.noProjects')}</p>
+                    <p className="mt-1 text-xs text-muted">{t('admin.work.noProjectsHint')}</p>
                   </td>
                 </tr>
               ) : (
@@ -126,7 +128,7 @@ export default function AdminWorkPage() {
                     <td className="px-4 py-3 font-medium text-foreground">{project.titleEN}</td>
                     <td className="px-4 py-3 text-muted">{project.slug}</td>
                     <td className="px-4 py-3 text-muted">{project.year}</td>
-                    <td className="px-4 py-3">{project.featured ? 'Yes' : 'No'}</td>
+                    <td className="px-4 py-3">{project.featured ? t('admin.work.yes') : t('admin.work.no')}</td>
                     <td className="px-4 py-3">
                       <div className="flex gap-3">
                         <button type="button" onClick={() => openEdit(project)} className="text-gray-400 hover:text-primary"><Edit2 size={16} /></button>
@@ -144,69 +146,69 @@ export default function AdminWorkPage() {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent className="w-full max-w-2xl overflow-y-auto sm:max-w-2xl">
           <SheetHeader>
-            <SheetTitle>{editingId ? 'Edit Project' : 'New Project'}</SheetTitle>
+            <SheetTitle>{editingId ? t('admin.work.editProject') : t('admin.work.newProject')}</SheetTitle>
           </SheetHeader>
           <div className="space-y-4 px-6 pb-6">
             <div className="grid gap-3 md:grid-cols-2">
-              <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} placeholder="Slug" />
-              <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.year} onChange={(event) => setForm({ ...form, year: event.target.value })} placeholder="Year" />
+              <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} placeholder={t('admin.work.slug')} />
+              <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.year} onChange={(event) => setForm({ ...form, year: event.target.value })} placeholder={t('admin.work.year')} />
             </div>
             <LocaleField labelEN="Title" labelAR="Title" valueEN={form.titleEN} valueAR={form.titleAR} onChangeEN={(value) => setForm({ ...form, titleEN: value })} onChangeAR={(value) => setForm({ ...form, titleAR: value })} />
-            <ImageField label="Cover URL" value={form.coverUrl} onChange={(value) => setForm({ ...form, coverUrl: value })} />
+            <ImageField label={t('admin.work.coverUrl')} value={form.coverUrl} onChange={(value) => setForm({ ...form, coverUrl: value })} />
             <LocaleField labelEN="Industry" labelAR="Industry" valueEN={form.industryEN} valueAR={form.industryAR} onChangeEN={(value) => setForm({ ...form, industryEN: value })} onChangeAR={(value) => setForm({ ...form, industryAR: value })} />
             <LocaleField multiline labelEN="Summary" labelAR="Summary" valueEN={form.summaryEN} valueAR={form.summaryAR} onChangeEN={(value) => setForm({ ...form, summaryEN: value })} onChangeAR={(value) => setForm({ ...form, summaryAR: value })} />
             <LocaleField multiline labelEN="Challenge" labelAR="Challenge" valueEN={form.challengeEN} valueAR={form.challengeAR} onChangeEN={(value) => setForm({ ...form, challengeEN: value })} onChangeAR={(value) => setForm({ ...form, challengeAR: value })} />
             <LocaleField multiline labelEN="Solution" labelAR="Solution" valueEN={form.solutionEN} valueAR={form.solutionAR} onChangeEN={(value) => setForm({ ...form, solutionEN: value })} onChangeAR={(value) => setForm({ ...form, solutionAR: value })} />
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-500">Tags (comma separated)</label>
+              <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.work.tagsLabel')}</label>
               <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.tags.join(', ')} onChange={(event) => setForm({ ...form, tags: event.target.value.split(',').map((item) => item.trim()).filter(Boolean) })} />
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-foreground">Results EN</h3>
+              <h3 className="text-sm font-semibold text-foreground">{t('admin.work.resultsEN')}</h3>
               {form.resultsEN.map((result, index) => (
                 <div key={index} className="flex gap-2">
                   <input className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm" value={result} onChange={(event) => setForm({ ...form, resultsEN: form.resultsEN.map((entry, itemIndex) => itemIndex === index ? event.target.value : entry) })} />
                   <button type="button" onClick={() => setForm({ ...form, resultsEN: form.resultsEN.filter((_, itemIndex) => itemIndex !== index) })} className="text-red-500"><Trash2 size={16} /></button>
                 </div>
               ))}
-              <button type="button" onClick={() => setForm({ ...form, resultsEN: [...form.resultsEN, ''] })} className="text-sm text-primary">+ Add result</button>
+              <button type="button" onClick={() => setForm({ ...form, resultsEN: [...form.resultsEN, ''] })} className="text-sm text-primary">{t('admin.work.addResult')}</button>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-foreground">Results AR</h3>
+              <h3 className="text-sm font-semibold text-foreground">{t('admin.work.resultsAR')}</h3>
               {form.resultsAR.map((result, index) => (
                 <div key={index} className="flex gap-2">
                   <input dir="rtl" className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm font-arabic" value={result} onChange={(event) => setForm({ ...form, resultsAR: form.resultsAR.map((entry, itemIndex) => itemIndex === index ? event.target.value : entry) })} />
                   <button type="button" onClick={() => setForm({ ...form, resultsAR: form.resultsAR.filter((_, itemIndex) => itemIndex !== index) })} className="text-red-500"><Trash2 size={16} /></button>
                 </div>
               ))}
-              <button type="button" onClick={() => setForm({ ...form, resultsAR: [...form.resultsAR, ''] })} className="text-sm text-primary">+ Add result</button>
+              <button type="button" onClick={() => setForm({ ...form, resultsAR: [...form.resultsAR, ''] })} className="text-sm text-primary">{t('admin.work.addResult')}</button>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-foreground">Gallery URLs</h3>
+              <h3 className="text-sm font-semibold text-foreground">{t('admin.work.galleryUrls')}</h3>
               {form.galleryUrls.map((url, index) => (
                 <div key={index} className="flex gap-2">
                   <input className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm" value={url} onChange={(event) => setForm({ ...form, galleryUrls: form.galleryUrls.map((entry, itemIndex) => itemIndex === index ? event.target.value : entry) })} />
                   <button type="button" onClick={() => setForm({ ...form, galleryUrls: form.galleryUrls.filter((_, itemIndex) => itemIndex !== index) })} className="text-red-500"><Trash2 size={16} /></button>
                 </div>
               ))}
-              <button type="button" onClick={() => setForm({ ...form, galleryUrls: [...form.galleryUrls, ''] })} className="text-sm text-primary">+ Add image</button>
+              <button type="button" onClick={() => setForm({ ...form, galleryUrls: [...form.galleryUrls, ''] })} className="text-sm text-primary">{t('admin.work.addImage')}</button>
             </div>
             <div className="flex items-center gap-3">
-              <label className="text-sm font-medium">Featured</label>
+              <label className="text-sm font-medium">{t('admin.work.featured')}</label>
               <button type="button" onClick={() => setForm({ ...form, featured: !form.featured })} className={`h-6 w-10 rounded-full transition ${form.featured ? 'bg-primary' : 'bg-gray-200'}`}>
                 <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.featured ? 'translate-x-4' : 'translate-x-0.5'}`} />
               </button>
             </div>
-            <button type="button" onClick={saveProject} disabled={saving} className="w-full rounded-lg bg-primary py-2.5 font-medium text-white transition hover:bg-orange-600 disabled:opacity-60">{saving ? 'Saving...' : 'Save Project'}</button>
+            <button type="button" onClick={saveProject} disabled={saving} className="w-full rounded-lg bg-primary py-2.5 font-medium text-white transition hover:bg-orange-600 disabled:opacity-60">{saving ? t('admin.work.savingProject') : t('admin.work.saveProject')}</button>
           </div>
         </SheetContent>
       </Sheet>
 
       <ConfirmDialog
         open={confirmId !== null}
-        title="Delete Project"
-        description={`"${projects.find((p) => p.id === confirmId)?.titleEN ?? 'This project'}" will be permanently deleted. This action cannot be undone.`}
-        confirmLabel="Delete Project"
+        title={t('admin.work.deleteProject')}
+        description={`"${projects.find((p) => p.id === confirmId)?.titleEN ?? ''}" ${t('admin.work.deleteProjectDesc')}`}
+        confirmLabel={t('admin.work.deleteProject')}
         onConfirm={() => { if (confirmId) { void removeProject(confirmId); setConfirmId(null) } }}
         onCancel={() => setConfirmId(null)}
       />

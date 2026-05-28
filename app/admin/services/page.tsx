@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/services.json'
@@ -27,6 +28,7 @@ interface ServicesData {
 export default function AdminServicesPage() {
   const [data, setData] = useState<ServicesData>(() => JSON.parse(JSON.stringify(initialData)))
   const [saving, setSaving] = useState(false)
+  const { t } = useTranslation()
 
   const save = async () => {
     setSaving(true)
@@ -40,7 +42,7 @@ export default function AdminServicesPage() {
 
   return (
     <div>
-      <AdminHeader title="Services" subtitle="Manage service cards and features" onSave={save} saving={saving} />
+      <AdminHeader title={t('admin.services.title')} subtitle={t('admin.services.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
           <LocaleField labelEN="Heading" labelAR="Heading" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
@@ -53,8 +55,8 @@ export default function AdminServicesPage() {
             <summary className="cursor-pointer list-none text-lg font-semibold text-foreground">{item.titleEN}</summary>
             <div className="mt-4 space-y-4">
               <div className="grid gap-3 md:grid-cols-3">
-                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={item.slug} onChange={(event) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, slug: event.target.value } : entry) })} placeholder="Slug" />
-                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={item.href} onChange={(event) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, href: event.target.value } : entry) })} placeholder="Href" />
+                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={item.slug} onChange={(event) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, slug: event.target.value } : entry) })} placeholder={t('admin.services.slugPlaceholder')} />
+                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={item.href} onChange={(event) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, href: event.target.value } : entry) })} placeholder={t('admin.services.hrefPlaceholder')} />
                 <div className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2">
                   <input type="color" value={item.iconColor} onChange={(event) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, iconColor: event.target.value } : entry) })} className="h-8 w-10" />
                   <span className="text-sm text-muted">{item.iconColor}</span>
@@ -65,8 +67,8 @@ export default function AdminServicesPage() {
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-foreground">Features EN</h3>
-                    <button type="button" onClick={() => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, featuresEN: [...entry.featuresEN, ''] } : entry) })} className="flex items-center gap-1 text-sm text-primary"><Plus size={14} />Add</button>
+                    <h3 className="text-sm font-semibold text-foreground">{t('admin.services.featuresEN')}</h3>
+                    <button type="button" onClick={() => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, featuresEN: [...entry.featuresEN, ''] } : entry) })} className="flex items-center gap-1 text-sm text-primary"><Plus size={14} />{t('admin.services.addFeature')}</button>
                   </div>
                   {item.featuresEN.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex gap-2">
@@ -77,8 +79,8 @@ export default function AdminServicesPage() {
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-foreground">Features AR</h3>
-                    <button type="button" onClick={() => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, featuresAR: [...entry.featuresAR, ''] } : entry) })} className="flex items-center gap-1 text-sm text-primary"><Plus size={14} />Add</button>
+                    <h3 className="text-sm font-semibold text-foreground">{t('admin.services.featuresAR')}</h3>
+                    <button type="button" onClick={() => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, featuresAR: [...entry.featuresAR, ''] } : entry) })} className="flex items-center gap-1 text-sm text-primary"><Plus size={14} />{t('admin.services.addFeature')}</button>
                   </div>
                   {item.featuresAR.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex gap-2">

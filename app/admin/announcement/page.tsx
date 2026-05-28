@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/announcements.json'
@@ -46,6 +47,7 @@ export default function AnnouncementPage() {
   const [form, setForm] = useState(emptyForm)
   const [saving, setSaving] = useState(false)
   const [confirmId, setConfirmId] = useState<string | null>(null)
+  const { t } = useTranslation()
 
   const sortedItems = useMemo(() => [...items].sort((a, b) => a.priority - b.priority), [items])
 
@@ -116,7 +118,7 @@ export default function AnnouncementPage() {
 
   return (
     <div>
-      <AdminHeader title="Announcements" subtitle="Manage announcement bar messages" />
+      <AdminHeader title={t('admin.announcements.title')} subtitle={t('admin.announcements.subtitle')} />
       <div className="p-6">
         <div className="mb-4 flex justify-end">
           <button
@@ -124,7 +126,7 @@ export default function AnnouncementPage() {
             onClick={openCreate}
             className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-orange-600"
           >
-            <Plus size={16} /> Add Announcement
+            <Plus size={16} /> {t('admin.announcements.addAnnouncement')}
           </button>
         </div>
 
@@ -132,8 +134,8 @@ export default function AnnouncementPage() {
           {sortedItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 bg-white py-16 text-center">
               <span className="mb-2 text-3xl">📢</span>
-              <p className="text-sm font-medium text-foreground">No announcements yet</p>
-              <p className="text-xs text-muted">Click "Add Announcement" to create your first one.</p>
+              <p className="text-sm font-medium text-foreground">{t('admin.announcements.noAnnouncements')}</p>
+              <p className="text-xs text-muted">{t('admin.announcements.noAnnouncementsHint')}</p>
             </div>
           ) : (
             sortedItems.map((item) => (
@@ -145,9 +147,9 @@ export default function AnnouncementPage() {
                 <p className="text-xs text-muted">{item.startDate} → {item.expiryDate}</p>
               </div>
               <span className={`rounded-full px-2 py-1 text-xs font-medium ${item.active ? 'bg-green-50 text-green-600' : 'bg-gray-100 text-gray-400'}`}>
-                {item.active ? 'Active' : 'Inactive'}
+                {item.active ? t('admin.announcements.active') : t('admin.announcements.inactive')}
               </span>
-              <button type="button" onClick={() => toggleActive(item.id)} className="rounded border border-gray-200 px-2 py-1 text-xs transition hover:bg-gray-50">Toggle</button>
+              <button type="button" onClick={() => toggleActive(item.id)} className="rounded border border-gray-200 px-2 py-1 text-xs transition hover:bg-gray-50">{t('admin.announcements.toggle')}</button>
               <button type="button" onClick={() => openEdit(item)} className="text-gray-400 transition hover:text-primary"><Edit2 size={16} /></button>
               <button type="button" onClick={() => setConfirmId(item.id)} className="text-gray-400 transition hover:text-red-500"><Trash2 size={16} /></button>
             </div>
@@ -158,14 +160,14 @@ export default function AnnouncementPage() {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent className="w-full max-w-md overflow-y-auto sm:max-w-md">
           <SheetHeader>
-            <SheetTitle>{editingId ? 'Edit Announcement' : 'New Announcement'}</SheetTitle>
+            <SheetTitle>{editingId ? t('admin.announcements.editTitle') : t('admin.announcements.newTitle')}</SheetTitle>
           </SheetHeader>
           <div className="space-y-4 px-6 pb-6">
             {[
-              ['Message EN', 'messageEN'],
-              ['CTA Label EN', 'ctaLabelEN'],
-              ['CTA Href', 'ctaHref'],
-              ['Emoji', 'emoji'],
+              [t('admin.announcements.messageEN'), 'messageEN'],
+              [t('admin.announcements.ctaLabelEN'), 'ctaLabelEN'],
+              [t('admin.announcements.ctaHref'), 'ctaHref'],
+              [t('admin.announcements.emoji'), 'emoji'],
             ].map(([label, key]) => (
               <div key={key}>
                 <label className="mb-1 block text-xs font-medium text-gray-500">{label}</label>
@@ -177,23 +179,23 @@ export default function AnnouncementPage() {
               </div>
             ))}
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-500">Message AR</label>
+              <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.messageAR')}</label>
               <input dir="rtl" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm font-arabic" value={form.messageAR} onChange={(event) => updateField('messageAR', event.target.value)} />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-gray-500">CTA Label AR</label>
+              <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.ctaLabelAR')}</label>
               <input dir="rtl" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm font-arabic" value={form.ctaLabelAR} onChange={(event) => updateField('ctaLabelAR', event.target.value)} />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-gray-500">Background Color</label>
+                <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.bgColor')}</label>
                 <div className="flex items-center gap-2">
                   <input type="color" value={form.bgColor} onChange={(event) => updateField('bgColor', event.target.value)} className="h-9 w-10 cursor-pointer rounded border" />
                   <span className="text-sm text-gray-600">{form.bgColor}</span>
                 </div>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-gray-500">Text Color</label>
+                <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.textColor')}</label>
                 <div className="flex items-center gap-2">
                   <input type="color" value={form.textColor} onChange={(event) => updateField('textColor', event.target.value)} className="h-9 w-10 cursor-pointer rounded border" />
                   <span className="text-sm text-gray-600">{form.textColor}</span>
@@ -202,28 +204,28 @@ export default function AnnouncementPage() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-gray-500">Start Date</label>
+                <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.startDate')}</label>
                 <input type="date" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.startDate} onChange={(event) => updateField('startDate', event.target.value)} />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-gray-500">Expiry Date</label>
+                <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.announcements.expiryDate')}</label>
                 <input type="date" className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.expiryDate} onChange={(event) => updateField('expiryDate', event.target.value)} />
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <label className="text-sm font-medium">Active</label>
+              <label className="text-sm font-medium">{t('admin.announcements.activeLabel')}</label>
               <button type="button" onClick={() => updateField('active', !form.active)} className={`h-6 w-10 rounded-full transition ${form.active ? 'bg-primary' : 'bg-gray-200'}`}>
                 <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.active ? 'translate-x-4' : 'translate-x-0.5'}`} />
               </button>
             </div>
             <div className="flex items-center gap-3">
-              <label className="text-sm font-medium">Dismissible</label>
+              <label className="text-sm font-medium">{t('admin.announcements.dismissibleLabel')}</label>
               <button type="button" onClick={() => updateField('dismissible', !form.dismissible)} className={`h-6 w-10 rounded-full transition ${form.dismissible ? 'bg-primary' : 'bg-gray-200'}`}>
                 <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${form.dismissible ? 'translate-x-4' : 'translate-x-0.5'}`} />
               </button>
             </div>
             <button type="button" onClick={saveItem} disabled={saving} className="w-full rounded-lg bg-primary py-2.5 font-medium text-white transition hover:bg-orange-600 disabled:opacity-60">
-              {saving ? 'Saving...' : 'Save Announcement'}
+              {saving ? t('admin.header.saving') : t('admin.announcements.saveAnnouncement')}
             </button>
           </div>
         </SheetContent>
@@ -231,9 +233,9 @@ export default function AnnouncementPage() {
 
       <ConfirmDialog
         open={confirmId !== null}
-        title="Delete Announcement"
-        description="This announcement will be permanently removed. This action cannot be undone."
-        confirmLabel="Delete"
+        title={t('admin.announcements.deleteTitle')}
+        description={t('admin.announcements.deleteDesc')}
+        confirmLabel={t('admin.announcements.delete')}
         onConfirm={() => { if (confirmId) { void removeItem(confirmId); setConfirmId(null) } }}
         onCancel={() => setConfirmId(null)}
       />

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/pricing.json'
@@ -36,6 +37,7 @@ interface PricingData {
 export default function AdminPricingPage() {
   const [data, setData] = useState<PricingData>(() => JSON.parse(JSON.stringify(initialData)))
   const [saving, setSaving] = useState(false)
+  const { t } = useTranslation()
 
   const save = async () => {
     setSaving(true)
@@ -49,14 +51,14 @@ export default function AdminPricingPage() {
 
   return (
     <div>
-      <AdminHeader title="Pricing" subtitle="Edit packages, currencies, FAQ, and notes" onSave={save} saving={saving} />
+      <AdminHeader title={t('admin.pricing.title')} subtitle={t('admin.pricing.subtitle')} onSave={save} saving={saving} />
       <div className="p-6">
         <Tabs defaultValue="packages">
           <TabsList className="mb-6 flex flex-wrap">
-            <TabsTrigger value="packages">Packages</TabsTrigger>
-            <TabsTrigger value="currencies">Currencies</TabsTrigger>
-            <TabsTrigger value="faq">FAQ</TabsTrigger>
-            <TabsTrigger value="note">Note</TabsTrigger>
+            <TabsTrigger value="packages">{t('admin.pricing.tabPackages')}</TabsTrigger>
+            <TabsTrigger value="currencies">{t('admin.pricing.tabCurrencies')}</TabsTrigger>
+            <TabsTrigger value="faq">{t('admin.pricing.tabFaq')}</TabsTrigger>
+            <TabsTrigger value="note">{t('admin.pricing.tabNote')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="packages" className="space-y-4">
@@ -73,7 +75,7 @@ export default function AdminPricingPage() {
                 </div>
                 <LocaleField labelEN="Period" labelAR="Period" valueEN={pkg.periodEN} valueAR={pkg.periodAR} onChangeEN={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, periodEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, periodAR: value } : entry) })} />
                 <div className="flex items-center gap-3">
-                  <label className="text-sm font-medium">Featured</label>
+                  <label className="text-sm font-medium">{t('admin.pricing.featuredLabel')}</label>
                   <button type="button" onClick={() => setData({ ...data, packages: data.packages.map((entry, itemIndex) => itemIndex === index ? { ...entry, featured: !entry.featured } : entry) })} className={`h-6 w-10 rounded-full transition ${pkg.featured ? 'bg-primary' : 'bg-gray-200'}`}>
                     <span className={`block h-5 w-5 rounded-full bg-white shadow transition-transform ${pkg.featured ? 'translate-x-4' : 'translate-x-0.5'}`} />
                   </button>
@@ -85,9 +87,9 @@ export default function AdminPricingPage() {
           <TabsContent value="currencies" className="space-y-3 rounded-xl border border-gray-100 bg-white p-6">
             {data.currencies.map((currency, index) => (
               <div key={currency.code} className="grid gap-3 md:grid-cols-3">
-                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.code} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, code: event.target.value } : entry) })} placeholder="Code" />
-                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.label} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, label: event.target.value } : entry) })} placeholder="Label" />
-                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.symbol} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, symbol: event.target.value } : entry) })} placeholder="Symbol" />
+                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.code} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, code: event.target.value } : entry) })} placeholder={t('admin.pricing.currencyCode')} />
+                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.label} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, label: event.target.value } : entry) })} placeholder={t('admin.pricing.currencyLabel')} />
+                <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={currency.symbol} onChange={(event) => setData({ ...data, currencies: data.currencies.map((entry, itemIndex) => itemIndex === index ? { ...entry, symbol: event.target.value } : entry) })} placeholder={t('admin.pricing.currencySymbol')} />
               </div>
             ))}
           </TabsContent>

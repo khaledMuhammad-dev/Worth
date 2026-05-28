@@ -42,10 +42,22 @@
     "title": "How We",
     "titleAccent": "Work",
     "subtitle": "A proven process that delivers consistent results for every client.",
-    "step1": { "title": "Discovery", "description": "We dive deep into your business, audience, and goals to build a solid strategic foundation." },
-    "step2": { "title": "Strategy", "description": "We craft a tailored roadmap with clear milestones, KPIs, and creative direction." },
-    "step3": { "title": "Execution", "description": "Our team executes with precision — designing, building, and launching every element." },
-    "step4": { "title": "Optimize", "description": "We measure, analyze, and continuously improve to maximize your results over time." }
+    "step1": {
+      "title": "Discovery",
+      "description": "We dive deep into your business, audience, and goals to build a solid strategic foundation."
+    },
+    "step2": {
+      "title": "Strategy",
+      "description": "We craft a tailored roadmap with clear milestones, KPIs, and creative direction."
+    },
+    "step3": {
+      "title": "Execution",
+      "description": "Our team executes with precision — designing, building, and launching every element."
+    },
+    "step4": {
+      "title": "Optimize",
+      "description": "We measure, analyze, and continuously improve to maximize your results over time."
+    }
   },
   "about": {
     "title": "We Are",
@@ -60,10 +72,22 @@
     "values": {
       "title": "Our",
       "titleAccent": "Values",
-      "bold": { "title": "Bold Thinking", "description": "We challenge conventions and push creative boundaries to find solutions that truly differentiate." },
-      "data": { "title": "Data-Driven", "description": "Every strategy is backed by research and every decision informed by measurable insights." },
-      "partnership": { "title": "True Partnership", "description": "We work as an extension of your team, deeply invested in your success and growth." },
-      "craft": { "title": "Relentless Craft", "description": "We obsess over every detail, from pixel-perfect design to flawless code and copy." }
+      "bold": {
+        "title": "Bold Thinking",
+        "description": "We challenge conventions and push creative boundaries to find solutions that truly differentiate."
+      },
+      "data": {
+        "title": "Data-Driven",
+        "description": "Every strategy is backed by research and every decision informed by measurable insights."
+      },
+      "partnership": {
+        "title": "True Partnership",
+        "description": "We work as an extension of your team, deeply invested in your success and growth."
+      },
+      "craft": {
+        "title": "Relentless Craft",
+        "description": "We obsess over every detail, from pixel-perfect design to flawless code and copy."
+      }
     },
     "team": {
       "title": "Meet the",
@@ -73,11 +97,31 @@
     "milestones": {
       "title": "Our",
       "titleAccent": "Journey",
-      "2020": { "year": "2020", "title": "Founded", "description": "Worth was founded with a mission to help ambitious brands grow." },
-      "2021": { "year": "2021", "title": "First 50 Clients", "description": "We hit our first major milestone, serving 50+ clients across industries." },
-      "2022": { "year": "2022", "title": "Regional Expansion", "description": "Expanded operations across Egypt, KSA, and UAE markets." },
-      "2023": { "year": "2023", "title": "Award-Winning Work", "description": "Recognized for excellence with multiple industry awards." },
-      "2024": { "year": "2024", "title": "200+ Projects", "description": "Delivered over 200 successful projects with measurable ROI." }
+      "2020": {
+        "year": "2020",
+        "title": "Founded",
+        "description": "Worth was founded with a mission to help ambitious brands grow."
+      },
+      "2021": {
+        "year": "2021",
+        "title": "First 50 Clients",
+        "description": "We hit our first major milestone, serving 50+ clients across industries."
+      },
+      "2022": {
+        "year": "2022",
+        "title": "Regional Expansion",
+        "description": "Expanded operations across Egypt, KSA, and UAE markets."
+      },
+      "2023": {
+        "year": "2023",
+        "title": "Award-Winning Work",
+        "description": "Recognized for excellence with multiple industry awards."
+      },
+      "2024": {
+        "year": "2024",
+        "title": "200+ Projects",
+        "description": "Delivered over 200 successful projects with measurable ROI."
+      }
     },
     "clients": {
       "title": "Trusted by",
@@ -168,11 +212,26 @@
     "faq": {
       "title": "Frequently Asked",
       "titleAccent": "Questions",
-      "q1": { "question": "What's included in each package?", "answer": "Each package includes a curated set of services tailored to your business stage. Launch covers brand fundamentals, Growth adds performance marketing, Authority is fully comprehensive, and Partner is a flexible monthly retainer." },
-      "q2": { "question": "Can I customize a package?", "answer": "Absolutely. We can mix and match services to create a custom scope. Book a discovery call and we'll build a proposal tailored to your specific needs." },
-      "q3": { "question": "How long does a project take?", "answer": "Timelines vary by scope. Launch projects typically take 4–6 weeks, Growth 6–10 weeks, and Authority 10–16 weeks. Partner retainers are ongoing." },
-      "q4": { "question": "Do you work with businesses outside Egypt?", "answer": "Yes! We work with clients across the MENA region including KSA, UAE, and beyond. We're a remote-first team built for global collaboration." },
-      "q5": { "question": "What's your payment structure?", "answer": "We typically split project fees 50% upfront and 50% upon delivery. Retainers are billed monthly in advance." }
+      "q1": {
+        "question": "What's included in each package?",
+        "answer": "Each package includes a curated set of services tailored to your business stage. Launch covers brand fundamentals, Growth adds performance marketing, Authority is fully comprehensive, and Partner is a flexible monthly retainer."
+      },
+      "q2": {
+        "question": "Can I customize a package?",
+        "answer": "Absolutely. We can mix and match services to create a custom scope. Book a discovery call and we'll build a proposal tailored to your specific needs."
+      },
+      "q3": {
+        "question": "How long does a project take?",
+        "answer": "Timelines vary by scope. Launch projects typically take 4–6 weeks, Growth 6–10 weeks, and Authority 10–16 weeks. Partner retainers are ongoing."
+      },
+      "q4": {
+        "question": "Do you work with businesses outside Egypt?",
+        "answer": "Yes! We work with clients across the MENA region including KSA, UAE, and beyond. We're a remote-first team built for global collaboration."
+      },
+      "q5": {
+        "question": "What's your payment structure?",
+        "answer": "We typically split project fees 50% upfront and 50% upon delivery. Retainers are billed monthly in advance."
+      }
     }
   },
   "work": {
@@ -246,5 +305,233 @@
   "cookies": {
     "title": "Cookie Policy",
     "lastUpdated": "Last updated: January 1, 2024"
+  },
+  "admin": {
+    "langSwitcher": {
+      "en": "EN",
+      "ar": "عربي"
+    },
+    "sidebar": {
+      "contentGroup": "CONTENT",
+      "blogGroup": "BLOG",
+      "settingsGroup": "SETTINGS",
+      "dashboard": "Dashboard",
+      "announcements": "Announcements",
+      "homePage": "Home Page",
+      "aboutPage": "About Page",
+      "services": "Services",
+      "pricing": "Pricing",
+      "work": "Work / Portfolio",
+      "contact": "Contact",
+      "allArticles": "All Articles",
+      "newArticle": "New Article",
+      "navigation": "Navigation",
+      "siteSettings": "Site Settings",
+      "logout": "Logout"
+    },
+    "header": {
+      "saveChanges": "Save Changes",
+      "saving": "Saving..."
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Overview of your content",
+      "totalArticles": "Total Articles",
+      "published": "Published",
+      "drafts": "Drafts",
+      "activeAnnouncements": "Active Announcements",
+      "quickActions": "Quick Actions",
+      "contentFiles": "Content Files",
+      "lastUpdated": "Last updated:",
+      "editHomePage": "Edit Home Page",
+      "manageAnnouncements": "Manage Announcements",
+      "newBlogArticle": "New Blog Article",
+      "editPricing": "Edit Pricing",
+      "editNavigation": "Edit Navigation",
+      "siteSettings": "Site Settings"
+    },
+    "login": {
+      "adminPanel": "Admin Panel",
+      "password": "Password",
+      "enterPassword": "Enter admin password",
+      "signingIn": "Signing in...",
+      "signIn": "Sign In",
+      "incorrectPassword": "Incorrect password. Please try again."
+    },
+    "announcements": {
+      "title": "Announcements",
+      "subtitle": "Manage announcement bar messages",
+      "addAnnouncement": "Add Announcement",
+      "noAnnouncements": "No announcements yet",
+      "noAnnouncementsHint": "Click \"Add Announcement\" to create your first one.",
+      "active": "Active",
+      "inactive": "Inactive",
+      "toggle": "Toggle",
+      "editTitle": "Edit Announcement",
+      "newTitle": "New Announcement",
+      "messageEN": "Message EN",
+      "messageAR": "Message AR",
+      "ctaLabelEN": "CTA Label EN",
+      "ctaLabelAR": "CTA Label AR",
+      "ctaHref": "CTA Href",
+      "emoji": "Emoji",
+      "bgColor": "Background Color",
+      "textColor": "Text Color",
+      "startDate": "Start Date",
+      "expiryDate": "Expiry Date",
+      "activeLabel": "Active",
+      "dismissibleLabel": "Dismissible",
+      "saveAnnouncement": "Save Announcement",
+      "deleteTitle": "Delete Announcement",
+      "deleteDesc": "This announcement will be permanently removed. This action cannot be undone.",
+      "delete": "Delete"
+    },
+    "work": {
+      "title": "Work / Portfolio",
+      "subtitle": "Manage case studies and featured projects",
+      "addProject": "Add Project",
+      "noProjects": "No projects yet",
+      "noProjectsHint": "Click \"Add Project\" to create your first case study.",
+      "tableTitle": "Title",
+      "tableSlug": "Slug",
+      "tableYear": "Year",
+      "tableFeatured": "Featured",
+      "tableActions": "Actions",
+      "yes": "Yes",
+      "no": "No",
+      "editProject": "Edit Project",
+      "newProject": "New Project",
+      "slug": "Slug",
+      "year": "Year",
+      "tagsLabel": "Tags (comma separated)",
+      "resultsEN": "Results EN",
+      "resultsAR": "Results AR",
+      "addResult": "+ Add result",
+      "galleryUrls": "Gallery URLs",
+      "addImage": "+ Add image",
+      "featured": "Featured",
+      "savingProject": "Saving...",
+      "saveProject": "Save Project",
+      "deleteProject": "Delete Project",
+      "deleteProjectDesc": "will be permanently deleted. This action cannot be undone.",
+      "coverUrl": "Cover URL"
+    },
+    "blog": {
+      "title": "Blog Articles",
+      "subtitle": "Search, filter, and manage all articles",
+      "searchPlaceholder": "Search articles...",
+      "all": "All",
+      "published": "Published",
+      "draft": "Draft",
+      "newArticle": "New Article",
+      "tableTitle": "Title",
+      "tableStatus": "Status",
+      "tableAuthor": "Author",
+      "tableUpdated": "Updated",
+      "tableActions": "Actions",
+      "noArticles": "No articles found",
+      "noArticlesHint": "Click \"New Article\" to write your first post.",
+      "noArticlesFilterHint": "Try adjusting your search or filter.",
+      "deleteTitle": "Delete Article",
+      "deleteDesc": "will be permanently deleted. This cannot be undone.",
+      "deleteArticle": "Delete Article",
+      "newArticleTitle": "New Article",
+      "newArticleSubtitle": "Create a new bilingual blog post",
+      "editArticleSubtitle": "Update article metadata and MDX content",
+      "slug": "Slug",
+      "publishedLabel": "Published",
+      "contentPlaceholder": "Write MDX content here…",
+      "coverUrl": "Cover URL",
+      "authorPlaceholder": "Author",
+      "tagsPlaceholder": "Tags, comma separated",
+      "tagsPlaceholderShort": "Tags",
+      "contentLabel": "Content",
+      "mdxEditorTab": "MDX Editor",
+      "previewTab": "Preview",
+      "loadingArticle": "Loading article...",
+      "editTitle": "Edit: {{title}}"
+    },
+    "settings": {
+      "title": "Site Settings",
+      "subtitle": "Configure global site metadata",
+      "siteName": "Site name",
+      "defaultLocale": "Default Locale",
+      "english": "English",
+      "arabic": "Arabic",
+      "googleAnalyticsId": "Google Analytics ID",
+      "metaDescription": "Meta Description",
+      "ogImageUrl": "OG Image URL"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "subtitle": "Manage site navigation links"
+    },
+    "home": {
+      "title": "Home Page",
+      "subtitle": "Edit hero, services, process, and testimonials",
+      "tabHero": "Hero",
+      "tabServices": "Services",
+      "tabProcess": "Process",
+      "tabTestimonials": "Testimonials",
+      "tabCta": "CTA",
+      "primaryCtaHref": "Primary CTA href",
+      "secondaryCtaHref": "Secondary CTA href",
+      "statValue": "Value",
+      "statSuffix": "Suffix",
+      "statLabelEN": "Label EN",
+      "statLabelAR": "Label AR"
+    },
+    "about": {
+      "title": "About Page",
+      "subtitle": "Manage story, team, and milestones",
+      "tabStory": "Story",
+      "tabValues": "Values",
+      "tabTeam": "Team",
+      "tabMilestones": "Milestones",
+      "tabClients": "Clients",
+      "iconKey": "Lucide icon key",
+      "memberName": "Name",
+      "milestoneYear": "Year",
+      "clientName": "Client name",
+      "photoUrl": "Photo URL",
+      "logoUrl": "Logo URL"
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Manage service cards and features",
+      "featuresEN": "Features EN",
+      "featuresAR": "Features AR",
+      "addFeature": "Add",
+      "slugPlaceholder": "Slug",
+      "hrefPlaceholder": "Href"
+    },
+    "pricing": {
+      "title": "Pricing",
+      "subtitle": "Edit packages, currencies, FAQ, and notes",
+      "tabPackages": "Packages",
+      "tabCurrencies": "Currencies",
+      "tabFaq": "FAQ",
+      "tabNote": "Note",
+      "featuredLabel": "Featured",
+      "currencyCode": "Code",
+      "currencyLabel": "Label",
+      "currencySymbol": "Symbol"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Manage contact details and form labels",
+      "socialsTitle": "Socials",
+      "addSocial": "Add social",
+      "formFieldsTitle": "Form Fields",
+      "requiredLabel": "Required",
+      "emailPlaceholder": "Email",
+      "phonePlaceholder": "Phone",
+      "mapEmbedUrl": "Map embed URL",
+      "bookingUrl": "Booking URL",
+      "platformPlaceholder": "Platform",
+      "urlPlaceholder": "URL",
+      "fieldId": "Field ID",
+      "fieldType": "Field type"
+    }
   }
 }

@@ -80,7 +80,7 @@ export default function CustomCursor() {
         className="pointer-events-none fixed left-0 top-0 z-[9998] hidden md:block"
         style={{ willChange: 'transform', transform: 'translate(-50%, -50%)' }}
       >
-        <div className="h-8 w-8 rounded-full border-2 border-[#F97316] opacity-70 transition-opacity" />
+        <div className="h-8 w-8 rounded-full border-2 border-[#F97316] opacity-70 transition-opacity dark:border-sop-purple" />
       </div>
       <div
         ref={dotRef}

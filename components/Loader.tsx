@@ -66,7 +66,7 @@ export default function Loader() {
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#1A1A2E]"
+      className="loader-exit fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#1A1A2E] dark:bg-sop-bg"
       style={{ willChange: 'transform' }}
     >
       <div
@@ -76,7 +76,7 @@ export default function Loader() {
       >
         Worth
       </div>
-      <div className="mt-8 h-0.5 w-48 overflow-hidden rounded-full bg-white/10">
+      <div className="mt-8 h-0.5 w-48 overflow-hidden rounded-full bg-white/10 dark:bg-sop-surface">
         <div ref={barRef} className="h-full rounded-full bg-[#F97316]" style={{ width: '0%' }} />
       </div>
     </div>

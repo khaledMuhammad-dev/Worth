@@ -16,8 +16,8 @@ export function SectionHeading({
   subtitle,
   center = true,
   accentFirst = false,
-  headingClassName = 'text-[#1A1A2E]',
-  subtitleClassName = 'text-[#6B7280]',
+  headingClassName = 'text-[#1A1A2E] dark:text-sop-foreground',
+  subtitleClassName = 'text-[#6B7280] dark:text-sop-muted',
 }: SectionHeadingProps) {
   return (
     <div className={`${center ? 'text-center' : ''} mb-12`}>

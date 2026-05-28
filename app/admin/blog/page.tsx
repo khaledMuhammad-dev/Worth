@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { Pencil, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/blog-meta.json'
@@ -26,6 +27,7 @@ export default function AdminBlogPage() {
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all')
   const [confirmSlug, setConfirmSlug] = useState<string | null>(null)
+  const { t } = useTranslation()
 
   const filtered = useMemo(() => {
     return items.filter((item) => {
@@ -47,17 +49,17 @@ export default function AdminBlogPage() {
 
   return (
     <div>
-      <AdminHeader title="Blog Articles" subtitle="Search, filter, and manage all articles" />
+      <AdminHeader title={t('admin.blog.title')} subtitle={t('admin.blog.subtitle')} />
       <div className="space-y-4 p-6">
         <div className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 md:flex-row md:items-center md:justify-between">
-          <input className="w-full max-w-md rounded-lg border border-gray-200 px-3 py-2 text-sm" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search articles..." />
+          <input className="w-full max-w-md rounded-lg border border-gray-200 px-3 py-2 text-sm" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('admin.blog.searchPlaceholder')} />
           <div className="flex gap-2">
             {(['all', 'published', 'draft'] as const).map((value) => (
               <button key={value} type="button" onClick={() => setFilter(value)} className={`rounded-full px-4 py-2 text-sm ${filter === value ? 'bg-primary text-white' : 'bg-surface text-muted'}`}>
-                {value[0].toUpperCase() + value.slice(1)}
+                {t(`admin.blog.${value}`)}
               </button>
             ))}
-            <Link href="/admin/blog/new" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white">New Article</Link>
+            <Link href="/admin/blog/new" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white">{t('admin.blog.newArticle')}</Link>
           </div>
         </div>
 
@@ -65,20 +67,20 @@ export default function AdminBlogPage() {
           <table className="w-full text-left text-sm">
             <thead className="bg-surface text-muted">
               <tr>
-                <th className="px-4 py-3">Title</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Author</th>
-                <th className="px-4 py-3">Updated</th>
-                <th className="px-4 py-3">Actions</th>
+                <th className="px-4 py-3">{t('admin.blog.tableTitle')}</th>
+                <th className="px-4 py-3">{t('admin.blog.tableStatus')}</th>
+                <th className="px-4 py-3">{t('admin.blog.tableAuthor')}</th>
+                <th className="px-4 py-3">{t('admin.blog.tableUpdated')}</th>
+                <th className="px-4 py-3">{t('admin.blog.tableActions')}</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-4 py-16 text-center">
-                    <p className="text-sm font-medium text-foreground">No articles found</p>
+                    <p className="text-sm font-medium text-foreground">{t('admin.blog.noArticles')}</p>
                     <p className="mt-1 text-xs text-muted">
-                      {query || filter !== 'all' ? 'Try adjusting your search or filter.' : 'Click "New Article" to write your first post.'}
+                      {query || filter !== 'all' ? t('admin.blog.noArticlesFilterHint') : t('admin.blog.noArticlesHint')}
                     </p>
                   </td>
                 </tr>
@@ -108,9 +110,9 @@ export default function AdminBlogPage() {
 
       <ConfirmDialog
         open={confirmSlug !== null}
-        title="Delete Article"
-        description={`"${items.find((i) => i.slug === confirmSlug)?.titleEN ?? confirmSlug}" will be permanently deleted. This cannot be undone.`}
-        confirmLabel="Delete Article"
+        title={t('admin.blog.deleteTitle')}
+        description={`"${items.find((i) => i.slug === confirmSlug)?.titleEN ?? confirmSlug}" ${t('admin.blog.deleteDesc')}`}
+        confirmLabel={t('admin.blog.deleteArticle')}
         onConfirm={() => { if (confirmSlug) { void remove(confirmSlug); setConfirmSlug(null) } }}
         onCancel={() => setConfirmSlug(null)}
       />

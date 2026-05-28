@@ -31,9 +31,10 @@ const SheetContent = React.forwardRef<
   <DialogPrimitive.Portal>
     <SheetOverlay />
     <DialogPrimitive.Content
+      data-radix-sheet-content
       ref={ref}
       className={cn(
-        "fixed z-50 h-full w-80 bg-white shadow-xl transition-transform duration-300 ease-in-out",
+        "fixed z-50 h-full w-80 border-s border-transparent bg-white shadow-xl transition-transform duration-300 ease-in-out dark:border-sop-border dark:bg-sop-overlay",
         side === "right"
           ? "right-0 top-0 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right"
           : "left-0 top-0 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
@@ -42,7 +43,7 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus:outline-none">
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus:outline-none dark:text-sop-foreground dark:hover:bg-sop-hover">
         <X className="h-5 w-5" />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

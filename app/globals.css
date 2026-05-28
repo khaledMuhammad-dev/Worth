@@ -2,6 +2,8 @@
 @plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   /* Brand Colors */
   --color-primary: #F97316;
@@ -12,6 +14,31 @@
   --color-surface: #F9FAFB;
   --color-border-custom: #F0F0F0;
   --color-background: #ffffff;
+
+  /* DARK MODE — Shades of Purple Palette */
+  --color-sop-bg: #1E1E3F;
+  --color-sop-surface: #2D2B55;
+  --color-sop-elevated: #3A3772;
+  --color-sop-overlay: #252347;
+  --color-sop-border: #433E7C;
+  --color-sop-hover: #332E6B;
+  --color-sop-foreground: #F8F8F2;
+  --color-sop-muted: #B2A8D0;
+  --color-sop-subtle: #6B6494;
+  --color-sop-highlight: #FAD000;
+  --color-sop-purple: #C5A3FF;
+  --color-sop-violet: #A599E9;
+  --color-sop-cyan: #80FFEA;
+  --color-sop-pink: #FF7AB2;
+  --color-sop-green: #3AD900;
+  --color-sop-orange-glow: rgba(249, 115, 22, 0.20);
+  --color-sop-orange-dim: #2A1500;
+
+  /* SOP Box Shadows */
+  --shadow-sop-card: 0 4px 24px rgba(30, 30, 63, 0.6);
+  --shadow-sop-orange: 0 0 24px rgba(249, 115, 22, 0.25);
+  --shadow-sop-purple: 0 0 24px rgba(197, 163, 255, 0.15);
+  --shadow-sop-glow: 0 0 40px rgba(197, 163, 255, 0.08);
 
   /* Fonts */
   --font-heading: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
@@ -66,10 +93,10 @@ html[dir="rtl"] h6 {
   font-family: var(--font-arabic);
 }
 
-a {
+/* a {
   color: inherit;
   text-decoration: none;
-}
+} */
 
 img {
   max-width: 100%;
@@ -167,4 +194,131 @@ a {
   .nav-link-underline::after {
     transition: none;
   }
+}
+
+
+/* ========== DARK MODE — SHADES OF PURPLE ========== */
+
+/* Dark body background */
+.dark body {
+  background-color: #1E1E3F;
+  color: #F8F8F2;
+}
+
+/* Navbar dark override (framer-motion inline style needs CSS override) */
+.dark .navbar-header {
+  background-color: rgba(37, 35, 71, 0.95) !important;
+  border-bottom-color: #433E7C !important;
+}
+
+/* Smooth color transitions */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 220ms;
+  transition-timing-function: ease;
+}
+
+/* Custom scrollbar */
+.dark ::-webkit-scrollbar        { width: 8px; }
+.dark ::-webkit-scrollbar-track  { background: #1E1E3F; }
+.dark ::-webkit-scrollbar-thumb  { background: #433E7C; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #F97316; }
+
+/* Text selection */
+.dark ::selection { background: #F97316; color: #1E1E3F; }
+
+/* Glow utilities */
+.dark .glow-orange { box-shadow: 0 0 24px rgba(249, 115, 22, 0.3); }
+.dark .glow-section::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, rgba(197, 163, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Shimmer animation */
+@keyframes sop-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* Purple noise texture */
+.dark .sop-texture {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(197,163,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(249,115,22,0.04) 0%, transparent 50%);
+}
+
+/* Grid pattern overlay */
+.dark .sop-grid {
+  background-image:
+    linear-gradient(rgba(67,62,124,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67,62,124,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Card hover glow */
+.dark .sop-card:hover {
+  box-shadow: 0 0 0 1px rgba(197,163,255,0.3),
+              0 8px 32px rgba(30,30,63,0.6),
+              0 0 60px rgba(197,163,255,0.06) !important;
+}
+
+/* Orange button glow */
+.dark .btn-primary:hover {
+  box-shadow: 0 0 0 1px rgba(249,115,22,0.4),
+              0 4px 16px rgba(249,115,22,0.3),
+              0 0 40px rgba(249,115,22,0.15);
+}
+
+/* Purple link underline */
+.dark a:not(.btn):hover {
+  text-decoration-color: rgba(197,163,255,0.5);
+}
+
+/* Hero accent text glow */
+.dark .hero-accent {
+  text-shadow: 0 0 30px rgba(249, 115, 22, 0.4), 0 0 60px rgba(249, 115, 22, 0.15);
+}
+
+/* Loader dark */
+.dark .loader-exit::after {
+  background: linear-gradient(to bottom, rgba(197,163,255,0.08), transparent);
+}
+
+/* shadcn radix dark overrides */
+.dark [data-radix-sheet-content] {
+  background-color: #252347;
+  border-color: #433E7C;
+}
+.dark [data-radix-dialog-content] {
+  background-color: #2D2B55;
+  border-color: #433E7C;
+}
+.dark [data-radix-select-content] {
+  background-color: #252347;
+  border-color: #433E7C;
+  color: #F8F8F2;
+}
+.dark [data-radix-select-item]:hover {
+  background-color: #3A3772;
+  color: #F8F8F2;
+}
+.dark [data-radix-tooltip-content] {
+  background-color: #3A3772;
+  color: #F8F8F2;
+  border-color: #433E7C;
+}
+.dark [data-radix-dropdown-menu-content] {
+  background-color: #252347;
+  border-color: #433E7C;
+}
+.dark [data-radix-dropdown-menu-item]:hover {
+  background-color: #3A3772;
 }

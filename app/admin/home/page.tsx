@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/home.json'
@@ -49,7 +50,7 @@ interface HomeData {
 export default function AdminHomePage() {
   const [data, setData] = useState<HomeData>(() => JSON.parse(JSON.stringify(initialData)))
   const [saving, setSaving] = useState(false)
-
+  const { t } = useTranslation()
   const save = async () => {
     setSaving(true)
     await fetch('/api/admin/save/home', {
@@ -62,15 +63,15 @@ export default function AdminHomePage() {
 
   return (
     <div>
-      <AdminHeader title="Home Page" subtitle="Edit homepage sections" onSave={save} saving={saving} />
+      <AdminHeader title={t('admin.home.title')} subtitle={t('admin.home.subtitle')} onSave={save} saving={saving} />
       <div className="p-6">
         <Tabs defaultValue="hero">
           <TabsList className="mb-6 flex flex-wrap">
-            <TabsTrigger value="hero">Hero</TabsTrigger>
-            <TabsTrigger value="services">Services</TabsTrigger>
-            <TabsTrigger value="process">Process</TabsTrigger>
-            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
-            <TabsTrigger value="cta">CTA</TabsTrigger>
+            <TabsTrigger value="hero">{t('admin.home.tabHero')}</TabsTrigger>
+            <TabsTrigger value="services">{t('admin.home.tabServices')}</TabsTrigger>
+            <TabsTrigger value="process">{t('admin.home.tabProcess')}</TabsTrigger>
+            <TabsTrigger value="testimonials">{t('admin.home.tabTestimonials')}</TabsTrigger>
+            <TabsTrigger value="cta">{t('admin.home.tabCta')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hero" className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
@@ -78,16 +79,16 @@ export default function AdminHomePage() {
             <LocaleField labelEN="Accent Word" labelAR="Accent Word" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
             <LocaleField multiline labelEN="Subheading" labelAR="Subheading" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
             <LocaleField labelEN="Primary CTA" labelAR="Primary CTA" valueEN={data.hero.primaryCtaEN} valueAR={data.hero.primaryCtaAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, primaryCtaEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, primaryCtaAR: value } })} />
-            <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.hero.primaryCtaHref} onChange={(event) => setData({ ...data, hero: { ...data.hero, primaryCtaHref: event.target.value } })} placeholder="Primary CTA href" />
+            <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.hero.primaryCtaHref} onChange={(event) => setData({ ...data, hero: { ...data.hero, primaryCtaHref: event.target.value } })} placeholder={t('admin.home.primaryCtaHref')} />
             <LocaleField labelEN="Secondary CTA" labelAR="Secondary CTA" valueEN={data.hero.secondaryCtaEN} valueAR={data.hero.secondaryCtaAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, secondaryCtaEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, secondaryCtaAR: value } })} />
-            <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.hero.secondaryCtaHref} onChange={(event) => setData({ ...data, hero: { ...data.hero, secondaryCtaHref: event.target.value } })} placeholder="Secondary CTA href" />
+            <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.hero.secondaryCtaHref} onChange={(event) => setData({ ...data, hero: { ...data.hero, secondaryCtaHref: event.target.value } })} placeholder={t('admin.home.secondaryCtaHref')} />
             <div className="space-y-3">
               {data.hero.stats.map((stat, index) => (
                 <div key={index} className="grid gap-3 rounded-xl border border-gray-100 p-4 md:grid-cols-4">
-                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.value} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, value: event.target.value } : item) } })} placeholder="Value" />
-                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.suffix} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, suffix: event.target.value } : item) } })} placeholder="Suffix" />
-                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.labelEN} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, labelEN: event.target.value } : item) } })} placeholder="Label EN" />
-                  <input dir="rtl" className="rounded-lg border border-gray-200 px-3 py-2 text-sm font-arabic" value={stat.labelAR} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, labelAR: event.target.value } : item) } })} placeholder="Label AR" />
+                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.value} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, value: event.target.value } : item) } })} placeholder={t('admin.home.statValue')} />
+                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.suffix} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, suffix: event.target.value } : item) } })} placeholder={t('admin.home.statSuffix')} />
+                  <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={stat.labelEN} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, labelEN: event.target.value } : item) } })} placeholder={t('admin.home.statLabelEN')} />
+                  <input dir="rtl" className="rounded-lg border border-gray-200 px-3 py-2 text-sm font-arabic" value={stat.labelAR} onChange={(event) => setData({ ...data, hero: { ...data.hero, stats: data.hero.stats.map((item, itemIndex) => itemIndex === index ? { ...item, labelAR: event.target.value } : item) } })} placeholder={t('admin.home.statLabelAR')} />
                 </div>
               ))}
             </div>

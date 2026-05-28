@@ -29,12 +29,12 @@ export default function ProjectPageClient({ project, nextProject }: { project: P
           ]}
         />
 
-        <section className="py-20 bg-white">
+        <section className="bg-white py-20 dark:bg-sop-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-[1fr_0.8fr] gap-10 items-start">
               <div>
                 <div
-                  className="rounded-[2rem] bg-gradient-to-br from-[#FFF4EE] via-white to-[#F97316]/15 min-h-[360px] border border-[#F0F0F0] shadow-sm"
+                  className="min-h-[360px] rounded-[2rem] border border-[#F0F0F0] bg-gradient-to-br from-[#FFF4EE] via-white to-[#F97316]/15 shadow-sm dark:border-sop-border dark:from-sop-surface dark:via-sop-overlay dark:to-sop-hover dark:shadow-sop-card"
                   style={{ backgroundImage: project.coverUrl ? `url(${project.coverUrl})` : undefined, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 />
                 <div className="mt-8 grid md:grid-cols-3 gap-4">
@@ -43,12 +43,12 @@ export default function ProjectPageClient({ project, nextProject }: { project: P
                     { icon: BriefcaseBusiness, label: 'Industry', value: isArabic ? project.industryAR : project.industryEN },
                     { icon: Target, label: 'Featured', value: project.featured ? 'Yes' : 'No' },
                   ].map(({ icon: Icon, label, value }) => (
-                    <div key={label} className="rounded-2xl border border-[#F0F0F0] bg-[#F9FAFB] p-5">
+                    <div key={label} className="rounded-2xl border border-[#F0F0F0] bg-[#F9FAFB] p-5 dark:border-sop-border dark:bg-sop-surface">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF4EE]">
                         <Icon className="h-4 w-4 text-[#F97316]" />
                       </div>
-                      <p className="mt-4 text-sm text-[#6B7280]">{label}</p>
-                      <p className="mt-1 font-semibold text-[#1A1A2E]">{value}</p>
+                      <p className="mt-4 text-sm text-[#6B7280] dark:text-sop-muted">{label}</p>
+                      <p className="mt-1 font-semibold text-[#1A1A2E] dark:text-sop-foreground">{value}</p>
                     </div>
                   ))}
                 </div>
@@ -56,10 +56,10 @@ export default function ProjectPageClient({ project, nextProject }: { project: P
               <div>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="rounded-full bg-[#FFF4EE] px-3 py-1 text-sm font-semibold text-[#F97316]">{tag}</span>
+                    <span key={tag} className="rounded-full bg-[#FFF4EE] px-3 py-1 text-sm font-semibold text-[#F97316] dark:bg-sop-hover dark:text-sop-purple">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-8 space-y-5 text-lg leading-8 text-[#6B7280]">
+                <div className="mt-8 space-y-5 text-lg leading-8 text-[#6B7280] dark:text-sop-muted">
                   <p>{summary}</p>
                   {project.galleryUrls.length > 0 ? <p>{project.galleryUrls.length} gallery assets available for this case study.</p> : null}
                 </div>
@@ -68,19 +68,19 @@ export default function ProjectPageClient({ project, nextProject }: { project: P
           </div>
         </section>
 
-        <section className="py-20 bg-[#F9FAFB]">
+        <section className="bg-[#F9FAFB] py-20 dark:bg-sop-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm dark:border-sop-border dark:bg-sop-bg dark:shadow-sop-card">
               <p className="text-sm uppercase tracking-[0.2em] text-[#F97316]">{t('work.challenge')}</p>
-              <h2 className="mt-4 text-3xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{t('work.challenge')}</h2>
-              <p className="mt-4 text-[#6B7280] leading-8">{isArabic ? project.challengeAR : project.challengeEN}</p>
+              <h2 className="mt-4 text-3xl font-bold text-[#1A1A2E] dark:text-sop-foreground" style={{ fontFamily: 'var(--font-heading)' }}>{t('work.challenge')}</h2>
+              <p className="mt-4 text-[#6B7280] leading-8 dark:text-sop-muted">{isArabic ? project.challengeAR : project.challengeEN}</p>
             </div>
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm dark:border-sop-border dark:bg-sop-bg dark:shadow-sop-card">
               <p className="text-sm uppercase tracking-[0.2em] text-[#F97316]">{t('work.solution')}</p>
-              <h2 className="mt-4 text-3xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{t('work.solution')}</h2>
-              <p className="mt-4 text-[#6B7280] leading-8">{isArabic ? project.solutionAR : project.solutionEN}</p>
+              <h2 className="mt-4 text-3xl font-bold text-[#1A1A2E] dark:text-sop-foreground" style={{ fontFamily: 'var(--font-heading)' }}>{t('work.solution')}</h2>
+              <p className="mt-4 text-[#6B7280] leading-8 dark:text-sop-muted">{isArabic ? project.solutionAR : project.solutionEN}</p>
             </div>
-            <div className="rounded-3xl border border-[#F0F0F0] bg-[#1A1A2E] p-8 shadow-sm">
+            <div className="rounded-3xl border border-[#F0F0F0] bg-[#1A1A2E] p-8 shadow-sm dark:border-sop-border dark:bg-sop-overlay">
               <p className="text-sm uppercase tracking-[0.2em] text-[#F97316]">{t('work.results')}</p>
               <h2 className="mt-4 text-3xl text-white font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{t('work.results')}</h2>
               <ul className="mt-5 space-y-4 text-white/80 leading-7">
@@ -92,13 +92,13 @@ export default function ProjectPageClient({ project, nextProject }: { project: P
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="bg-white py-20 dark:bg-sop-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="flex flex-col items-start justify-between gap-8 rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-8 md:p-10 lg:flex-row lg:items-center dark:border-sop-border dark:bg-sop-surface dark:shadow-sop-card">
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-[#F97316]">{t('work.nextProject')}</p>
-                <h2 className="mt-3 text-3xl text-[#1A1A2E] font-bold" style={{ fontFamily: 'var(--font-heading)' }}>{isArabic ? nextProject.titleAR : nextProject.titleEN}</h2>
-                <p className="mt-3 text-[#6B7280] max-w-2xl leading-8">{isArabic ? nextProject.summaryAR : nextProject.summaryEN}</p>
+                <h2 className="mt-3 text-3xl font-bold text-[#1A1A2E] dark:text-sop-foreground" style={{ fontFamily: 'var(--font-heading)' }}>{isArabic ? nextProject.titleAR : nextProject.titleEN}</h2>
+                <p className="mt-3 max-w-2xl text-[#6B7280] leading-8 dark:text-sop-muted">{isArabic ? nextProject.summaryAR : nextProject.summaryEN}</p>
               </div>
               <Link href={`/work/${nextProject.slug}`} className="inline-flex items-center gap-2 font-semibold text-[#F97316] hover:gap-3 transition-all">
                 {t('work.nextProject')} <ArrowRight className="h-4 w-4" />

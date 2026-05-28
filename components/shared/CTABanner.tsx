@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { usePrefersReducedMotion } from '@/lib/motion';
 
 interface CTABannerProps {
   title?: string;
@@ -18,7 +19,7 @@ export function CTABanner({ title, accent, subtitle, buttonLabel, buttonHref = '
   const { t } = useTranslation();
   const bannerRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLAnchorElement>(null);
-  const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced = usePrefersReducedMotion();
 
   useEffect(() => {
     if (prefersReduced) return;
@@ -62,7 +63,7 @@ export function CTABanner({ title, accent, subtitle, buttonLabel, buttonHref = '
   const resolvedButton = buttonLabel ?? t('cta.button');
 
   return (
-    <section ref={bannerRef} className="cta-banner cta-shimmer py-16">
+    <section ref={bannerRef} className="cta-banner cta-shimmer py-16 dark:[background:linear-gradient(90deg,#F97316,#EA6C00,#FF8C00,#F97316)] dark:bg-[length:200%_100%] dark:[animation:sop-shimmer_4s_ease_infinite]">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 text-center sm:px-6 md:flex-row md:text-start lg:px-8">
         <div className="cta-heading max-w-xl">
           <h2 className="heading-m font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -76,7 +77,7 @@ export function CTABanner({ title, accent, subtitle, buttonLabel, buttonHref = '
           href={buttonHref}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="cta-btn inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-lg border-2 border-white px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-white hover:text-[#F97316]"
+          className="cta-btn inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-lg border-2 border-white px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-white hover:text-[#F97316] dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-primary"
           data-cursor="hover"
           style={{ willChange: 'transform' }}
         >

@@ -8,6 +8,7 @@ import CustomCursor from '@/components/CustomCursor';
 import PageTransition from '@/components/PageTransition';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import PublicLayout from '@/components/PublicLayout';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { getContentData } from '@/lib/content';
 import type { Announcement } from '@/lib/types/content';
 
@@ -42,16 +43,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <body className={`${plusJakartaSans.variable} ${inter.variable} ${ibmPlexSansArabic.variable}`}>
-        <I18nProvider>
-          <GSAPProvider>
-            <Loader />
-            <CustomCursor />
-            <ScrollProgressBar />
-            <PageTransition>
-              <PublicLayout announcements={announcements}>{children}</PublicLayout>
-            </PageTransition>
-          </GSAPProvider>
-        </I18nProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
+          <I18nProvider>
+            <GSAPProvider>
+              <Loader />
+              <CustomCursor />
+              <ScrollProgressBar />
+              <PageTransition>
+                <PublicLayout announcements={announcements}>{children}</PublicLayout>
+              </PageTransition>
+            </GSAPProvider>
+          </I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

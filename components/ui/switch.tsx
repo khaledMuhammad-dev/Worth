@@ -15,6 +15,7 @@ export function Switch({ checked, onCheckedChange, id, disabled, className = '' 
     <button
       type="button"
       role="switch"
+      dir='ltr'
       id={id}
       aria-checked={checked}
       disabled={disabled}

@@ -14,6 +14,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ServiceCard } from '@/components/shared/ServiceCard';
 import { TestimonialCard } from '@/components/shared/TestimonialCard';
 import { CTABanner } from '@/components/shared/CTABanner';
+import { usePrefersReducedMotion } from '@/lib/motion';
 import type { HomeData } from '@/lib/types/content';
 
 interface Props {
@@ -43,7 +44,7 @@ export default function HomePageClient({ homeData }: Props) {
   const isArabic = i18n.language === 'ar';
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced = usePrefersReducedMotion();
 
   useEffect(() => {
     if (prefersReduced) return;
@@ -368,7 +369,7 @@ export default function HomePageClient({ homeData }: Props) {
     <div ref={heroRef}>
       <Navbar />
       <main>
-        <section className="relative overflow-hidden bg-white py-16 md:py-24">
+        <section className="relative overflow-hidden bg-white py-16 md:py-24 sop-texture dark:bg-sop-bg">
           <div className="pointer-events-none select-none" aria-hidden>
             <div className="dot absolute left-8 top-12 h-3 w-3 rounded-full bg-[#F97316] opacity-30" />
             <div className="dot absolute right-12 top-20 h-4 w-4 rounded-full bg-[#F97316] opacity-20" />
@@ -388,14 +389,14 @@ export default function HomePageClient({ homeData }: Props) {
               </motion.span>
 
               <h1
-                className="hero-heading heading-xl font-bold text-[#1A1A2E]"
+                className="hero-heading heading-xl font-bold text-[#1A1A2E] dark:text-sop-foreground"
                 style={{ fontFamily: 'var(--font-heading)', perspective: '600px' }}
               >
                 {heroHeading.base}{' '}
-                {heroHeading.accent ? <span className="accent-word text-[#F97316]">{heroHeading.accent}</span> : null}
+                {heroHeading.accent ? <span className="accent-word hero-accent text-[#F97316] dark:text-primary dark:drop-shadow-[0_0_20px_rgba(249,115,22,0.5)]">{heroHeading.accent}</span> : null}
               </h1>
 
-              <p className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280]">
+              <p className="hero-sub mt-6 max-w-lg text-lg leading-relaxed text-[#6B7280] dark:text-sop-muted">
                 {isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
               </p>
 
@@ -420,14 +421,14 @@ export default function HomePageClient({ homeData }: Props) {
                 </motion.div>
               </div>
 
-              <div className="hero-stats mt-10 flex items-center gap-0 divide-x divide-[#F0F0F0] overflow-hidden rounded-xl border border-[#F0F0F0] bg-[#F9FAFB]">
+              <div className="hero-stats mt-10 flex items-center gap-0 divide-x divide-[#F0F0F0] overflow-hidden rounded-xl border border-[#F0F0F0] bg-[#F9FAFB] dark:divide-sop-border dark:border-sop-border dark:bg-sop-surface">
                 {stats.map(({ value, suffix, label, Icon }) => {
                   const isNum = !Number.isNaN(Number(value));
                   return (
                     <div key={label} className="flex flex-1 flex-col items-center px-3 py-4">
                       <Icon className="mb-1.5 h-4 w-4 text-[#F97316]" />
                       <div
-                        className="stat-number text-xl font-bold text-[#1A1A2E]"
+                        className="stat-number text-xl font-bold text-[#1A1A2E] dark:text-sop-foreground"
                         data-value={isNum ? value : undefined}
                         data-suffix={suffix}
                         style={{ fontFamily: 'var(--font-heading)' }}
@@ -435,7 +436,7 @@ export default function HomePageClient({ homeData }: Props) {
                         {value}
                         {suffix}
                       </div>
-                      <div className="mt-0.5 text-xs text-[#6B7280]">{label}</div>
+                      <div className="mt-0.5 text-xs text-[#6B7280] dark:text-sop-muted">{label}</div>
                     </div>
                   );
                 })}
@@ -449,7 +450,7 @@ export default function HomePageClient({ homeData }: Props) {
               transition={prefersReduced ? undefined : { duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               style={{ willChange: 'transform' }}
             >
-              <div className="overflow-hidden rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-6 shadow-xl md:p-8">
+              <div className="overflow-hidden rounded-[2rem] border border-[#F0F0F0] bg-[#F9FAFB] p-6 shadow-xl md:p-8 dark:border-sop-border dark:bg-sop-surface dark:shadow-sop-card">
                 <motion.div
                   animate={prefersReduced ? undefined : { y: [0, -10, 0] }}
                   transition={prefersReduced ? undefined : { duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -472,13 +473,13 @@ export default function HomePageClient({ homeData }: Props) {
                   </div>
                 </motion.div>
 
-                <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#F0F0F0] bg-white p-4 shadow-md">
+                <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#F0F0F0] bg-white p-4 shadow-md dark:border-sop-border dark:bg-sop-elevated dark:shadow-sop-card">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFF4EE]">
                     <TrendingUp className="h-4 w-4 text-[#F97316]" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#1A1A2E]">Recent client win</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-[#6B7280]">
+                    <p className="text-xs font-semibold text-[#1A1A2E] dark:text-sop-foreground">Recent client win</p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-[#6B7280] dark:text-sop-muted">
                       3.4× qualified leads after a full brand &amp; website relaunch.
                     </p>
                   </div>
@@ -488,13 +489,13 @@ export default function HomePageClient({ homeData }: Props) {
           </div>
         </section>
 
-        <section className="bg-[#F9FAFB] py-16 md:py-24">
+        <section className="bg-[#F9FAFB] py-16 md:py-24 dark:bg-sop-bg">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
-              <h2 className="services-heading heading-l font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>
+              <h2 className="services-heading heading-l font-bold text-[#1A1A2E] dark:text-sop-foreground" style={{ fontFamily: 'var(--font-heading)' }}>
                 {servicesHeading.base} <span className="text-[#F97316]">{servicesHeading.accent}</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[#6B7280]">
+              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-[#6B7280] dark:text-sop-muted">
                 {isArabic ? homeData.services.headingAR : homeData.services.headingEN}
               </p>
             </div>
@@ -508,7 +509,7 @@ export default function HomePageClient({ homeData }: Props) {
           </div>
         </section>
 
-        <section ref={sectionRef} className="process-section bg-white py-16 md:py-24">
+        <section ref={sectionRef} className="process-section bg-white py-16 md:py-24 dark:bg-sop-surface">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title={isArabic ? homeData.process.headingAR : homeData.process.headingEN}
@@ -516,42 +517,21 @@ export default function HomePageClient({ homeData }: Props) {
               subtitle={isArabic ? homeData.hero.subheadingAR : homeData.hero.subheadingEN}
             />
 
-            <div className="relative mb-[-20px] hidden lg:block" aria-hidden>
-              <svg
-                className="w-full"
-                height="4"
-                viewBox="0 0 1000 4"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-              >
-                <path
-                  className="process-connector"
-                  d="M0 2 L1000 2"
-                  stroke="#F97316"
-                  strokeWidth="2"
-                  strokeDasharray="1000"
-                  strokeDashoffset="1000"
-                  strokeLinecap="round"
-                  opacity="0.4"
-                />
-              </svg>
-            </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
-                <div key={step.number} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <div key={step.number} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-sop-border dark:bg-sop-bg dark:shadow-sop-card">
                   <div
-                    className="step-circle mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F97316] font-bold text-white"
+                    className="step-circle mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F97316] font-bold text-white dark:bg-primary dark:shadow-sop-orange"
                     style={{ fontFamily: 'var(--font-heading)', willChange: 'transform' }}
                   >
                     {step.number}
                   </div>
                   <div className="step-content">
-                    <h3 className="mb-3 text-lg font-bold text-[#1A1A2E]" style={{ fontFamily: 'var(--font-heading)' }}>
+                    <h3 className="mb-3 text-lg font-bold text-[#1A1A2E] dark:text-sop-foreground" style={{ fontFamily: 'var(--font-heading)' }}>
                       {step.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-[#6B7280]">{step.description}</p>
+                    <p className="text-sm leading-relaxed text-[#6B7280] dark:text-sop-muted">{step.description}</p>
                   </div>
                 </div>
               ))}
@@ -633,7 +613,7 @@ export default function HomePageClient({ homeData }: Props) {
           </div>
         </section>
 
-        <section className="testimonials-section bg-[#F9FAFB] py-16 md:py-24">
+        <section className="testimonials-section bg-[#F9FAFB] py-16 md:py-24 dark:bg-sop-bg">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title={isArabic ? homeData.testimonials.headingAR : homeData.testimonials.headingEN}

@@ -53,7 +53,7 @@ export default function WorkPageClient({ workData }: Props) {
           breadcrumb={[{ label: t('pageHero.home'), href: '/' }, { label: t('pageHero.work') }]}
         />
 
-        <section className="py-20 bg-white">
+        <section className="bg-white py-20 dark:bg-sop-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading title={isArabic ? workData.hero.headingAR : workData.hero.headingEN} accent={isArabic ? workData.hero.accentWordAR : workData.hero.accentWordEN} subtitle={isArabic ? workData.hero.subheadingAR : workData.hero.subheadingEN} />
             <Tabs value={category} onValueChange={(value) => setCategory(value as (typeof categories)[number])}>
@@ -84,7 +84,7 @@ export default function WorkPageClient({ workData }: Props) {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F9FAFB]">
+        <section className="bg-[#F9FAFB] py-20 dark:bg-sop-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading title={t('testimonials.title')} accent={t('testimonials.titleAccent')} subtitle={t('testimonials.subtitle')} />
             <div className="grid lg:grid-cols-3 gap-6">

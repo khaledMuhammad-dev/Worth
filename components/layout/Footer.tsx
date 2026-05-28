@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Globe, Send, Hash, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/lib/motion';
 
 export function Footer() {
   const { t } = useTranslation();
-  const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced = usePrefersReducedMotion();
 
   const companyLinks = [
     { href: '/about', label: t('footer.links.about') },
