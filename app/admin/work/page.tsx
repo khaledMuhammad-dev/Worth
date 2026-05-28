@@ -153,12 +153,12 @@ export default function AdminWorkPage() {
               <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} placeholder={t('admin.work.slug')} />
               <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.year} onChange={(event) => setForm({ ...form, year: event.target.value })} placeholder={t('admin.work.year')} />
             </div>
-            <LocaleField labelEN="Title" labelAR="Title" valueEN={form.titleEN} valueAR={form.titleAR} onChangeEN={(value) => setForm({ ...form, titleEN: value })} onChangeAR={(value) => setForm({ ...form, titleAR: value })} />
+            <LocaleField labelEN="Title" labelAR="العنوان" valueEN={form.titleEN} valueAR={form.titleAR} onChangeEN={(value) => setForm({ ...form, titleEN: value })} onChangeAR={(value) => setForm({ ...form, titleAR: value })} />
             <ImageField label={t('admin.work.coverUrl')} value={form.coverUrl} onChange={(value) => setForm({ ...form, coverUrl: value })} />
-            <LocaleField labelEN="Industry" labelAR="Industry" valueEN={form.industryEN} valueAR={form.industryAR} onChangeEN={(value) => setForm({ ...form, industryEN: value })} onChangeAR={(value) => setForm({ ...form, industryAR: value })} />
-            <LocaleField multiline labelEN="Summary" labelAR="Summary" valueEN={form.summaryEN} valueAR={form.summaryAR} onChangeEN={(value) => setForm({ ...form, summaryEN: value })} onChangeAR={(value) => setForm({ ...form, summaryAR: value })} />
-            <LocaleField multiline labelEN="Challenge" labelAR="Challenge" valueEN={form.challengeEN} valueAR={form.challengeAR} onChangeEN={(value) => setForm({ ...form, challengeEN: value })} onChangeAR={(value) => setForm({ ...form, challengeAR: value })} />
-            <LocaleField multiline labelEN="Solution" labelAR="Solution" valueEN={form.solutionEN} valueAR={form.solutionAR} onChangeEN={(value) => setForm({ ...form, solutionEN: value })} onChangeAR={(value) => setForm({ ...form, solutionAR: value })} />
+            <LocaleField labelEN="Industry" labelAR="القطاع" valueEN={form.industryEN} valueAR={form.industryAR} onChangeEN={(value) => setForm({ ...form, industryEN: value })} onChangeAR={(value) => setForm({ ...form, industryAR: value })} />
+            <LocaleField multiline labelEN="Summary" labelAR="الملخص" valueEN={form.summaryEN} valueAR={form.summaryAR} onChangeEN={(value) => setForm({ ...form, summaryEN: value })} onChangeAR={(value) => setForm({ ...form, summaryAR: value })} />
+            <LocaleField multiline labelEN="Challenge" labelAR="التحدي" valueEN={form.challengeEN} valueAR={form.challengeAR} onChangeEN={(value) => setForm({ ...form, challengeEN: value })} onChangeAR={(value) => setForm({ ...form, challengeAR: value })} />
+            <LocaleField multiline labelEN="Solution" labelAR="الحل" valueEN={form.solutionEN} valueAR={form.solutionAR} onChangeEN={(value) => setForm({ ...form, solutionEN: value })} onChangeAR={(value) => setForm({ ...form, solutionAR: value })} />
             <div>
               <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.work.tagsLabel')}</label>
               <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={form.tags.join(', ')} onChange={(event) => setForm({ ...form, tags: event.target.value.split(',').map((item) => item.trim()).filter(Boolean) })} />

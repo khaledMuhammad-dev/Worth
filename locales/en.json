@@ -14,7 +14,19 @@
     "taglineAccent": "We make it valuable.",
     "subtitle": "Full-service digital agency transforming ambitious businesses into market leaders through data-driven marketing and bold creative.",
     "cta1": "Get Started",
-    "cta2": "See Our Work"
+    "cta2": "See Our Work",
+    "badge": "Worth Agency",
+    "illustration": {
+      "badge": "Growth Snapshot",
+      "heading": "Strategy. Creative. Performance.",
+      "body": "We build brands and digital systems that look premium, move faster, and convert better.",
+      "feature1": "Positioning & messaging",
+      "feature2": "Paid media systems",
+      "feature3": "High-converting websites",
+      "feature4": "Content built for scale",
+      "winLabel": "Recent client win",
+      "winText": "3.4× qualified leads after a full brand & website relaunch."
+    }
   },
   "services": {
     "title": "Our",
@@ -126,6 +138,26 @@
     "clients": {
       "title": "Trusted by",
       "titleAccent": "Leading Brands"
+    },
+    "sectionLabel": "About Worth",
+    "partnerBody": "Worth partners with founders, marketing teams, and modern brands that want more than polished output. We build strategic clarity, premium creative, and the systems needed to turn momentum into measurable growth.",
+    "cards": {
+      "growth": {
+        "title": "Built for growth",
+        "body": "Every deliverable is designed to move the business forward — from positioning to paid performance."
+      },
+      "premium": {
+        "title": "Premium by default",
+        "body": "Strategic rigor meets sharp execution so the brand feels elevated at every touchpoint."
+      },
+      "clear": {
+        "title": "Operationally clear",
+        "body": "Timelines, reporting, and communication stay structured, transparent, and proactive."
+      },
+      "fluent": {
+        "title": "Regionally fluent",
+        "body": "We understand MENA audiences, bilingual brand environments, and regional growth dynamics."
+      }
     }
   },
   "testimonials": {

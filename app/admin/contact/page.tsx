@@ -35,15 +35,15 @@ export default function AdminContactPage() {
       <AdminHeader title={t('admin.contact.title')} subtitle={t('admin.contact.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
-          <LocaleField labelEN="Hero Heading" labelAR="Hero Heading" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
-          <LocaleField multiline labelEN="Hero Subheading" labelAR="Hero Subheading" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
+          <LocaleField labelEN="Hero Heading" labelAR="عنوان الهيرو" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
+          <LocaleField multiline labelEN="Hero Subheading" labelAR="العنوان الفرعي للهيرو" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
         </div>
         <div className="grid gap-4 rounded-xl border border-gray-100 bg-white p-6 md:grid-cols-2">
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.email} onChange={(event) => setData({ ...data, info: { ...data.info, email: event.target.value } })} placeholder={t('admin.contact.emailPlaceholder')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.phone} onChange={(event) => setData({ ...data, info: { ...data.info, phone: event.target.value } })} placeholder={t('admin.contact.phonePlaceholder')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.mapEmbedUrl} onChange={(event) => setData({ ...data, info: { ...data.info, mapEmbedUrl: event.target.value } })} placeholder={t('admin.contact.mapEmbedUrl')} />
           <input className="rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.info.bookingUrl} onChange={(event) => setData({ ...data, info: { ...data.info, bookingUrl: event.target.value } })} placeholder={t('admin.contact.bookingUrl')} />
-          <LocaleField multiline labelEN="Address" labelAR="Address" valueEN={data.info.addressEN} valueAR={data.info.addressAR} onChangeEN={(value) => setData({ ...data, info: { ...data.info, addressEN: value } })} onChangeAR={(value) => setData({ ...data, info: { ...data.info, addressAR: value } })} />
+          <LocaleField multiline labelEN="Address" labelAR="العنوان" valueEN={data.info.addressEN} valueAR={data.info.addressAR} onChangeEN={(value) => setData({ ...data, info: { ...data.info, addressEN: value } })} onChangeAR={(value) => setData({ ...data, info: { ...data.info, addressAR: value } })} />
         </div>
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
@@ -70,7 +70,7 @@ export default function AdminContactPage() {
                   <label htmlFor={`req-${index}`} className="cursor-pointer text-sm text-foreground">{t('admin.contact.requiredLabel')}</label>
                 </div>
               </div>
-              <LocaleField labelEN="Label" labelAR="Label" valueEN={field.labelEN} valueAR={field.labelAR} onChangeEN={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelAR: value } : entry) })} />
+              <LocaleField labelEN="Label" labelAR="التسمية" valueEN={field.labelEN} valueAR={field.labelAR} onChangeEN={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, formFields: data.formFields.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelAR: value } : entry) })} />
             </div>
           ))}
         </div>

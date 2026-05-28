@@ -385,7 +385,7 @@ export default function HomePageClient({ homeData }: Props) {
                 transition={prefersReduced ? undefined : { duration: 0.4, delay: 0.1 }}
                 className="mb-6 inline-flex items-center rounded-full bg-[#FFF4EE] px-4 py-1.5 text-sm font-semibold text-[#F97316]"
               >
-                Worth Agency
+                {t('hero.badge')}
               </motion.span>
 
               <h1
@@ -456,17 +456,17 @@ export default function HomePageClient({ homeData }: Props) {
                   transition={prefersReduced ? undefined : { duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                 >
                   <div className="rounded-[1.5rem] bg-gradient-to-br from-[#1A1A2E] via-[#1f2747] to-[#F97316] p-7 text-white">
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">Growth Snapshot</p>
+                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">{t('hero.illustration.badge')}</p>
                     <h2 className="mt-3 text-2xl font-bold leading-snug md:text-3xl" style={{ fontFamily: 'var(--font-heading)' }}>
-                      Strategy. Creative. Performance.
+                     {t('hero.illustration.heading')}
                     </h2>
                     <p className="mt-3 text-sm leading-relaxed text-white/70">
-                      We build brands and digital systems that look premium, move faster, and convert better.
+                     {t('hero.illustration.body')}
                     </p>
                     <div className="mt-8 grid grid-cols-2 gap-3">
-                      {['Positioning & messaging', 'Paid media systems', 'High-converting websites', 'Content built for scale'].map((item) => (
-                        <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs leading-snug text-white/80">
-                          {item}
+                     {(['feature1', 'feature2', 'feature3', 'feature4'] as const).map((key) => (
+                       <div key={key} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs leading-snug text-white/80">
+                         {t(`hero.illustration.${key}`)}
                         </div>
                       ))}
                     </div>
@@ -478,9 +478,9 @@ export default function HomePageClient({ homeData }: Props) {
                     <TrendingUp className="h-4 w-4 text-[#F97316]" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#1A1A2E] dark:text-sop-foreground">Recent client win</p>
+                    <p className="text-xs font-semibold text-[#1A1A2E] dark:text-sop-foreground">{t('hero.illustration.winLabel')}</p>
                     <p className="mt-0.5 text-xs leading-relaxed text-[#6B7280] dark:text-sop-muted">
-                      3.4× qualified leads after a full brand &amp; website relaunch.
+                      {t('hero.illustration.winText')}
                     </p>
                   </div>
                 </div>
@@ -549,7 +549,7 @@ export default function HomePageClient({ homeData }: Props) {
                 transition={prefersReduced ? undefined : { duration: 0.5 }}
                 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#F97316]"
               >
-                About Worth
+                {t('about.sectionLabel')}
               </motion.p>
               <motion.h2
                 initial={prefersReduced ? false : { opacity: 0, y: 30 }}
@@ -563,7 +563,7 @@ export default function HomePageClient({ homeData }: Props) {
               </motion.h2>
               <p className="about-body mt-5 leading-relaxed text-white/70">{t('about.body')}</p>
               <p className="mt-4 text-sm leading-relaxed text-white/60">
-                Worth partners with founders, marketing teams, and modern brands that want more than polished output. We build strategic clarity, premium creative, and the systems needed to turn momentum into measurable growth.
+                {t('about.partnerBody')}
               </p>
               <motion.div
                 initial={prefersReduced ? false : { opacity: 0, y: 20 }}
@@ -588,14 +588,9 @@ export default function HomePageClient({ homeData }: Props) {
             <div className="about-illustration relative min-h-[340px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6" style={{ willChange: 'transform' }}>
               <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#F97316]/20 blur-3xl" aria-hidden />
               <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2">
-                {[
-                  { title: 'Built for growth', body: 'Every deliverable is designed to move the business forward — from positioning to paid performance.' },
-                  { title: 'Premium by default', body: 'Strategic rigor meets sharp execution so the brand feels elevated at every touchpoint.' },
-                  { title: 'Operationally clear', body: 'Timelines, reporting, and communication stay structured, transparent, and proactive.' },
-                  { title: 'Regionally fluent', body: 'We understand MENA audiences, bilingual brand environments, and regional growth dynamics.' },
-                ].map((item, index) => (
+                {(['growth', 'premium', 'clear', 'fluent'] as const).map((key, index) => (
                   <motion.div
-                    key={item.title}
+                    key={key}
                     initial={prefersReduced ? false : { opacity: 0, scale: 0.9 }}
                     whileInView={prefersReduced ? undefined : { opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -603,9 +598,9 @@ export default function HomePageClient({ homeData }: Props) {
                     className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
                   >
                     <h3 className="mb-2 text-base font-bold text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-                      {item.title}
+                      {t(`about.cards.${key}.title`)}
                     </h3>
-                    <p className="text-sm leading-relaxed text-white/60">{item.body}</p>
+                    <p className="text-sm leading-relaxed text-white/60">{t(`about.cards.${key}.body`)}</p>
                   </motion.div>
                 ))}
               </div>

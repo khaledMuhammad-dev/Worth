@@ -45,9 +45,9 @@ export default function AdminServicesPage() {
       <AdminHeader title={t('admin.services.title')} subtitle={t('admin.services.subtitle')} onSave={save} saving={saving} />
       <div className="space-y-6 p-6">
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
-          <LocaleField labelEN="Heading" labelAR="Heading" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
-          <LocaleField labelEN="Accent" labelAR="Accent" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
-          <LocaleField multiline labelEN="Subheading" labelAR="Subheading" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
+          <LocaleField labelEN="Heading" labelAR="العنوان الرئيسي" valueEN={data.hero.headingEN} valueAR={data.hero.headingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, headingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, headingAR: value } })} />
+          <LocaleField labelEN="Accent" labelAR="الكلمة المميزة" valueEN={data.hero.accentWordEN} valueAR={data.hero.accentWordAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, accentWordEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, accentWordAR: value } })} />
+          <LocaleField multiline labelEN="Subheading" labelAR="العنوان الفرعي" valueEN={data.hero.subheadingEN} valueAR={data.hero.subheadingAR} onChangeEN={(value) => setData({ ...data, hero: { ...data.hero, subheadingEN: value } })} onChangeAR={(value) => setData({ ...data, hero: { ...data.hero, subheadingAR: value } })} />
         </div>
 
         {data.items.map((item, index) => (
@@ -62,8 +62,8 @@ export default function AdminServicesPage() {
                   <span className="text-sm text-muted">{item.iconColor}</span>
                 </div>
               </div>
-              <LocaleField labelEN="Title" labelAR="Title" valueEN={item.titleEN} valueAR={item.titleAR} onChangeEN={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, titleEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, titleAR: value } : entry) })} />
-              <LocaleField multiline labelEN="Description" labelAR="Description" valueEN={item.descriptionEN} valueAR={item.descriptionAR} onChangeEN={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionAR: value } : entry) })} />
+              <LocaleField labelEN="Title" labelAR="العنوان" valueEN={item.titleEN} valueAR={item.titleAR} onChangeEN={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, titleEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, titleAR: value } : entry) })} />
+              <LocaleField multiline labelEN="Description" labelAR="الوصف" valueEN={item.descriptionEN} valueAR={item.descriptionAR} onChangeEN={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, items: data.items.map((entry, itemIndex) => itemIndex === index ? { ...entry, descriptionAR: value } : entry) })} />
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">

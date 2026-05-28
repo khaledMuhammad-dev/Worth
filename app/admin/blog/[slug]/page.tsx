@@ -71,12 +71,12 @@ export default function AdminEditBlogPage() {
       <AdminHeader title={t('admin.blog.editTitle', { title: meta.titleEN })} subtitle={t('admin.blog.editArticleSubtitle')} onSave={save} saving={saving} />
       <div className="grid gap-6 p-6 lg:grid-cols-[380px_1fr]">
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
-          <LocaleField labelEN="Title" labelAR="Title" valueEN={meta.titleEN} valueAR={meta.titleAR} onChangeEN={(value) => setMeta({ ...meta, titleEN: value })} onChangeAR={(value) => setMeta({ ...meta, titleAR: value })} />
+          <LocaleField labelEN="Title" labelAR="العنوان" valueEN={meta.titleEN} valueAR={meta.titleAR} onChangeEN={(value) => setMeta({ ...meta, titleEN: value })} onChangeAR={(value) => setMeta({ ...meta, titleAR: value })} />
           <div>
             <label className="mb-1 block text-xs font-medium text-gray-500">{t('admin.blog.slug')}</label>
             <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-gray-50" value={meta.slug} readOnly />
           </div>
-          <LocaleField multiline labelEN="Excerpt" labelAR="Excerpt" valueEN={meta.excerptEN} valueAR={meta.excerptAR} onChangeEN={(value) => setMeta({ ...meta, excerptEN: value.slice(0, 160) })} onChangeAR={(value) => setMeta({ ...meta, excerptAR: value.slice(0, 160) })} />
+          <LocaleField multiline labelEN="Excerpt" labelAR="المقتطف" valueEN={meta.excerptEN} valueAR={meta.excerptAR} onChangeEN={(value) => setMeta({ ...meta, excerptEN: value.slice(0, 160) })} onChangeAR={(value) => setMeta({ ...meta, excerptAR: value.slice(0, 160) })} />
           <ImageField label={t('admin.blog.coverUrl')} value={meta.coverUrl} onChange={(value) => setMeta({ ...meta, coverUrl: value })} />
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={meta.author} onChange={(event) => setMeta({ ...meta, author: event.target.value })} placeholder={t('admin.blog.authorPlaceholder')} />
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={meta.tags.join(', ')} onChange={(event) => setMeta({ ...meta, tags: event.target.value.split(',').map((item) => item.trim()).filter(Boolean) })} placeholder={t('admin.blog.tagsPlaceholderShort')} />

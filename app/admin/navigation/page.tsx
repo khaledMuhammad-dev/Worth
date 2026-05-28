@@ -36,12 +36,12 @@ export default function AdminNavigationPage() {
           {data.links.map((link, index) => (
             <div key={link.id} className="space-y-3 rounded-xl border border-gray-100 p-4">
               <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={link.href} onChange={(event) => setData({ ...data, links: data.links.map((entry, itemIndex) => itemIndex === index ? { ...entry, href: event.target.value } : entry) })} placeholder="Href" />
-              <LocaleField labelEN="Label" labelAR="Label" valueEN={link.labelEN} valueAR={link.labelAR} onChangeEN={(value) => setData({ ...data, links: data.links.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, links: data.links.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelAR: value } : entry) })} />
+              <LocaleField labelEN="Label" labelAR="التسمية" valueEN={link.labelEN} valueAR={link.labelAR} onChangeEN={(value) => setData({ ...data, links: data.links.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelEN: value } : entry) })} onChangeAR={(value) => setData({ ...data, links: data.links.map((entry, itemIndex) => itemIndex === index ? { ...entry, labelAR: value } : entry) })} />
             </div>
           ))}
         </div>
         <div className="space-y-4 rounded-xl border border-gray-100 bg-white p-6">
-          <LocaleField labelEN="CTA" labelAR="CTA" valueEN={data.ctaEN} valueAR={data.ctaAR} onChangeEN={(value) => setData({ ...data, ctaEN: value })} onChangeAR={(value) => setData({ ...data, ctaAR: value })} />
+          <LocaleField labelEN="CTA" labelAR="زر الدعوة" valueEN={data.ctaEN} valueAR={data.ctaAR} onChangeEN={(value) => setData({ ...data, ctaEN: value })} onChangeAR={(value) => setData({ ...data, ctaAR: value })} />
           <input className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" value={data.ctaHref} onChange={(event) => setData({ ...data, ctaHref: event.target.value })} placeholder="CTA href" />
         </div>
       </div>
