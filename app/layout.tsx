@@ -5,7 +5,6 @@ import I18nProvider from '@/components/providers/I18nProvider';
 import GSAPProvider from '@/components/providers/GSAPProvider';
 import Loader from '@/components/Loader';
 import CustomCursor from '@/components/CustomCursor';
-import PageTransition from '@/components/PageTransition';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import PublicLayout from '@/components/PublicLayout';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -49,9 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <Loader />
               <CustomCursor />
               <ScrollProgressBar />
-              <PageTransition>
-                <PublicLayout announcements={announcements}>{children}</PublicLayout>
-              </PageTransition>
+              <PublicLayout announcements={announcements}>{children}</PublicLayout>
             </GSAPProvider>
           </I18nProvider>
         </ThemeProvider>
