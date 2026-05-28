@@ -29,10 +29,8 @@ export function Navbar() {
 
   const toggleLang = () => {
     const newLang = lang === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
-    document.documentElement.lang = newLang;
-    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
     localStorage.setItem('i18nextLng', newLang);
+    window.location.reload();
   };
 
   const navLinks = [
