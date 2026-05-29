@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
   }: { slug: string; mdxContent: string; meta: BlogMeta } = await request.json()
 
   const mdxPath = path.join(process.cwd(), 'content/blog', `${slug}.mdx`)
+  fs.mkdirSync(path.dirname(mdxPath), { recursive: true })
   fs.writeFileSync(mdxPath, mdxContent, 'utf8')
 
   const metaPath = path.join(process.cwd(), 'content/data', 'blog-meta.json')
