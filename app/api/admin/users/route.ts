@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyAdminSession } from '@/lib/auth/verify-session'
 import { checkPermission } from '@/lib/rbac/check-permission'
-import { adminAuth, adminDb } from '@/lib/firebase/admin'
+import { getAdminAuth, getAdminDb } from '@/lib/firebase/admin'
 import { COLLECTIONS } from '@/lib/firebase/collections'
 import { createUserSchema } from '@/schemas/user.schema'
 import type { AdminUser } from '@/lib/rbac/types'
+
+function firebaseUnavailable() {
+  return NextResponse.json(
+    { error: 'Firebase Admin is not configured. Set FIREBASE_ADMIN_CLIENT_EMAIL and FIREBASE_ADMIN_PRIVATE_KEY.' },
+    { status: 503 }
+  )
+}
 
 export async function GET(request: NextRequest) {
   const user = await verifyAdminSession(request)
@@ -13,6 +20,9 @@ export async function GET(request: NextRequest) {
   const hasViewPerm = await checkPermission(user, 'users:all:view')
   if (!hasViewPerm) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
+  const db = getAdminDb()
+  if (!db) return firebaseUnavailable()
+
   const { searchParams } = new URL(request.url)
   const role = searchParams.get('role')
   const isActive = searchParams.get('isActive')
@@ -20,7 +30,7 @@ export async function GET(request: NextRequest) {
   const page = parseInt(searchParams.get('page') ?? '1', 10)
   const limit = parseInt(searchParams.get('limit') ?? '20', 10)
 
-  let query = adminDb.collection(COLLECTIONS.USERS) as FirebaseFirestore.Query
+  let query = db.collection(COLLECTIONS.USERS) as FirebaseFirestore.Query
 
   if (role) query = query.where('role', '==', role)
   if (isActive !== null) query = query.where('isActive', '==', isActive === 'true')
@@ -50,6 +60,10 @@ export async function POST(request: NextRequest) {
   const hasCreatePerm = await checkPermission(currentUser, 'users:all:create')
   if (!hasCreatePerm) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
+  const db = getAdminDb()
+  const auth = getAdminAuth()
+  if (!db || !auth) return firebaseUnavailable()
+
   const body = await request.json()
   const parsed = createUserSchema.safeParse(body)
   if (!parsed.success) {
@@ -67,7 +81,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const firebaseUser = await adminAuth.createUser({
+    const firebaseUser = await auth.createUser({
       email,
       password,
       displayName,
@@ -86,7 +100,7 @@ export async function POST(request: NextRequest) {
       lastLoginAt: '',
     }
 
-    await adminDb
+    await db
       .collection(COLLECTIONS.USERS)
       .doc(firebaseUser.uid)
       .set(newUser)

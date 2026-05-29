@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyAdminSession } from '@/lib/auth/verify-session'
 import { checkPermission } from '@/lib/rbac/check-permission'
-import { adminAuth, adminDb } from '@/lib/firebase/admin'
+import { getAdminAuth, getAdminDb } from '@/lib/firebase/admin'
 import { COLLECTIONS } from '@/lib/firebase/collections'
 import { updateUserSchema } from '@/schemas/user.schema'
 import type { AdminUser } from '@/lib/rbac/types'
+
+function firebaseUnavailable() {
+  return NextResponse.json(
+    { error: 'Firebase Admin is not configured. Set FIREBASE_ADMIN_CLIENT_EMAIL and FIREBASE_ADMIN_PRIVATE_KEY.' },
+    { status: 503 }
+  )
+}
 
 export async function GET(
   request: NextRequest,
@@ -21,7 +28,10 @@ export async function GET(
     if (!hasPerm) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const doc = await adminDb.collection(COLLECTIONS.USERS).doc(uid).get()
+  const db = getAdminDb()
+  if (!db) return firebaseUnavailable()
+
+  const doc = await db.collection(COLLECTIONS.USERS).doc(uid).get()
   if (!doc.exists) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
   return NextResponse.json({ uid: doc.id, ...doc.data() } as AdminUser)
@@ -36,6 +46,10 @@ export async function PUT(
 
   const hasEditPerm = await checkPermission(currentUser, 'users:all:edit')
   if (!hasEditPerm) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
+  const db = getAdminDb()
+  const auth = getAdminAuth()
+  if (!db || !auth) return firebaseUnavailable()
 
   const { uid } = await params
   const body = await request.json()
@@ -56,7 +70,7 @@ export async function PUT(
 
   try {
     if (password) {
-      await adminAuth.updateUser(uid, { password })
+      await auth.updateUser(uid, { password })
     }
 
     const updateData = {
@@ -64,9 +78,9 @@ export async function PUT(
       updatedAt: new Date().toISOString(),
     }
 
-    await adminDb.collection(COLLECTIONS.USERS).doc(uid).update(updateData)
+    await db.collection(COLLECTIONS.USERS).doc(uid).update(updateData)
 
-    const doc = await adminDb.collection(COLLECTIONS.USERS).doc(uid).get()
+    const doc = await db.collection(COLLECTIONS.USERS).doc(uid).get()
     return NextResponse.json({ uid: doc.id, ...doc.data() } as AdminUser)
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : 'Failed to update user'
@@ -84,6 +98,10 @@ export async function DELETE(
   const hasDeletePerm = await checkPermission(currentUser, 'users:all:delete')
   if (!hasDeletePerm) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
+  const db = getAdminDb()
+  const auth = getAdminAuth()
+  if (!db || !auth) return firebaseUnavailable()
+
   const { uid } = await params
 
   if (uid === currentUser.uid) {
@@ -91,12 +109,12 @@ export async function DELETE(
   }
 
   // Prevent deleting the last super_admin
-  const targetDoc = await adminDb.collection(COLLECTIONS.USERS).doc(uid).get()
+  const targetDoc = await db.collection(COLLECTIONS.USERS).doc(uid).get()
   if (!targetDoc.exists) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
   const targetUser = targetDoc.data() as AdminUser
   if (targetUser.role === 'super_admin') {
-    const superAdminSnapshot = await adminDb
+    const superAdminSnapshot = await db
       .collection(COLLECTIONS.USERS)
       .where('role', '==', 'super_admin')
       .where('isActive', '==', true)
@@ -107,8 +125,8 @@ export async function DELETE(
   }
 
   try {
-    await adminAuth.deleteUser(uid)
-    await adminDb.collection(COLLECTIONS.USERS).doc(uid).delete()
+    await auth.deleteUser(uid)
+    await db.collection(COLLECTIONS.USERS).doc(uid).delete()
     return NextResponse.json({ success: true })
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : 'Failed to delete user'
