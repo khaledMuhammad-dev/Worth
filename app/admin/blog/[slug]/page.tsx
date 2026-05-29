@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
@@ -53,13 +54,22 @@ export default function AdminEditBlogPage() {
   const save = async () => {
     if (!meta) return
     setSaving(true)
-    const response = await fetch('/api/admin/blog/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug, mdxContent, meta }),
-    })
+    try {
+      const response = await fetch('/api/admin/blog/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, mdxContent, meta }),
+      })
+      if (response.ok) {
+        useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.savedTitle'), description: t('admin.toast.savedDesc') })
+        router.refresh()
+      } else {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+    }
     setSaving(false)
-    if (response.ok) router.refresh()
   }
 
   if (loading || !meta) {

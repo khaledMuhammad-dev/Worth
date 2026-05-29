@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/announcements.json'
@@ -54,11 +55,18 @@ export default function AnnouncementPage() {
 
   const persist = async (nextItems: Announcement[]) => {
     setItems(nextItems)
-    await fetch('/api/admin/save/announcements', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(nextItems),
-    })
+    try {
+      const res = await fetch('/api/admin/save/announcements', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nextItems),
+      })
+      if (!res.ok) {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+    }
   }
 
   const openCreate = () => {
@@ -97,6 +105,7 @@ export default function AnnouncementPage() {
     await persist(nextItems)
     setSaving(false)
     setOpen(false)
+    useUIStore.getState().addToast({ type: 'success', title: editingId ? t('admin.toast.savedTitle') : t('admin.toast.createdTitle') })
   }
 
   const removeItem = async (id: string) => {
@@ -104,6 +113,7 @@ export default function AnnouncementPage() {
       .filter((item) => item.id !== id)
       .map((item, index) => ({ ...item, priority: index + 1 }))
     await persist(nextItems)
+    useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.deletedTitle') })
   }
 
   const toggleActive = async (id: string) => {

@@ -4,6 +4,7 @@ import slugify from 'slugify'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
@@ -41,32 +42,38 @@ export default function AdminNewBlogPage() {
   const save = async () => {
     const safeSlug = slug || slugify(titleEN || 'article', { lower: true, strict: true })
     setSaving(true)
-    const response = await fetch('/api/admin/blog/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        slug: safeSlug,
-        mdxContent,
-        meta: {
+    try {
+      const response = await fetch('/api/admin/blog/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           slug: safeSlug,
-          titleEN,
-          titleAR,
-          excerptEN,
-          excerptAR,
-          author,
-          coverUrl,
-          tags: tags.split(',').map((item) => item.trim()).filter(Boolean),
-          status,
-          publishedAt,
-          updatedAt: publishedAt,
-        },
-      }),
-    })
-    setSaving(false)
-
-    if (response.ok) {
-      router.push(`/admin/blog/${safeSlug}`)
+          mdxContent,
+          meta: {
+            slug: safeSlug,
+            titleEN,
+            titleAR,
+            excerptEN,
+            excerptAR,
+            author,
+            coverUrl,
+            tags: tags.split(',').map((item) => item.trim()).filter(Boolean),
+            status,
+            publishedAt,
+            updatedAt: publishedAt,
+          },
+        }),
+      })
+      if (response.ok) {
+        useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.createdTitle') })
+        router.push(`/admin/blog/${safeSlug}`)
+      } else {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
     }
+    setSaving(false)
   }
 
   return (

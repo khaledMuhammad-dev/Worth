@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import LocaleField from '@/components/admin/LocaleField'
 import initialData from '@/content/data/navigation.json'
@@ -20,11 +21,20 @@ export default function AdminNavigationPage() {
 
   const save = async () => {
     setSaving(true)
-    await fetch('/api/admin/save/navigation', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
+    try {
+      const res = await fetch('/api/admin/save/navigation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.savedTitle'), description: t('admin.toast.savedDesc') })
+      } else {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+    }
     setSaving(false)
   }
 

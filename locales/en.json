@@ -368,6 +368,16 @@
       "saveChanges": "Save Changes",
       "saving": "Saving..."
     },
+    "toast": {
+      "savedTitle": "Changes saved",
+      "savedDesc": "Your changes have been saved successfully.",
+      "saveFailedTitle": "Failed to save",
+      "saveFailedDesc": "Something went wrong. Please try again.",
+      "createdTitle": "Created successfully",
+      "createFailedTitle": "Failed to create",
+      "deletedTitle": "Deleted successfully",
+      "deleteFailedTitle": "Failed to delete"
+    },
     "dashboard": {
       "title": "Dashboard",
       "subtitle": "Overview of your content",

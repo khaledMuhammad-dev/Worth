@@ -368,6 +368,16 @@
       "saveChanges": "حفظ التغييرات",
       "saving": "جارٍ الحفظ..."
     },
+    "toast": {
+      "savedTitle": "تم الحفظ",
+      "savedDesc": "تم حفظ تغييراتك بنجاح.",
+      "saveFailedTitle": "فشل الحفظ",
+      "saveFailedDesc": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+      "createdTitle": "تم الإنشاء بنجاح",
+      "createFailedTitle": "فشل الإنشاء",
+      "deletedTitle": "تم الحذف بنجاح",
+      "deleteFailedTitle": "فشل الحذف"
+    },
     "dashboard": {
       "title": "لوحة التحكم",
       "subtitle": "نظرة عامة على محتواك",

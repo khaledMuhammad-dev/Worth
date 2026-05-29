@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import { Pencil, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import initialData from '@/content/data/blog-meta.json'
@@ -39,12 +40,21 @@ export default function AdminBlogPage() {
   }, [filter, items, query])
 
   const remove = async (slug: string) => {
-    await fetch('/api/admin/blog/delete', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug }),
-    })
-    setItems((current) => current.filter((item) => item.slug !== slug))
+    try {
+      const res = await fetch('/api/admin/blog/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      })
+      if (res.ok) {
+        setItems((current) => current.filter((item) => item.slug !== slug))
+        useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.deletedTitle') })
+      } else {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.deleteFailedTitle') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.deleteFailedTitle') })
+    }
   }
 
   return (

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ImageField from '@/components/admin/ImageField'
 import LocaleField from '@/components/admin/LocaleField'
+import { useUIStore } from '@/stores/ui.store'
 import initialData from '@/content/data/about.json'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
@@ -24,11 +25,20 @@ export default function AdminAboutPage() {
 
   const save = async () => {
     setSaving(true)
-    await fetch('/api/admin/save/about', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
+    try {
+      const res = await fetch('/api/admin/save/about', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.savedTitle'), description: t('admin.toast.savedDesc') })
+      } else {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+    }
     setSaving(false)
   }
 

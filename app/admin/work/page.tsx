@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Edit2, Plus, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useUIStore } from '@/stores/ui.store'
 import AdminHeader from '@/components/admin/AdminHeader'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import ImageField from '@/components/admin/ImageField'
@@ -64,11 +65,18 @@ export default function AdminWorkPage() {
 
   const persist = async (nextProjects: Project[]) => {
     setProjects(nextProjects)
-    await fetch('/api/admin/save/work', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ projects: nextProjects }),
-    })
+    try {
+      const res = await fetch('/api/admin/save/work', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projects: nextProjects }),
+      })
+      if (!res.ok) {
+        useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+      }
+    } catch {
+      useUIStore.getState().addToast({ type: 'error', title: t('admin.toast.saveFailedTitle'), description: t('admin.toast.saveFailedDesc') })
+    }
   }
 
   const openCreate = () => {
@@ -91,10 +99,12 @@ export default function AdminWorkPage() {
     await persist(nextProjects)
     setSaving(false)
     setOpen(false)
+    useUIStore.getState().addToast({ type: 'success', title: editingId ? t('admin.toast.savedTitle') : t('admin.toast.createdTitle') })
   }
 
   const removeProject = async (id: string) => {
     await persist(projects.filter((project) => project.id !== id))
+    useUIStore.getState().addToast({ type: 'success', title: t('admin.toast.deletedTitle') })
   }
 
   return (
